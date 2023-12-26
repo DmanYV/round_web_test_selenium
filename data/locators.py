@@ -36,4 +36,7 @@ class LoginPageLocators:
     BUTTON_BACK = (By.XPATH, './/button[contains(@class, "header_back")]')
     # Кнопка 'Забыл(-а) пароль?'
     BUTTON_FORGO_PASSWORD = (By.XPATH, './/div[text()="Забыл(-а) пароль?"]')
+    # ???
     SPINNER = (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]')
+    # Попап с ошибкой авторизации
+    POPUP_AUTH_ERROR = (By.XPATH, './/div[@class="popup_content__hyS0z"]')

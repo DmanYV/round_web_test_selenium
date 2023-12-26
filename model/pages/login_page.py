@@ -9,13 +9,13 @@ from .base_page import BasePage
 class LoginPage(BasePage):
     PAGE_URL = Links.LOGIN_PAGE
 
-    def input_username_field(self, text: str):
+    def input_username_field(self, login: str):
         element = self.find_element(LoginPageLocators.FIELD_USERNAME)
-        element.send_keys(text)
+        element.send_keys(login)
 
-    def input_password_field(self, text: str):
+    def input_password_field(self, password: str):
         element = self.find_element(LoginPageLocators.FIELD_PASSWORD)
-        element.send_keys(text)
+        element.send_keys(password)
 
     def validation_message_username_field(self, text, wait_time=10):
         WebDriverWait(self.driver, wait_time).until(EC.text_to_be_present_in_element(
@@ -33,3 +33,6 @@ class LoginPage(BasePage):
         element = self.find_element(LoginPageLocators.BUTTON_FORGO_PASSWORD)
         self.do_click(element)
 
+    def check_popup_auth_error_visible(self, text, wait_time=10):
+        WebDriverWait(self.driver, wait_time).until(EC.text_to_be_present_in_element(
+            LoginPageLocators.POPUP_AUTH_ERROR, text))
