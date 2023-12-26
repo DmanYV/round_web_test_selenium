@@ -9,11 +9,11 @@ from .base_page import BasePage
 class LoginPage(BasePage):
     PAGE_URL = Links.LOGIN_PAGE
 
-    def field_username_input(self, text: str):
+    def input_username_field(self, text: str):
         element = self.find_element(LoginPageLocators.FIELD_USERNAME)
         element.send_keys(text)
 
-    def field_password_input(self, text: str):
+    def input_password_field(self, text: str):
         element = self.find_element(LoginPageLocators.FIELD_PASSWORD)
         element.send_keys(text)
 
@@ -21,15 +21,15 @@ class LoginPage(BasePage):
         WebDriverWait(self.driver, wait_time).until(EC.text_to_be_present_in_element(
             LoginPageLocators.VALIDATION_MESSAGE_USERNAME_FIELD, text))
 
-    def button_signin_click(self):
+    def click_signin_button(self):
         element = self.find_element(LoginPageLocators.BUTTON_SIGN_IN)
         self.do_click(element)
 
-    def button_back_click(self):
+    def click_back_button(self):
         element = self.find_element(LoginPageLocators.BUTTON_BACK)
         self.do_click(element)
 
-    def button_forgot_password_click(self):
+    def click_forgot_password_button(self):
         element = self.find_element(LoginPageLocators.BUTTON_FORGO_PASSWORD)
         self.do_click(element)
 

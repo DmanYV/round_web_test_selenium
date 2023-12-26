@@ -5,8 +5,18 @@ class AuthorizationPageLocators:
     """Локаторы страницы Авторизации"""
     # Кнопка 'Крестик'
     BUTTON_CLOSE = (By.XPATH, './/button[@class="header_back__yUNba"]')
+    # Кнопка "Крротквенст"
+    BUTTON_CARROT_QUEST = (By.XPATH, '//div[@class="header_info__CHSYI"]')
+    # Кнопка войти По смс
+    BUTTON_SMS_LOGIN = (By.XPATH, '//button[@name="signUpWithSMS"]')
+    # Кнопка войти Вконтакте
+    BUTTON_VK_LOGIN = (By.XPATH, '//button[@name="signUpWithVK"]')
+    # Кнопка войти Email
+    BUTTON_EMAIL_LOGIN = (By.XPATH, '//button[@name="signUpWithEmail"]')
     # Кнопка 'Войти'
     BUTTON_SIGN_IN = (By.XPATH, './/a[text()="Войти"]')
+    # Кнопка Лицензионная политика
+    BUTTON_LICENSED_SHELF = (By.XPATH, '//a[@href="/license-policy"]')
 
 
 class LoginPageLocators:

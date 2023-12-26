@@ -1,7 +1,7 @@
 import allure
 
 from data.base_test import BaseTest
-from settings import Administrator
+from settings import Aleska
 
 
 class TestAuthUser(BaseTest):
@@ -10,10 +10,10 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input(Administrator.login)
+            self.login_page.input_username_field(Aleska.login)
 
         with allure.step('В поле пароля вводим валидный пароль'):
-            self.login_page.field_password_input(Administrator.password)
+            self.login_page.input_password_field(Aleska.password)
 
         with allure.step('Нажать кнопку "Войти"'):
-            self.login_page.button_signin_click()
+            self.login_page.click_signin_button()
