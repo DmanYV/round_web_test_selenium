@@ -4,8 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 
-class Administrator:
-    login = os.environ.get('LOGIN_ADMINISTRATOR')
-    password = os.environ.get('PASSWORD_ADMINISTRATOR')
-    email = os.environ.get('EMAIL_ADMINISTRATOR')
-    phone = os.environ.get('PHONE_ADMINISTRATOR')
+class User:
+    login = os.environ.get('LOGIN_USER')
+    password = os.environ.get('PASSWORD_USER')
+    email = os.environ.get('EMAIL_USER')
+    phone = os.environ.get('PHONE_USER')

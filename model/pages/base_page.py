@@ -70,4 +70,5 @@ class BasePage(object):
         Функция проверки URL.
         URL - передаем ожидаемое значение
         """
-        assert self.driver.current_url == url, 'Открытая страница не соответствует' + ' ' + url
+        assert self.driver.current_url == url, ('Открытая страница ' + url + ' не соответствует ' +
+                                                self.driver.current_url)

@@ -27,3 +27,11 @@ class LoginPageLocators:
     # Кнопка 'Забыл(-а) пароль?'
     BUTTON_FORGO_PASSWORD = (By.XPATH, './/div[text()="Забыл(-а) пароль?"]')
     SPINNER = (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]')
+
+
+class MainPageLocators:
+    """Локаторы страницы Главной"""
+
+
+class RubricPageLocators:
+    """Локаторы страницы Рубрики"""
