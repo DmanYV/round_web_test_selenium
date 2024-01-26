@@ -21,3 +21,16 @@ class TestAuthUser(BaseTest):
 
         with allure.step('Проверяем, что открыта страница рубрики'):
             self.rubric_page.assert_open_url(Links.LOGIN_PAGE)
+
+    def test_auth_valid_username_and_no_password(self):
+        with allure.step('Открыть страницу логина'):
+            self.login_page.open()
+
+        with allure.step('В поле логина вводим валидный логин'):
+            self.login_page.field_username_input(User.login)
+
+        with allure.step('Нажать кнопку "Войти"'):
+            self.login_page.button_signin_click()
+
+        with allure.step('Под полем пароль отображается текст валидации "Введи пароль"'):
+            self.login_page.field_username_validation_message_enter_password('Введи пароль')

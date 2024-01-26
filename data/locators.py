@@ -23,13 +23,13 @@ class LoginPageLocators:
     """Локаторы страницы Логина"""
     # Поле ввода 'Никнейм, email или номер телефона'
     FIELD_USERNAME = (By.XPATH, './/input[@name="username"]')
-    # Поле ввода 'Пароль'
-    FIELD_PASSWORD = (By.XPATH, './/input[@name="password"]')
     # Текст валидации поля 'Имя пользователя'
     VALIDATION_MESSAGE_USERNAME_FIELD = (
         By.XPATH, '//label[contains(.,"Введи e-mail, никнейм или номер телефона, указанные при регистрации")]')
-    # Текст валидации поля 'Пароль'
-    VALIDATION_MESSAGE_PASSWORD_FIELD = (By.XPATH, '//label[contains(.,"Введи пароль")]')
+    # Поле ввода 'Пароль'
+    FIELD_PASSWORD = (By.XPATH, './/input[@name="password"]')
+    # Текст валидации поля 'Пароль' - Введи пароль
+    VALIDATION_MESSAGE_PASSWORD_FIELD_ENTER_PASSWORD = (By.XPATH, '//label[contains(.,"Введи пароль")]')
     # Кнопка 'Войти'
     BUTTON_SIGN_IN = (By.XPATH, './/button[text()="Войти"]')
     # Кнопка 'Крести\Закрыть'
