@@ -3,6 +3,8 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from data.locators import AllPageLocators
+
 
 class BasePage(object):
     """Основной класс страницы от которого наследуем"""
@@ -57,7 +59,7 @@ class BasePage(object):
         return WebDriverWait(self.driver, wait_time).until(EC.presence_of_all_elements_located(locator))
 
     def element_is_not_visible(self, locator, wait_time=10):
-        """Функция поиска элемента, который не видим и отсутствует в DOMe"""
+        """Функция поиска элемента, для проверки его отсутствия в DOMe"""
         return WebDriverWait(self.driver, wait_time).until(EC.invisibility_of_element_located(locator))
 
     def clear(self, locator, wait_time=10):
@@ -70,6 +72,8 @@ class BasePage(object):
         Функция проверки URL.
         URL - передаем ожидаемое значение
         """
+        time.sleep(1)
+        self.element_is_not_visible(AllPageLocators.SPINNER)
         assert self.driver.current_url == url, (f'Открытая страница {self.driver.current_url} не соответствует '
                                                 f'ожидаемой {url}')
 
