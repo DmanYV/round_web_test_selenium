@@ -5,12 +5,15 @@ from model.pages.login_page import LoginPage
 from model.pages.main_page import MainPage
 from model.pages.rubric_page import RubricPage
 
+from model.api.authorization import ApiAuthorization
+
 
 class BaseTest:
     authorization_page: AuthorizationPage
     login_page: LoginPage
     main_page: MainPage
     rubric_page: RubricPage
+    api_authorization: ApiAuthorization
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
@@ -19,3 +22,4 @@ class BaseTest:
         request.cls.login_page = LoginPage(driver)
         request.cls.main_page = MainPage(driver)
         request.cls.rubric_page = RubricPage(driver)
+        request.cls.api_authorization = ApiAuthorization(driver)

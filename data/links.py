@@ -6,3 +6,8 @@ class Links:
     LOGIN_PAGE = f'{HOST}/login'
     MAIN_PAGE = f'{HOST}/'
     RUBRIC_PAGE = f'{HOST}/rubric'
+
+
+class Api:
+    HOST = 'https://staging.round.land'
+    TOKEN = f'{HOST}/connect/token'

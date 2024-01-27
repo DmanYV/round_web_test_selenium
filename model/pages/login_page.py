@@ -13,12 +13,16 @@ class LoginPage(BasePage):
         element = self.find_element(LoginPageLocators.FIELD_USERNAME)
         element.send_keys(login)
 
+    def field_username_validation_message(self, text: str):
+        text_ = self.find_element(LoginPageLocators.VALIDATION_MESSAGE_USERNAME_FIELD).text
+        assert text_ == text, f'Текст элемента \'{text_}\' ожидалось \'{text}\''
+
     def field_password_input(self, password: str):
         element = self.find_element(LoginPageLocators.FIELD_PASSWORD)
         element.send_keys(password)
 
-    def field_username_validation_message_enter_password(self, text: str):
-        text_ = self.find_element(LoginPageLocators.VALIDATION_MESSAGE_PASSWORD_FIELD_ENTER_PASSWORD).text
+    def field_password_validation_message(self, text: str):
+        text_ = self.find_element(LoginPageLocators.VALIDATION_MESSAGE_PASSWORD_FIELD).text
         assert text_ == text, f'Текст элемента \'{text_}\' ожидалось \'{text}\''
 
     def button_signin_click(self):
