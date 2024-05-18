@@ -2,12 +2,13 @@ import requests
 
 from config.links import Api, Links
 from base.base_page import BasePage
+from settings import User
 
 
 class ApiAuthorization(BasePage):
     PAGE_URL = Links.MAIN_PAGE
 
-    def user(self):
+    def user(self, username, password):
         headers = {
             'X-Client-Id': 'round',
             'X-Client-Type': 'web',
@@ -16,8 +17,8 @@ class ApiAuthorization(BasePage):
         data = {
             'client_id': 'Krujok.Online.Mobile',
             'grant_type': 'password',
-            'username': 'Aleska',
-            'password': 'qwe123'
+            'username': username,
+            'password': password
         }
 
         response = requests.post(url=Api.TOKEN, headers=headers, data=data)
