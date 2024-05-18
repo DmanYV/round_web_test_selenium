@@ -2,7 +2,6 @@ import allure
 from faker import Faker
 
 from base.base_test import BaseTest
-from settings import User
 from config.links import Links
 
 fake = Faker()
@@ -14,10 +13,10 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input(User.login)
+            self.login_page.field_username_input(self.User.login)
 
         with allure.step('В поле пароля вводим валидный пароль'):
-            self.login_page.field_password_input(User.password)
+            self.login_page.field_password_input(self.User.password)
 
         with allure.step('Нажать кнопку "Войти"'):
             self.login_page.button_signin_click()
@@ -30,7 +29,7 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input(User.login)
+            self.login_page.field_username_input(self.User.login)
 
         with allure.step('Нажать кнопку "Войти"'):
             self.login_page.button_signin_click()
@@ -43,7 +42,7 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input(User.login)
+            self.login_page.field_username_input(self.User.login)
 
         with allure.step('В поле пароль вводим меньше 6 случайных символов'):
             self.login_page.field_password_input(fake.password(length=5))
@@ -51,7 +50,8 @@ class TestAuthUser(BaseTest):
         with allure.step('Нажать кнопку "Войти"'):
             self.login_page.button_signin_click()
 
-        with allure.step('Под полем пароль отображается текст валидации "Длина пароля должна быть не меньше 6 символов"'):
+        with allure.step(
+                'Под полем пароль отображается текст валидации "Длина пароля должна быть не меньше 6 символов"'):
             self.login_page.field_username_validation_message('Длина пароля должна быть не меньше 6 символов')
 
     def test_auth_no_login(self):
