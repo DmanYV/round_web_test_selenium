@@ -11,7 +11,7 @@ services:
     command: /bin/sh -c "ls -la && pytest -sv --alluredir=allure-results"
     working_dir: /usr/workspace
     environment:
-      - LOGIN=${LOGIN_USER}
-      - PASSWORD=${PASSWORD_USER}
-      - EMAIL=${EMAIL_USER}
-      - PHONE=${PHONE_USER}
+      - LOGIN=${LOGIN}
+      - PASSWORD=${PASSWORD}
+      - EMAIL=${EMAIL}
+      - PHONE=${PHONE}
