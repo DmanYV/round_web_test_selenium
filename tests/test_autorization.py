@@ -30,8 +30,8 @@ class TestAuthUser(BaseTest):
         with allure.step('Проверяем, что открыта страница рубрики'):
             self.rubric_page.is_opened()
 
-    @allure.title('Авторизация пользователя с вальдным логином и пустым паролем')
-    @allure.description('При проверке используются вальдный логин пользователя Aleska')
+    @allure.title('Авторизация пользователя с валидным логином и пустым паролем')
+    @allure.description('При проверке используются валидный логин пользователя Aleska')
     @allure.severity('Trivial')
     def test_auth_valid_username_and_no_password(self):
         with allure.step('Открыть страницу логина'):
