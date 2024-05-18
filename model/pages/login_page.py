@@ -13,13 +13,17 @@ class LoginPage(BasePage):
         element = self.find_element(LoginPageLocators.FIELD_USERNAME)
         element.send_keys(login)
 
+    def field_username_validation_message(self, text: str):
+        text_ = self.find_element(LoginPageLocators.VALIDATION_MESSAGE_USERNAME_FIELD).text
+        assert text_ == text, f'Текст элемента \'{text_}\' ожидалось \'{text}\''
+
     def field_password_input(self, password: str):
         element = self.find_element(LoginPageLocators.FIELD_PASSWORD)
         element.send_keys(password)
 
-    def field_username_validation_message(self, text, wait_time=10):
-        WebDriverWait(self.driver, wait_time).until(EC.text_to_be_present_in_element(
-            LoginPageLocators.VALIDATION_MESSAGE_USERNAME_FIELD, text))
+    def field_password_validation_message(self, text: str):
+        text_ = self.find_element(LoginPageLocators.VALIDATION_MESSAGE_PASSWORD_FIELD).text
+        assert text_ == text, f'Текст элемента \'{text_}\' ожидалось \'{text}\''
 
     def button_signin_click(self):
         element = self.find_element(LoginPageLocators.BUTTON_SIGN_IN)
