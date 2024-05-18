@@ -31,8 +31,8 @@ class LoginPageLocators:
     FIELD_USERNAME = (By.XPATH, './/input[@name="username"]')
     # Текст валидации поля 'Имя пользователя'
     VALIDATION_MESSAGE_USERNAME_FIELD = (
-        By.XPATH, './/div[@class = "text-field_container__vUCqA"][1]'
-                  '//label[@class = "text-field_validation-message__nizJJ"]')
+        By.XPATH,
+        '//label[@class="text-field_validation-message__nizJJ"][contains(.,"Введи e-mail, никнейм или номер телефона, указанные при регистрации")]')
     # Поле ввода 'Пароль'
     FIELD_PASSWORD = (By.XPATH, './/input[@name="password"]')
     # Текст валидации поля 'Пароль'

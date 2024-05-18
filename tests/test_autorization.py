@@ -23,7 +23,7 @@ class TestAuthUser(BaseTest):
             self.login_page.button_signin_click()
 
         with allure.step('Проверяем, что открыта страница рубрики'):
-            self.rubric_page.assert_open_url(Links.RUBRIC_PAGE)
+            self.rubric_page.is_opened()
 
     def test_auth_valid_username_and_no_password(self):
         with allure.step('Открыть страницу логина'):
@@ -75,4 +75,4 @@ class TestAuthUser(BaseTest):
             self.api_authorization.user()
 
         with allure.step('Проверяем, что открывается страница рубрик'):
-            self.rubric_page.assert_open_url(Links.RUBRIC_PAGE)
+            self.rubric_page.is_opened(Links.RUBRIC_PAGE)
