@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+from config import attach
 
 
 @pytest.fixture(autouse=True, scope='function')
@@ -15,5 +16,9 @@ def driver(request):
     request.cls.driver = driver
 
     yield driver
+
+    attach.add_html(driver)
+    attach.add_screenshot(driver)
+    attach.add_logs(driver)
 
     driver.quit()
