@@ -11,7 +11,7 @@ fake = Faker()
 @allure.feature('Авторизация пользователя')
 class TestAuthUser(BaseTest):
     @allure.title('Авторизация пользователя с валидными данными')
-    @allure.description('При проверке используются вальдные данные пользователя Aleska')
+    @allure.description('При проверке используются валидные данные пользователя Aleska')
     @allure.severity('Critical')
     @pytest.mark.smoke
     def test_auth_valid_user(self):
