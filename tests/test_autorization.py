@@ -38,7 +38,7 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input(self.User.login)
+            self.login_page.field_username_input(self.User.LOGIN)
 
         with allure.step('Нажать кнопку "Войти"'):
             self.login_page.button_signin_click()
@@ -54,7 +54,7 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input(self.User.login)
+            self.login_page.field_username_input(self.User.LOGIN)
 
         with allure.step('В поле пароль вводим меньше 6 случайных символов'):
             self.login_page.field_password_input(fake.password(length=5))
@@ -92,7 +92,7 @@ class TestAuthUser(BaseTest):
     @pytest.mark.smoke
     def test_api_auth_valid_username_and_valid_password(self):
         with allure.step('Открыть страницу логина'):
-            self.api_authorization.user(self.User.login, self.User.password)
+            self.api_authorization.user(self.User.LOGIN, self.User.PASSWORD)
 
         with allure.step('Проверяем, что открывается страница рубрик'):
             self.rubric_page.is_opened(Links.RUBRIC_PAGE)
