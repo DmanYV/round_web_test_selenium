@@ -1,7 +1,7 @@
 import requests
 
-from data.links import Api, Links
-from model.pages.base_page import BasePage
+from config.links import Api, Links
+from base.base_page import BasePage
 
 
 class ApiAuthorization(BasePage):

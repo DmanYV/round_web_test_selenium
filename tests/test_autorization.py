@@ -1,9 +1,9 @@
 import allure
 from faker import Faker
 
-from data.base_test import BaseTest
+from base.base_test import BaseTest
 from settings import User
-from data.links import Links
+from config.links import Links
 
 fake = Faker()
 
@@ -36,7 +36,7 @@ class TestAuthUser(BaseTest):
             self.login_page.button_signin_click()
 
         with allure.step('Под полем пароль отображается текст валидации "Введи пароль"'):
-            self.login_page.field_username_validation_message('Введи пароль')
+            self.login_page.field_password_validation_message('Введи пароль')
 
     def test_auth_valid_username_and_a_password_shorter_than_6_characters(self):
         with allure.step('Открыть страницу логина'):

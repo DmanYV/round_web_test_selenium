@@ -1,9 +1,6 @@
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-from data.links import Links
-from data.locators import AuthorizationPageLocators
-from .base_page import BasePage
+from config.links import Links
+from config.locators import AuthorizationPageLocators
+from base.base_page import BasePage
 
 
 class AuthorizationPage(BasePage):

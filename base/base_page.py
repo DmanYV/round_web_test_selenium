@@ -3,7 +3,7 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from data.locators import AllPageLocators
+from config.locators import AllPageLocators
 
 
 class BasePage(object):
