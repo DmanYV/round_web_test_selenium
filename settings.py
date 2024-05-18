@@ -5,7 +5,7 @@ load_dotenv(find_dotenv())
 
 
 class User:
-    login = os.environ.get('LOGIN_USER')
-    password = os.environ.get('PASSWORD_USER')
-    email = os.environ.get('EMAIL_USER')
-    phone = os.environ.get('PHONE_USER')
+    LOGIN = os.environ.get('LOGIN_USER')
+    PASSWORD = os.environ.get('PASSWORD_USER')
+    EMAIL = os.environ.get('EMAIL_USER')
+    PHONE = os.environ.get('PHONE_USER')

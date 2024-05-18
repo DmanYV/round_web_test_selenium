@@ -19,10 +19,10 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
 
         with allure.step('В поле логина вводим валидный логин'):
-            self.login_page.field_username_input('Aleska')
+            self.login_page.field_username_input(self.User.LOGIN)
 
         with allure.step('В поле пароля вводим валидный пароль'):
-            self.login_page.field_password_input('qwe123')
+            self.login_page.field_password_input(self.User.PASSWORD)
 
         with allure.step('Нажать кнопку "Войти"'):
             self.login_page.button_signin_click()
