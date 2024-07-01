@@ -11,14 +11,14 @@ class BasePage(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10, poll_frequency=1.5)
+        self.wait = WebDriverWait(driver, 30, poll_frequency=1.5)
         self.base_url = 'https://staging.round.zone'
 
     def open(self):
         """Функция открытия страницы"""
         self.driver.get(self.PAGE_URL)
 
-    def is_opened(self, wait_time=10):
+    def is_opened(self):
         """Функция проверка, что запрашиваемая страница открыта"""
         self.element_is_not_visible(AllPageLocators.SPINNER)
         self.wait.until(EC.url_to_be(self.PAGE_URL))
@@ -39,7 +39,7 @@ class BasePage(object):
         """Функция закрытия браузера"""
         self.driver.close()
 
-    def do_click(self, locator, wait_time=10):
+    def do_click(self, locator):
         """Функция клик на элемент с ожиданием, что элемент кликабелен"""
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
@@ -48,29 +48,29 @@ class BasePage(object):
         element = self.find_element(locator)
         element.send_keys(text)
 
-    def find_element(self, locator, wait_time=10):
+    def find_element(self, locator):
         """Функция поиска элемента с ожиданием, что элемент видим на странице и в DOM"""
         return self.wait.until(EC.visibility_of_element_located(locator),
                                message=f'Не найден элемент с локатором {locator}')
 
-    def find_elements(self, locator, wait_time=10):
+    def find_elements(self, locator):
         """Функция поиска элемента с ожиданием, что элемент видим на странице и в DOM"""
         return self.wait.until(EC.visibility_of_all_elements_located(locator),
                                message=f'Не найдены элементы с локатором {locator}')
 
-    def element_is_present(self, locator, wait_time=10):
+    def element_is_present(self, locator):
         """Функция поиска элемента в DOM"""
         return self.wait.until(EC.presence_of_element_located(locator))
 
-    def elements_is_present(self, locator, wait_time=10):
+    def elements_is_present(self, locator):
         """Функция поиска элемента в DOM"""
         return self.wait.until(EC.presence_of_all_elements_located(locator))
 
-    def element_is_not_visible(self, locator, wait_time=10):
+    def element_is_not_visible(self, locator):
         """Функция поиска элемента, для проверки его отсутствия в DOMe"""
         return self.wait.until(EC.invisibility_of_element_located(locator))
 
-    def clear(self, locator, wait_time=10):
+    def clear(self, locator):
         """Функция очистки поля"""
         element = self.wait.until(EC.presence_of_element_located(locator))
         element.clear()
