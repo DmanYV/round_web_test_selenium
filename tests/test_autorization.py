@@ -3,7 +3,6 @@ import pytest
 from faker import Faker
 
 from base.base_test import BaseTest
-from config.links import Links
 from config.locators import LoginPageLocators
 
 fake = Faker()
@@ -100,4 +99,4 @@ class TestAuthUser(BaseTest):
             self.api_authorization.user(self.User.LOGIN, self.User.PASSWORD)
 
         with allure.step('Проверяем, что открывается страница рубрик'):
-            self.rubric_page.is_opened(Links.RUBRIC_PAGE)
+            self.rubric_page.is_opened()
