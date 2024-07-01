@@ -30,15 +30,13 @@ class LoginPageLocators:
     # Поле ввода 'Никнейм, email или номер телефона'
     FIELD_USERNAME = (By.XPATH, './/input[@name="username"]')
     # Текст валидации поля 'Имя пользователя'
-    VALIDATION_MESSAGE_USERNAME_FIELD = (
-        By.XPATH,
-        '//label[@class="text-field_validation-message__nizJJ"][contains(.,"Введи e-mail, никнейм или номер телефона, указанные при регистрации")]')
+    VALIDATION_MESSAGE_USERNAME_FIELD = (By.XPATH, './/div[@class = "text-field_container__vUCqA"][1]'
+                                                   '//label[@class = "text-field_validation-message__nizJJ"]')
     # Поле ввода 'Пароль'
     FIELD_PASSWORD = (By.XPATH, './/input[@name="password"]')
     # Текст валидации поля 'Пароль'
-    VALIDATION_MESSAGE_PASSWORD_FIELD = \
-        (By.XPATH, './/div[@class = "text-field_container__vUCqA"][2]'
-                   '//label[@class = "text-field_validation-message__nizJJ"]')
+    VALIDATION_MESSAGE_PASSWORD_FIELD = (By.XPATH, './/div[@class = "text-field_container__vUCqA"][2]'
+                                                   '//label[@class = "text-field_validation-message__nizJJ"]')
     # Кнопка 'Войти'
     BUTTON_SIGN_IN = (By.XPATH, './/button[text()="Войти"]')
     # Кнопка 'Крести\Закрыть'

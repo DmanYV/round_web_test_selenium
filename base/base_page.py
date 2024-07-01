@@ -43,6 +43,11 @@ class BasePage(object):
         """Функция клик на элемент с ожиданием, что элемент кликабелен"""
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
+    def field_send_keys(self, locator: tuple, text: str) -> None:
+        """Функция ввода текста в поле"""
+        element = self.find_element(locator)
+        element.send_keys(text)
+
     def find_element(self, locator, wait_time=10):
         """Функция поиска элемента с ожиданием, что элемент видим на странице и в DOM"""
         return self.wait.until(EC.visibility_of_element_located(locator),
