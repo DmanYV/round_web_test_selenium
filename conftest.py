@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from config import attach
 from selenium.webdriver.chrome.options import Options
+from base.app_locators import *
 
 
 @pytest.fixture(autouse=True, scope='function')
@@ -23,3 +24,10 @@ def driver(request):
     attach.add_logs(driver)
 
     driver.quit()
+
+
+@pytest.fixture(scope='function')
+def elements(request) -> dict:
+    elements = Locators.elements
+    request.cls.elements = elements
+    return elements
