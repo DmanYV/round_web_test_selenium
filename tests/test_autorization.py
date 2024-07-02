@@ -28,7 +28,7 @@ class TestAuthUser(BaseTest):
             self.login_page.do_click(LoginPageLocators.BUTTON_SIGN_IN)
 
         with allure.step('Проверяем, что открыта страница рубрики'):
-            self.rubric_page.is_opened()
+            self.assertion.page_is_opened(self.rubric_page.PAGE_URL)
 
     @allure.title('Авторизация пользователя с валидными данными по номеру телефона')
     @allure.description('При проверке используются валидные данные пользователя Aleska')
@@ -48,7 +48,7 @@ class TestAuthUser(BaseTest):
             self.login_page.do_click(LoginPageLocators.BUTTON_SIGN_IN)
 
         with allure.step('Проверяем, что открыта страницу рубрики'):
-            self.rubric_page.is_opened()
+            self.assertion.page_is_opened(self.rubric_page.PAGE_URL)
 
     @allure.title('Авторизация пользователя с валидным логином и пустым паролем')
     @allure.description('При проверке используются валидный логин пользователя Aleska')
@@ -121,4 +121,4 @@ class TestAuthUser(BaseTest):
             self.api_authorization.user(self.User.LOGIN, self.User.PASSWORD)
 
         with allure.step('Проверяем, что открывается страница рубрик'):
-            self.rubric_page.is_opened()
+            self.assertion.page_is_opened(self.rubric_page.PAGE_URL)

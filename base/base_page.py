@@ -3,8 +3,6 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from config.locators import AllPageLocators
-
 
 class BasePage(object):
     """Основной класс страницы от которого наследуем"""
@@ -17,11 +15,6 @@ class BasePage(object):
     def open(self):
         """Функция открытия страницы"""
         self.driver.get(self.PAGE_URL)
-
-    def is_opened(self):
-        """Функция проверка, что запрашиваемая страница открыта"""
-        self.element_is_not_visible(AllPageLocators.SPINNER)
-        self.wait.until(EC.url_to_be(self.PAGE_URL))
 
     def switch_to_tab(self, tab_index: int):
         """Переключение по вкладкам. В tab_index передаем цифру-индекс вкладки"""
