@@ -4,7 +4,7 @@ services:
   regression:
     image: python:3.12.0a4-alpine3.17
     build:
-      context: ../..
+      context: .
       dockerfile: Dockerfile
     volumes:
       - ./:/usr/workspace
