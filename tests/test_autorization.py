@@ -50,6 +50,26 @@ class TestAuthUser(BaseTest):
         with allure.step('Проверяем, что открыта страницу рубрики'):
             self.assertion.page_is_opened(self.rubric_page.PAGE_URL)
 
+    @allure.title('Авторизация пользователя с валидными данными по почтовому адресу')
+    @allure.description('При проверке используются валидные данные пользователя Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_authorization_of_a_user_with_valid_data_by_email(self):
+        with allure.step('Открыть страницу логина'):
+            self.login_page.open()
+
+        with allure.step('В поле логина вводим валидный почтовый адрес'):
+            self.login_page.field_send_keys(LoginPageLocators.FIELD_USERNAME, self.User.EMAIL)
+
+        with allure.step('В поле пароля вводим валидный пароль'):
+            self.login_page.field_send_keys(LoginPageLocators.FIELD_PASSWORD, self.User.PASSWORD)
+
+        with (allure.step('Нажать кнопку "Войти"')):
+            self.login_page.do_click(LoginPageLocators.BUTTON_SIGN_IN)
+
+        with allure.step('Проверяем, что открыта страницу рубрики'):
+            self.assertion.page_is_opened(self.rubric_page.PAGE_URL)
+
     @allure.title('Авторизация пользователя с валидным логином и пустым паролем')
     @allure.description('При проверке используются валидный логин пользователя Aleska')
     @allure.severity('Trivial')
