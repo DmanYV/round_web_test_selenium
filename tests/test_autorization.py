@@ -10,10 +10,10 @@ fake = Faker()
 
 @allure.feature('Авторизация пользователя')
 class TestAuthUser(BaseTest):
-    @allure.title('Авторизация пользователя с валидными данными')
+    @allure.title('Авторизация пользователя с валидными данными по логину')
     @allure.description('При проверке используются валидные данные пользователя Aleska')
     @allure.severity('Critical')
-    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_auth_valid_user(self):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
@@ -30,9 +30,30 @@ class TestAuthUser(BaseTest):
         with allure.step('Проверяем, что открыта страница рубрики'):
             self.rubric_page.is_opened()
 
+    @allure.title('Авторизация пользователя с валидными данными по номеру телефона')
+    @allure.description('При проверке используются валидные данные пользователя Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_authorization_of_a_user_with_valid_data_by_phone_number(self):
+        with allure.step('Открыть страницу логина'):
+            self.login_page.open()
+
+        with allure.step('В поле логина вводим валидный номер телефона'):
+            self.login_page.field_send_keys(LoginPageLocators.FIELD_USERNAME, self.User.PHONE)
+
+        with allure.step('В поле пароля вводим валидный пароль'):
+            self.login_page.field_send_keys(LoginPageLocators.FIELD_PASSWORD, self.User.PASSWORD)
+
+        with (allure.step('Нажать кнопку "Войти"')):
+            self.login_page.do_click(LoginPageLocators.BUTTON_SIGN_IN)
+
+        with allure.step('Проверяем, что открыта страницу рубрики'):
+            self.rubric_page.is_opened()
+
     @allure.title('Авторизация пользователя с валидным логином и пустым паролем')
     @allure.description('При проверке используются валидный логин пользователя Aleska')
     @allure.severity('Trivial')
+    @pytest.mark.regression
     def test_auth_valid_username_and_no_password(self):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
@@ -49,6 +70,7 @@ class TestAuthUser(BaseTest):
     @allure.title('Авторизация пользователя с валидным логинов и паролем короче 6 символов')
     @allure.description('При проверке используются валидный логин пользователя Aleska')
     @allure.severity('Trivial')
+    @pytest.mark.regression
     def test_auth_valid_username_and_a_password_shorter_than_6_characters(self):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
@@ -72,7 +94,7 @@ class TestAuthUser(BaseTest):
     @allure.title('Авторизация пользователя без логина и пароля')
     @allure.description('При проверке не вводятся данные')
     @allure.severity('Critical')
-    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_auth_no_username_and_no_password(self):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
@@ -93,7 +115,7 @@ class TestAuthUser(BaseTest):
     @allure.title('Авторизация пользователя с валидным логин и паролем через API')
     @allure.description('При проверке используются валидный логин и пароль пользователя Aleska')
     @allure.severity('Critical')
-    @pytest.mark.smoke
+    @pytest.mark.regression
     def test_api_auth_valid_username_and_valid_password(self):
         with allure.step('Открыть страницу логина'):
             self.api_authorization.user(self.User.LOGIN, self.User.PASSWORD)
