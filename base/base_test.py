@@ -8,6 +8,7 @@ from model.pages.rubric_page import RubricPage
 from settings import User
 
 from model.api.authorization import ApiAuthorization
+from model.api.metabase import MetaBase
 
 
 class BaseTest:
@@ -18,6 +19,7 @@ class BaseTest:
     main_page: MainPage
     rubric_page: RubricPage
     api_authorization: ApiAuthorization
+    metabase: MetaBase
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
@@ -29,3 +31,4 @@ class BaseTest:
         request.cls.main_page = MainPage(driver)
         request.cls.rubric_page = RubricPage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
+        request.cls.metabase = MetaBase(driver)
