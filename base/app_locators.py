@@ -1,5 +1,6 @@
 from config.locators import *
 
+
 class Locators:
     """ Класс с локаторами страниц """
 
