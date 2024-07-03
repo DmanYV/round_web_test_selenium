@@ -11,3 +11,10 @@ class Links:
 class Api:
     HOST = 'https://staging.round.land'
     TOKEN = f'{HOST}/connect/token'
+
+
+class MetaBaseLinks:
+    HOST = 'https://metabase.discoversoft.ru'
+    AUTHORIZATION = f'{HOST}/api/session'
+    DATA_SATE = f'{HOST}/api/dataset'
+
