@@ -15,6 +15,7 @@ def driver(request):
     chrome_options.add_argument('--headless')  # режим без UI
     # chrome_options.add_argument('--ignore-certificate-errors')  # режим игнорирования сертификата
     driver = webdriver.Chrome(options=chrome_options)
+    driver.maximize_window()
     request.cls.driver = driver
 
     yield driver
