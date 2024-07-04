@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 from faker import Faker
@@ -61,3 +59,30 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Проверить, что пользователю отображается окно приветствия'):
             self.assertion.text_in_element(element['Текст приветствия пользователя'],
                                            expected_text=f'Привет, {username}\nДобро пожаловать в Round!')
+
+    @allure.title('Проверка возможности выбора возраста пользователя')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_checking_the_user_age_choice_during_registration(self, elements):
+        with allure.step('Открыть страницу регистрации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать на выпадающий список с датами рождения'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Поле годов рождения'])
+        with allure.step('В выпадающем списке выбрать поочередно с 2014 по 2010 год'):
+            self.join_page.do_click(element['2014 год'])
+            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['2013 год'])
+            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['2012 год'])
+            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['2011 год'])
+            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['2010 год'])
+        with allure.step('Проверить, что в поле теперь отображается 2010 год'):
+            self.assertion.text_in_element(element['Поле годов рождения'], expected_text='2010')
