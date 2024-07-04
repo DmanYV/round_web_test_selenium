@@ -21,6 +21,8 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           EMAIL: ${{ secrets.EMAIL }}
           PHONE: ${{ secrets.PHONE }}
+          METABASELOGIN: ${{ secrets.METABASELOGIN}}
+          METABASEPASSWORD: ${{ secrets.METABASEPASSWORD}}
         run: |
           docker-compose up --exit-code-from regression || true
 

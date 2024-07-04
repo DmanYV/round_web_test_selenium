@@ -7,4 +7,5 @@ class Locators:
     elements = {
         'Страница авторизации': AuthorizationPageLocators.locators,
         'Страница логина': LoginPageLocators.locators,
+        'Страница регистрации': JoinPageLocators.locators,
     }

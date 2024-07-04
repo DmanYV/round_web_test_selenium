@@ -9,7 +9,7 @@ fake = Faker()
 
 @allure.feature('Авторизация пользователя')
 class TestAuthUser(BaseTest):
-    @allure.title('Авторизация пользователя с валидными данными по логину/почтовому адресу/номеру телефона')
+    @allure.title('Авторизация пользователя с валидными данными по логину')
     @allure.description('При проверке используются валидные данные пользователя Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
@@ -18,7 +18,7 @@ class TestAuthUser(BaseTest):
             self.login_page.open()
             element = elements['Страница логина']
 
-        with allure.step(f'В поле логина вводим валидный никнейм'):
+        with allure.step('В поле логина вводим валидный никнейм'):
             self.login_page.field_send_keys(element['Поле логин'], self.User.LOGIN)
 
         with allure.step('В поле пароля вводим валидный пароль'):

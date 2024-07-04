@@ -9,3 +9,8 @@ class User:
     PASSWORD = os.getenv('PASSWORD')
     EMAIL = os.getenv('EMAIL')
     PHONE = os.getenv('PHONE')
+
+
+class MetaBaseUser:
+    LOGIN = os.getenv('METABASELOGIN')
+    PASSWORD = os.getenv('METABASEPASSWORD')

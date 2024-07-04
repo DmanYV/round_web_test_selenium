@@ -16,6 +16,21 @@ class AuthorizationPageLocators:
         'Кнопка вконтакте': (By.XPATH, '//button[@name="signUpWithVK"]'),
         'Кнопка войти': (By.XPATH, './/a[text()="Войти"]'),
         'Кнопка лицензионная политика': (By.XPATH, '//a[@href="/license-policy"]'),
+
+    }
+
+
+class JoinPageLocators:
+    """Локаторы страницы Регистрации"""
+    locators = {
+        'Кнопка далее': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
+        'Поле никнейм': (By.XPATH, '//input[@name="nickname"]'),
+        'Поле пароль': (By.XPATH, '//input[@name="password"]'),
+        'Поле повтори пароль': (By.XPATH, '//input[contains(@name,"passwordRepeat")]'),
+        'Поле номер телефона': (By.XPATH, '//input[@name="phone"]'),
+        'Поле проверочный код': (By.XPATH, '//input[@name="code"]'),
+        'Текст приветствия пользователя': (By.XPATH, '//div[@class="registration-success_header__D5-xJ"]'),
+
     }
 
 
@@ -31,6 +46,7 @@ class LoginPageLocators:
         'Кнопка войти': (By.XPATH, './/button[text()="Войти"]'),
         'Кнопка закрыть': (By.XPATH, './/button[contains(@class, "header_back")]'),
         'Кнопка забыл пароль': (By.XPATH, './/div[text()="Забыл(-а) пароль?"]'),
+
     }
 
 

@@ -1,3 +1,5 @@
+import time
+
 import requests
 from requests.cookies import RequestsCookieJar
 
@@ -47,4 +49,5 @@ class MetaBase(BasePage):
 
         response = requests.post(url=MetaBaseLinks.DATA_SATE, cookies=cookies, json=json)
         last_code = response.json()['data']['rows'][0][7]
+        time.sleep(2)
         return last_code
