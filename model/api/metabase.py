@@ -46,8 +46,7 @@ class MetaBase(BasePage):
                           "order-by": [["desc", ["field", 728, None]]]},
                 "database": 5,
                 "parameters": []}
-
+        time.sleep(1)
         response = requests.post(url=MetaBaseLinks.DATA_SATE, cookies=cookies, json=json)
         last_code = response.json()['data']['rows'][0][7]
-        time.sleep(2)
         return last_code
