@@ -22,9 +22,22 @@ class Assertion(BasePage):
         actual_text = self.find_element(element_locator).text
         assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текс: '{actual_text}'"
 
+    def text_in_element_length(self, element_locator: tuple, length: int):
+        """
+        Функция проверки, длины текста в элементе
+
+        :param element_locator:
+            локатор элемента
+        :param length:
+            ожидаемая длина текста
+
+        """
+        actual_text_length = len(self.find_element(element_locator).text)
+        assert length == actual_text_length, f"Ожидалось длина текста: {length}, текущая длина: {actual_text_length}"
+
     def page_is_opened(self, page_url):
         """
-        Функция проверка, что запрашиваемая страница открыта
+        Функция проверки, что запрашиваемая страница открыта
 
         :param page_url:
             url страницы
