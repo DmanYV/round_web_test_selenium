@@ -5,7 +5,7 @@ from faker import Faker
 from base.base_test import BaseTest
 
 fake = Faker()
-fakeru = Faker('ru_RU')
+fakeru = Faker("ru_RU")
 
 
 @allure.feature('Регистрация пользователя')
@@ -105,7 +105,7 @@ class TestRegistrationUser(BaseTest):
             self.join_page.do_click(element['Кнопка далее'])
 
         with allure.step('В поле никнейм ввести менее 3 символов'):
-            self.join_page.field_send_keys(element['Поле никнейм'], text=fake.pystr(min_chars=0, max_chars=2))
+            self.join_page.field_send_keys(element['Поле никнейм'], text=fake.pystr(min_chars=1, max_chars=2))
 
         with allure.step('Проверить, что отображается валидация поля никнейм: '
                          '"- длина от 3 до 16 символов;'
@@ -114,10 +114,10 @@ class TestRegistrationUser(BaseTest):
                          ' - можно точку (только в середине), дефис, нижнее подчеркивание;'
                          ' - нельзя использовать пробелы."'):
             self.assertion.text_in_element(element['Валидация поля никнейм'],
-                                           expected_text='- длина от 3 до 16 символов; '
-                                                         '- только английские буквы; '
-                                                         '- можно цифры; '
-                                                         '- можно точку (только в середине), дефис, нижнее подчеркивание; '
+                                           expected_text='- длина от 3 до 16 символов;\n\n'
+                                                         '- только английские буквы;\n\n'
+                                                         '- можно цифры;\n\n'
+                                                         '- можно точку (только в середине), дефис, нижнее подчеркивание;\n\n'
                                                          '- нельзя использовать пробелы.')
 
     @allure.title('Проверка валидации поля никнейм при вводе более 16 символов')
@@ -135,11 +135,15 @@ class TestRegistrationUser(BaseTest):
             element = elements['Страница регистрации']
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('В поле никнейм ввести более 16 символов'):
-            self.join_page.field_send_keys(element['Поле никнейм'], text=fake.pystr(min_chars=17, max_chars=32))
+        with allure.step('В поле никнейм ввести 16 символов'):
+            self.join_page.field_send_keys(element['Поле никнейм'], text=fake.pystr(min_chars=16))
 
-        with allure.step('Проверить, что в поле введено не более 16 символов'):
-            self.assertion.text_in_element_length(element['Поле никнейм'], length=16)
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что в поле видимо поле ввода пароля и повторения пароля'):
+            self.assertion.is_elem_displayed(element['Поле пароль'])
+            self.assertion.is_elem_displayed(element['Поле повтори пароль'])
 
     @allure.title('Проверка валидации поля никнейм при вводе русских символов')
     @allure.severity('Normal')
@@ -157,7 +161,7 @@ class TestRegistrationUser(BaseTest):
             self.join_page.do_click(element['Кнопка далее'])
 
         with allure.step('В поле никнейм ввести от 3 до 16 символов на русском языке'):
-            self.join_page.field_send_keys(element['Поле никнейм'], text=fakeru.pystr(min_chars=3, max_chars=16))
+            self.join_page.field_send_keys(element['Поле никнейм'], text=fakeru.first_name())
 
         with allure.step('Проверить, что отображается валидация поля никнейм: '
                          '"- длина от 3 до 16 символов;'
@@ -166,10 +170,10 @@ class TestRegistrationUser(BaseTest):
                          ' - можно точку (только в середине), дефис, нижнее подчеркивание;'
                          ' - нельзя использовать пробелы."'):
             self.assertion.text_in_element(element['Валидация поля никнейм'],
-                                           expected_text='- длина от 3 до 16 символов; '
-                                                         '- только английские буквы; '
-                                                         '- можно цифры; '
-                                                         '- можно точку (только в середине), дефис, нижнее подчеркивание; '
+                                           expected_text='- длина от 3 до 16 символов;\n\n'
+                                                         '- только английские буквы;\n\n'
+                                                         '- можно цифры;\n\n'
+                                                         '- можно точку (только в середине), дефис, нижнее подчеркивание;\n\n'
                                                          '- нельзя использовать пробелы.')
 
     @allure.title('Проверка валидации поля никнейм при вводе пробела')
@@ -197,10 +201,10 @@ class TestRegistrationUser(BaseTest):
                          ' - можно точку (только в середине), дефис, нижнее подчеркивание;'
                          ' - нельзя использовать пробелы."'):
             self.assertion.text_in_element(element['Валидация поля никнейм'],
-                                           expected_text='- длина от 3 до 16 символов; '
-                                                         '- только английские буквы; '
-                                                         '- можно цифры; '
-                                                         '- можно точку (только в середине), дефис, нижнее подчеркивание; '
+                                           expected_text='- длина от 3 до 16 символов;\n\n'
+                                                         '- только английские буквы;\n\n'
+                                                         '- можно цифры;\n\n'
+                                                         '- можно точку (только в середине), дефис, нижнее подчеркивание;\n\n'
                                                          '- нельзя использовать пробелы.')
 
     @allure.title('Проверка валидации поля никнейм при вводе уже зарегистрированного никнейма')
