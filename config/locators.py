@@ -26,6 +26,7 @@ class JoinPageLocators:
         'Поле годов рождения': (By.XPATH, '//div[@class=" css-1dimb5e-singleValue"]'),
         'Список годов рождения': (By.ID, 'react-select-2-listbox'),
         'Поле никнейм': (By.XPATH, '//input[@name="nickname"]'),
+        'Валидация поля никнейм': (By.XPATH, '//label[@class="text-field_validation-message__nizJJ"]'),
         'Поле пароль': (By.XPATH, '//input[@name="password"]'),
         'Поле повтори пароль': (By.XPATH, '//input[contains(@name,"passwordRepeat")]'),
         'Поле номер телефона': (By.XPATH, '//input[@name="phone"]'),
