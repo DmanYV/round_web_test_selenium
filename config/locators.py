@@ -31,7 +31,7 @@ class JoinPageLocators:
         'Поле повтори пароль': (By.XPATH, '//input[contains(@name,"passwordRepeat")]'),
         'Поле номер телефона': (By.XPATH, '//input[@name="phone"]'),
         'Поле проверочный код': (By.XPATH, '//input[@name="code"]'),
-        'Текст приветствия пользователя': (By.XPATH, '//div[@class="registration-success_header__D5-xJ"]'),
+        'Текст приветствия пользователя': (By.XPATH, '//div[contains(@class,"registration-success_header_")]'),
         '2014 год': (By.ID, 'react-select-2-option-0'),
         '2013 год': (By.ID, 'react-select-2-option-1'),
         '2012 год': (By.ID, 'react-select-2-option-2'),
