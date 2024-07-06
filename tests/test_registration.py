@@ -50,9 +50,11 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Найти последний код в MetaBase'):
+        with allure.step('Авторизоваться в MetaBase'):
             metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
                                                    password=self.MetaBaseUser.PASSWORD)
+
+        with allure.step('Найти последний код в MetaBase'):
             sms_code = self.metabase.take_last_code(metabase)
 
         with allure.step('Ввести смс код'):
