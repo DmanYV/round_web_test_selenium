@@ -10,7 +10,8 @@ from base.base_page import BasePage
 class MetaBase(BasePage):
     PAGE_URL = MetaBaseLinks.HOST
 
-    def authorization(self, username: str, password: str) -> RequestsCookieJar:
+    @staticmethod
+    def authorization(username: str, password: str) -> RequestsCookieJar:
         """
         Метод получения Session_ID в Metabase через API.
 
@@ -28,7 +29,8 @@ class MetaBase(BasePage):
         cookies = response.cookies
         return cookies
 
-    def take_last_code(self, cookies: RequestsCookieJar) -> str:
+    @staticmethod
+    def take_last_code(cookies: RequestsCookieJar) -> str:
         """
         Метод получения Session_ID в Metabase через API.
 
