@@ -64,7 +64,7 @@ class Assertion(BasePage):
         else:
             return False
 
-    def is_elem_enabled(self, by_locator, wait_time=4) -> bool:
+    def is_elem_enabled(self, by_locator, wait_time: int = 4) -> bool:
         """
         Проверка доступности элемента
 
