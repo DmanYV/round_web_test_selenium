@@ -147,3 +147,20 @@ class TestAuthUser(BaseTest):
 
         with allure.step('Проверяем, что открывается страница рубрик'):
             self.assertion.page_is_opened(self.rubric_page.PAGE_URL)
+
+    @allure.title('Проверка открытия окна кэррота при нажатии на кнопку на странице авторизации')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opening_a_carrot_window_when_click_on_a_button_on_the_login_page(self, elements):
+        with allure.step('Открыть страницу логина'):
+            self.login_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку Кэррот"'):
+            self.login_page.do_click(element['Кнопка кэррот'])
+
+        with allure.step('Переключаемся на окно кэррота'):
+            self.login_page.switch_iframe(element['Фрейм кэррот'])
+
+        with allure.step('Проверить, что открылось и видно окно чата кэррот'):
+            self.assertion.is_elem_displayed(element['Окно кэррот'])
