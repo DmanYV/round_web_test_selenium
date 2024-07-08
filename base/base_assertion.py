@@ -46,25 +46,18 @@ class Assertion(BasePage):
         self.element_is_not_visible(AllPageLocators.SPINNER)
         assert self.wait.until(EC.url_to_be(page_url))
 
-    def is_elem_displayed(self, by_locator: tuple, wait_time: int = 1) -> bool:
+    def is_elem_displayed(self, by_locator: tuple) -> None:
         """
         Проверка отображения элемента на странице
 
         :param by_locator:
             локатор элемента
 
-        :param wait_time:
-            лимит ожидания
-
         """
 
-        time.sleep(wait_time)
-        if self.find_element(by_locator):
-            return self.find_element(by_locator).is_displayed()
-        else:
-            return False
+        assert self.find_element(by_locator).is_displayed()
 
-    def is_elem_enabled(self, by_locator, wait_time=4) -> bool:
+    def is_elem_enabled(self, by_locator, wait_time: int = 4) -> bool:
         """
         Проверка доступности элемента
 
@@ -82,4 +75,3 @@ class Assertion(BasePage):
             return True
         else:
             return False
-

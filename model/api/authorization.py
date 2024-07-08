@@ -31,7 +31,6 @@ class ApiAuthorization(BasePage):
         assert response.status_code == 200
         assert response.json()["access_token"] is not None
         assert response.json()['token_type'] == 'Bearer'
-        print(access_token)
         self.open()
         self.driver.execute_script("window.localStorage.setItem" "(arguments[0], arguments[1]);", 'access_token',
                                    access_token)
