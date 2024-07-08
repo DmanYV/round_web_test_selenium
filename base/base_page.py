@@ -16,6 +16,18 @@ class BasePage(object):
         """Функция открытия страницы"""
         self.driver.get(self.PAGE_URL)
 
+    def switch_iframe(self, locator):
+        """
+
+        Функция переключения на iframe
+
+        :param locator:
+            локатор элемента
+
+        """
+        iframe = self.find_element(locator)
+        self.driver.switch_to.frame(iframe)
+
     def switch_to_tab(self, tab_index: int):
         """
 
