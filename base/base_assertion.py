@@ -9,7 +9,7 @@ from config.locators import AllPageLocators
 
 
 class Assertion(BasePage):
-    def text_in_element(self, element_locator: tuple, expected_text: str):
+    def text_in_element(self, element_locator: tuple, expected_text: str or int):
         """
         Проверка совпадения текста элемента
 
@@ -75,3 +75,21 @@ class Assertion(BasePage):
             return True
         else:
             return False
+
+    def is_elem_attribute_matches(self, by_locator: tuple, value: str, text: str or int):
+        """
+        Проверка совпадения аттрибута элемента
+
+        :param by_locator:
+            локатор элемента
+
+        :param value
+            тип атрибут элемента
+
+        :param text:
+            значение атрибута
+
+        """
+
+        assert self.find_element(by_locator).get_attribute(value) == text, \
+            f'Ожидалось значение {text}, Отображается значение {self.find_element(by_locator).get_attribute(value)}'

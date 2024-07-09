@@ -32,6 +32,7 @@ class JoinPageLocators:
         'Поле пароль': (By.XPATH, '//input[@name="password"]'),
         'Поле повтори пароль': (By.XPATH, '//input[contains(@name,"passwordRepeat")]'),
         'Поле номер телефона': (By.XPATH, '//input[@name="phone"]'),
+        'Валидация поля номер телефона': (By.XPATH, '//div[contains(@class,"kPIDC")]'),
         'Поле проверочный код': (By.XPATH, '//input[@name="code"]'),
         'Валидация поля проверочный код': (By.XPATH, '//label[@class="phone-screen_confirm-error__q-TwZ"]'),
         'Текст приветствия пользователя': (By.XPATH, '//div[contains(@class,"registration-success_header_")]'),
