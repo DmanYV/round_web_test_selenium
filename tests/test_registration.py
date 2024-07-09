@@ -385,3 +385,86 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Проверить, что сработала валидация с текстом "Код введен неверно"'):
             self.assertion.text_in_element(element['Валидация поля проверочный код'],
                                            expected_text='Код введен неверно')
+
+    @allure.title('Проверка валидации поля "Номер телефона" при вводе уже зарегистрированного номера')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_phone_number_field_when_entering_an_already_registered_number(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            self.join_page.field_send_keys(element['Поле пароль'], text=self.User.PASSWORD)
+
+        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=self.User.PASSWORD)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Ввести номер телефона в поле номер телефона'):
+            self.join_page.field_send_keys(element['Поле номер телефона'], text=self.User.PHONE[1:])
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что отображается валидация поля с текстом "Телефон уже используется"'):
+            self.assertion.text_in_element(element['Валидация поля номер телефона'],
+                                           expected_text='Телефон уже используется')
+
+    @allure.title('Проверка валидации поля "Номер телефона" при вводе менее 10 цифр')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_phone_number_field_when_entering_less_than_10_digits(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            self.join_page.field_send_keys(element['Поле пароль'], text=self.User.PASSWORD)
+
+        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=self.User.PASSWORD)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Ввести номер телефона в поле номер телефона'):
+            phone_number = fakeru.random_number(digits=9, fix_len=False)
+            self.join_page.field_send_keys(element['Поле номер телефона'], text=phone_number)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что отображается валидация поля с текстом: "Проверь правильность телефонного номера"'):
+            self.assertion.text_in_element(element['Валидация поля номер телефона'],
+                                           expected_text='Проверь правильность телефонного номера')
