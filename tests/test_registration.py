@@ -64,7 +64,7 @@ class TestRegistrationUser(BaseTest):
 
         with allure.step('Проверить, что пользователю отображается окно приветствия'):
             self.assertion.text_in_element(element['Текст приветствия пользователя'],
-                                           expected_text=f'Привет, {username}\nДобро пожаловать в Round!')
+                                           expected_text=f'Привет, {username[:16]}\nДобро пожаловать в Round!')
 
     @allure.title('Проверка возможности выбора возраста пользователя')
     @allure.severity('Critical')
