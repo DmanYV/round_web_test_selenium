@@ -21,6 +21,7 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           EMAIL: ${{ secrets.EMAIL }}
           PHONE: ${{ secrets.PHONE }}
+          INVCODE: ${{ secrets.INVCODE}}
           METABASELOGIN: ${{ secrets.METABASELOGIN}}
           METABASEPASSWORD: ${{ secrets.METABASEPASSWORD}}
         run: |
