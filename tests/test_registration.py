@@ -465,6 +465,201 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Проверить, что отображается валидация поля с текстом: "Проверь правильность телефонного номера"'):
+        with allure.step(
+                'Проверить, что отображается валидация поля с текстом: "Проверь правильность телефонного номера"'):
             self.assertion.text_in_element(element['Валидация поля номер телефона'],
                                            expected_text='Проверь правильность телефонного номера')
+
+    @allure.title('Проверка валидации поля "Пароль" при вводе пароля от 6 букв')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_password_field_when_entering_a_password_of_6_letters_or_more(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            password = fake.pystr(min_chars=6, max_chars=128)
+            self.join_page.field_send_keys(element['Поле пароль'], text=password)
+
+        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=password)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что под полем "Пароль" отображается валидация с текстом:'
+                         ' "Использование цифр обязательно. Принимаются пароли от 6 символов английской раскладки"'):
+            self.assertion.text_in_element(element['Валидация поля пароль'],
+                                           expected_text='Использование цифр обязательно. '
+                                                         'Принимаются пароли от 6 символов английской раскладки')
+
+    @allure.title('Проверка валидации поля "Пароль" при вводе пароля от 6 цифр')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_password_field_when_entering_a_password_of_6_digit_or_more(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            password = fake.pyint(min_value=100000, max_value=128000000)
+            self.join_page.field_send_keys(element['Поле пароль'], text=password)
+
+        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=password)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что под полем "Пароль" отображается валидация с текстом:'
+                         ' "Обязательно используй буквы английской раскладки (от 6 символов, включая цифры)"'):
+            self.assertion.text_in_element(element['Валидация поля пароль'],
+                                           expected_text='Обязательно используй буквы английской раскладки '
+                                                         '(от 6 символов, включая цифры)')
+
+    @allure.title('Проверка валидации поля "Повтори пароль" при вводе разных паролей')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_repeat_password_field_when_entering_different_passwords(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            self.join_page.field_send_keys(element['Поле пароль'], text=self.User.PASSWORD)
+
+        with allure.step('В поле Повтори пароль ввести пароль не совпадающий с полем Пароль'):
+            password = fake.pyint(min_value=100000, max_value=128000000)
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=password)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что под полем "Пароль" отображается валидация с текстом: Пароли не совпадают.'):
+            self.assertion.text_in_element(element['Валидация поля повтори пароль'],
+                                           expected_text='Пароли не совпадают.')
+
+    @allure.title('Проверка валидации поля "Код приглашения" при вводе случайного значения')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_invitation_code_field_when_entering_a_random_value(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            self.join_page.field_send_keys(element['Поле пароль'], text=self.User.PASSWORD)
+
+        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=self.User.PASSWORD)
+
+        with allure.step('Нажать на чекбокс "У меня есть код приглашения"'):
+            self.join_page.do_click(element['Чекбокс код приглашения'])
+
+        with allure.step('В поле код приглашения ввести рандомный текст'):
+            self.join_page.field_send_keys(element['Поле код приглашения'], text=fake.pystr())
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что под полем "Код приглашения" сработала валидация с текстом:'
+                         ' "Неверный код приглашения"'):
+            self.assertion.text_in_element(element['Валидация поля код приглашения'],
+                                           expected_text='Неверный код приглашения')
+
+    @allure.title('Проверка валидации поля "Код приглашения" при вводе валидного значения')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_validation_of_the_invitation_code_field_when_entering_an_invalid_value(self, elements):
+        with allure.step('Открыть страницу авторизации'):
+            self.authorization_page.open()
+            element = elements['Страница авторизации']
+
+        with allure.step('Нажать кнопку "По смс (Для России)"'):
+            self.authorization_page.do_click(element['Кнопка по смс'])
+
+        with allure.step('Нажать кнопку Далее'):
+            element = elements['Страница регистрации']
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле никнейм ввести любое валидное значение'):
+            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
+
+        with allure.step('Нажать кнопку Далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('В поле Пароль ввести пароль'):
+            self.join_page.field_send_keys(element['Поле пароль'], text=self.User.PASSWORD)
+
+        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+            self.join_page.field_send_keys(element['Поле повтори пароль'], text=self.User.PASSWORD)
+
+        with allure.step('Нажать на чекбокс "У меня есть код приглашения"'):
+            self.join_page.do_click(element['Чекбокс код приглашения'])
+
+        with allure.step('В поле код приглашения ввести рандомный текст'):
+            self.join_page.field_send_keys(element['Поле код приглашения'], text=self.User.INVCODE)
+
+        with allure.step('Нажать кнопку далее'):
+            self.join_page.do_click(element['Кнопка далее'])
+
+        with allure.step('Проверить, что на экране видно поле ввода номера телефона'):
+            self.assertion.is_elem_displayed(element['Поле номер телефона'])
