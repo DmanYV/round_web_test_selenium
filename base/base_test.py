@@ -6,6 +6,7 @@ from model.pages.login_page import LoginPage
 from model.pages.main_page import MainPage
 from model.pages.rubric_page import RubricPage
 from model.pages.join_page import JoinPage
+from model.pages.reset_password_page import ResetPasswordPage
 from settings import User
 from settings import MetaBaseUser
 
@@ -20,6 +21,7 @@ class BaseTest:
     authorization_page: AuthorizationPage
     join_page: JoinPage
     login_page: LoginPage
+    reset_password_page: ResetPasswordPage
     main_page: MainPage
     rubric_page: RubricPage
     api_authorization: ApiAuthorization
@@ -33,6 +35,7 @@ class BaseTest:
         request.cls.assertion = Assertion(driver)
         request.cls.authorization_page = AuthorizationPage(driver)
         request.cls.login_page = LoginPage(driver)
+        request.cls.reset_password_page = ResetPasswordPage(driver)
         request.cls.join_page = JoinPage(driver)
         request.cls.main_page = MainPage(driver)
         request.cls.rubric_page = RubricPage(driver)

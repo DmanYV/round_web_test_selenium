@@ -44,7 +44,8 @@ class Assertion(BasePage):
 
         """
         self.element_is_not_visible(AllPageLocators.SPINNER)
-        assert self.wait.until(EC.url_to_be(page_url))
+        self.wait.until(EC.url_to_be(page_url))
+        assert page_url == self.driver.current_url, f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 
     def is_elem_displayed(self, by_locator: tuple) -> None:
         """

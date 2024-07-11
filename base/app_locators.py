@@ -8,4 +8,6 @@ class Locators:
         'Страница авторизации': AuthorizationPageLocators.locators,
         'Страница логина': LoginPageLocators.locators,
         'Страница регистрации': JoinPageLocators.locators,
+        'Страница восстановления пароля': ResetPasswordPageLocators.locators,
+
     }

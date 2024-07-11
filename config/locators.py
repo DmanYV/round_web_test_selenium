@@ -147,7 +147,26 @@ class LoginPageLocators:
                                             '//label[@class = "text-field_validation-message__nizJJ"]'),
         'Кнопка войти': (By.XPATH, './/button[text()="Войти"]'),
         'Кнопка закрыть': (By.XPATH, './/button[contains(@class, "header_back")]'),
-        'Кнопка забыл пароль': (By.XPATH, './/div[text()="Забыл(-а) пароль?"]'),
+        'Кнопка забыл пароль': (By.XPATH, '//div[@class="login_restore-link__lQcSj"]'),
+
+    }
+
+
+class ResetPasswordPageLocators:
+    """Страница восстановления пароля"""
+    locators = {
+        'Поле логин': (By.XPATH, '//input[@name="login"]'),
+        'Валидация поля логин': (By.XPATH, '//div[@class="reset-login-form_error__9yjIT"]'),
+        'Кнопка сбросить пароль': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
+        'Поле код из письма': (By.XPATH, '//input[@name="code"]'),
+        'Поле код из смс': (By.XPATH, '//input[@name="code"]'),
+        'Валидация поля код из смс': (By.XPATH, '//label[@class="phone-screen_confirm-error__q-TwZ"]'),
+        'Поле пароль': (By.XPATH, '//input[@name="password"]'),
+        'Поле повтори пароль': (By.XPATH, '//input[@name="passwordRepeat"]'),
+        'Кнопка сохранить': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
+        'Кнопка хорошо': (By.XPATH, '//button[@class="message-dialog_primary__p6nDx"]'),
+        'Диалоговое окно пароль изменен': (By.XPATH, '//div[@class="message-dialog_text__FBuOm"]'),
+        'Кнопка запросить код еще раз': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]')
 
     }
 
