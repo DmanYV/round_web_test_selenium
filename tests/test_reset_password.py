@@ -169,8 +169,7 @@ class TestResetPassword(BaseTest):
         with allure.step('В поле "Email или номер телефона" ввести случайный номер телефона'):
             element = elements['Страница восстановления пароля']
             self.reset_password_page.field_send_keys(element['Поле логин'],
-                                                     text=f'{fake.pyint(min_value=70000000000, 
-                                                                        max_value=79999999999)}')
+                                                     text=f'{fake.pyint(min_value=70000000000, max_value=79999999999)}')
 
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
