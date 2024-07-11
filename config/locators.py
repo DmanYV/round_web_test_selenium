@@ -160,7 +160,7 @@ class ResetPasswordPageLocators:
         'Кнопка сбросить пароль': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
         'Поле код из письма': (By.XPATH, '//input[@name="code"]'),
         'Поле код из смс': (By.XPATH, '//input[@name="code"]'),
-        'Валидация поля код из смс': (By.XPATH, '//label[@class="phone-screen_confirm-error__q-TwZ"]'),
+        'Валидация поля код из смс': (By.XPATH, '//label[@class="text-field_validation-message__nizJJ"]'),
         'Поле пароль': (By.XPATH, '//input[@name="password"]'),
         'Поле повтори пароль': (By.XPATH, '//input[@name="passwordRepeat"]'),
         'Кнопка сохранить': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
