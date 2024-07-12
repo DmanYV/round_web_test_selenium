@@ -130,9 +130,9 @@ class TestResetPassword(BaseTest):
             self.reset_password_page.field_send_keys(element['Поле код из смс'],
                                                      text=f'{fake.pyint(min_value=1000, max_value=9999)}')
 
-        with allure.step('Проверить, что сработала валидация с текстом "Код введен неверно"'):
+        with allure.step('Проверить, что сработала валидация с текстом "Неверный код подтверждения"'):
             self.assertion.text_in_element(element['Валидация поля код из смс'],
-                                           expected_text='Код введен неверно')
+                                           expected_text='Неверный код подтверждения')
 
     @allure.title('Проверка валидации поля ввода Email или номер телефона при вводе несуществующего значения email')
     @allure.severity('Critical')
