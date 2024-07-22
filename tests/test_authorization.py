@@ -24,7 +24,7 @@ class TestAuthUser(BaseTest):
         with allure.step('В поле пароля вводим валидный пароль'):
             self.login_page.field_send_keys(element['Поле пароль'], self.User.PASSWORD)
 
-        with (allure.step('Нажать кнопку "Войти"')):
+        with allure.step('Нажать кнопку "Войти"'):
             self.login_page.do_click(element['Кнопка войти'])
 
         with allure.step('Проверяем, что открыта страница рубрики'):
@@ -45,7 +45,7 @@ class TestAuthUser(BaseTest):
         with allure.step('В поле пароля вводим валидный пароль'):
             self.login_page.field_send_keys(element['Поле пароль'], self.User.PASSWORD)
 
-        with (allure.step('Нажать кнопку "Войти"')):
+        with allure.step('Нажать кнопку "Войти"'):
             self.login_page.do_click(element['Кнопка войти'])
 
         with allure.step('Проверяем, что открыта страницу рубрики'):
@@ -66,7 +66,7 @@ class TestAuthUser(BaseTest):
         with allure.step('В поле пароля вводим валидный пароль'):
             self.login_page.field_send_keys(element['Поле пароль'], self.User.PASSWORD)
 
-        with (allure.step('Нажать кнопку "Войти"')):
+        with allure.step('Нажать кнопку "Войти"'):
             self.login_page.do_click(element['Кнопка войти'])
 
         with allure.step('Проверяем, что открыта страницу рубрики'):
