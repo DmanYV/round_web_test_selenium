@@ -1,6 +1,17 @@
 from selenium.webdriver.common.by import By
 
 
+class AppNavigationLocators:
+    """Локаторы для навигации в приложении"""
+    locators = {
+        'Кнопка главная': (By.XPATH, '//a[@href="/"]'),
+        'Кнопка лента': (By.XPATH, '//a[@href="/feed"]'),
+        'Кнопка плюс': (By.XPATH, '//a[@href="/newbie"]'),
+        'Кнопка профиль': (By.XPATH, '//a[@href="/profile"]'),
+        'Кнопка уведомления': (By.XPATH, '//a[@href="/notification"]')
+    }
+
+
 class AllPageLocators:
     """Локаторы присущие всем страницам"""
     # Спинер загрузки
@@ -168,6 +179,13 @@ class ResetPasswordPageLocators:
         'Диалоговое окно пароль изменен': (By.XPATH, '//div[@class="message-dialog_text__FBuOm"]'),
         'Кнопка запросить код еще раз': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]')
 
+    }
+
+
+class ProfileLocators:
+    """Локаторы страницы профиля"""
+    locators = {
+        'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]')
     }
 
 
