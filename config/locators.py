@@ -185,7 +185,9 @@ class ResetPasswordPageLocators:
 class ProfileLocators:
     """Локаторы страницы профиля"""
     locators = {
-        'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]')
+        'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]'),
+        'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
+                                      '//div[@class = "user-project-list_item__Q1mmt"]')
     }
 
 
