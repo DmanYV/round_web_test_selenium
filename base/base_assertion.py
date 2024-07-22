@@ -94,3 +94,16 @@ class Assertion(BasePage):
 
         assert self.find_element(by_locator).get_attribute(value) == text, \
             f'Ожидалось значение {text}, Отображается значение {self.find_element(by_locator).get_attribute(value)}'
+
+    def length_elements(self, by_locator: tuple) -> len:
+        """
+        Получение длины списка элементов на странице
+
+        :param by_locator:
+            локатор списка элементов
+
+        :return:
+            длина списка
+        """
+        assert len(self.find_elements(by_locator)) > 0
+        return len(self.find_elements(by_locator))
