@@ -1,8 +1,12 @@
 import pytest
 from selenium import webdriver
+
+import config.locators
 from config import attach
 from selenium.webdriver.chrome.options import Options
 from base.app_locators import *
+from model.api.authorization import *
+from settings import User
 
 
 @pytest.fixture(autouse=True, scope='function')
@@ -32,3 +36,14 @@ def elements(request) -> dict:
     elements = Locators.elements
     request.cls.elements = elements
     return elements
+
+
+@pytest.fixture(scope='function')
+def login_to_app(request, driver):
+    """ Логин в систему """
+    login_page = ApiAuthorization(driver)
+    login_page.user(User.LOGIN, User.PASSWORD)
+    element = login_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
+    login_page.do_click(element)
+    element = login_page.find_element(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
+    login_page.do_click(element)
