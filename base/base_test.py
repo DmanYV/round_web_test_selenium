@@ -12,6 +12,7 @@ from settings import MetaBaseUser
 
 from model.api.authorization import ApiAuthorization
 from model.api.metabase import MetaBase
+from model.elements.app import App
 
 
 class BaseTest:
@@ -26,12 +27,14 @@ class BaseTest:
     rubric_page: RubricPage
     api_authorization: ApiAuthorization
     metabase: MetaBase
+    app: App
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
         driver = driver
         request.cls.User = User()
         request.cls.MetaBaseUser = MetaBaseUser()
+        request.cls.app = App(driver)
         request.cls.assertion = Assertion(driver)
         request.cls.authorization_page = AuthorizationPage(driver)
         request.cls.login_page = LoginPage(driver)
