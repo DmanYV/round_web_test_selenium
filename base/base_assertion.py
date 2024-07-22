@@ -97,7 +97,7 @@ class Assertion(BasePage):
 
     def length_elements(self, by_locator: tuple) -> len:
         """
-        Получение длины списка элементов на странице
+        Получение длины списка элементов на странице, ожидая, что их > 0
 
         :param by_locator:
             локатор списка элементов
@@ -105,5 +105,6 @@ class Assertion(BasePage):
         :return:
             длина списка
         """
-        assert len(self.find_elements(by_locator)) > 0
+        assert len(self.find_elements(by_locator)) > 0, (f'Ожидалось элементов > 0,'
+                                                         f' отображается {len(self.find_elements(by_locator))}')
         return len(self.find_elements(by_locator))
