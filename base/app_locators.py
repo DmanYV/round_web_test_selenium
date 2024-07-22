@@ -9,5 +9,7 @@ class Locators:
         'Страница логина': LoginPageLocators.locators,
         'Страница регистрации': JoinPageLocators.locators,
         'Страница восстановления пароля': ResetPasswordPageLocators.locators,
+        'Панель навигации': AppNavigationLocators.locators,
+        'Профиль пользователя': ProfileLocators.locators,
 
     }
