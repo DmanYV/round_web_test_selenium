@@ -8,6 +8,7 @@ class Links:
     RESET_PASSWORD_PAGE = f'{HOST}/reset-password'
     MAIN_PAGE = f'{HOST}/'
     RUBRIC_PAGE = f'{HOST}/rubric'
+    PROFILE_PAGE = f'{HOST}/profile'
 
 
 class Api:
