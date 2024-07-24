@@ -14,8 +14,10 @@ class AppNavigationLocators:
 
 class AllPageLocators:
     """Локаторы присущие всем страницам"""
-    # Спинер загрузки
-    SPINNER = (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]')
+
+    locators = {
+        'Спиннер загрузки': (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]')
+    }
 
 
 class AuthorizationPageLocators:
@@ -187,7 +189,9 @@ class ProfileLocators:
     locators = {
         'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
-                                      '//div[@class = "user-project-list_item__Q1mmt"]')
+                                      '//div[@class = "user-project-list_item__Q1mmt"]'),
+        'Проект ожидает модерации': (By.XPATH, '//div[contains(@class,"user-project-list_moderation")]'),
+        'Проект заблокирован': (By.XPATH, '//div[contains(@class,"user-project-list_blocked")]')
     }
 
 
