@@ -9,30 +9,30 @@ from config.locators import AllPageLocators
 
 
 class Assertion(BasePage):
-    def text_in_element(self, element_locator: tuple, expected_text: str or int):
+    def text_in_element(self, by_locator: tuple, expected_text: str or int):
         """
         Проверка совпадения текста элемента
 
-        :param element_locator:
+        :param by_locator:
             локатор элемента
         :param expected_text:
             ожидаемый текст
 
         """
-        actual_text = self.find_element(element_locator).text
+        actual_text = self.find_element(by_locator).text
         assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текс: '{actual_text}'"
 
-    def text_in_element_length(self, element_locator: tuple, length: int):
+    def text_in_element_length(self, by_locator: tuple, length: int):
         """
         Функция проверки, длины текста в элементе
 
-        :param element_locator:
+        :param by_locator:
             локатор элемента
         :param length:
             ожидаемая длина текста
 
         """
-        actual_text_length = len(self.find_element(element_locator).text)
+        actual_text_length = len(self.find_element(by_locator).text)
         assert length == actual_text_length, f"Ожидалось длина текста: {length}, текущая длина: {actual_text_length}"
 
     def page_is_opened(self, page_url):
@@ -43,9 +43,10 @@ class Assertion(BasePage):
             url страницы
 
         """
-        self.element_is_not_visible(AllPageLocators.SPINNER)
+        self.element_is_not_visible(AllPageLocators.locators['Спиннер загрузки'])
         self.wait.until(EC.url_to_be(page_url))
-        assert page_url == self.driver.current_url, f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
+        assert page_url == self.driver.current_url, \
+            f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 
     def is_elem_displayed(self, by_locator: tuple) -> None:
         """
@@ -95,9 +96,13 @@ class Assertion(BasePage):
         assert self.find_element(by_locator).get_attribute(value) == text, \
             f'Ожидалось значение {text}, Отображается значение {self.find_element(by_locator).get_attribute(value)}'
 
-    def length_elements(self, by_locator: tuple) -> len:
+    def length_elements(self, by_locator: tuple, length=0) -> len:
         """
         Получение длины списка элементов на странице, ожидая, что их > 0
+
+        :param length:
+        минимальное ожидаемое количество элементов, по умолчанию 0
+            количество элементов
 
         :param by_locator:
             локатор списка элементов
@@ -105,6 +110,6 @@ class Assertion(BasePage):
         :return:
             длина списка
         """
-        assert len(self.find_elements(by_locator)) > 0, (f'Ожидалось элементов > 0,'
-                                                         f' отображается {len(self.find_elements(by_locator))}')
+        assert len(self.find_elements(by_locator)) >= length, (
+            f'Ожидалось элементов > {length}, отображается {len(self.find_elements(by_locator))} элементов')
         return len(self.find_elements(by_locator))
