@@ -10,6 +10,7 @@ class Locators:
         'Страница регистрации': JoinPageLocators.locators,
         'Страница восстановления пароля': ResetPasswordPageLocators.locators,
         'Панель навигации': AppNavigationLocators.locators,
-        'Профиль пользователя': ProfileLocators.locators,
+        'Профиль пользователя': ProfileLocatorsPageLocators.locators,
+        'Банк ачивок': BankAchievementsPageLocators.locators,
 
     }
