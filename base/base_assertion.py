@@ -59,6 +59,19 @@ class Assertion(BasePage):
 
         assert self.find_element(by_locator).is_displayed()
 
+    def is_elem_invisible(self, by_locator, wait_time: int = 4) -> None:
+        """
+        Проверка, что элемент невидим
+
+        :param by_locator:
+            локатор элемента
+
+        :param wait_time:
+            время ожидания
+
+        """
+        assert WebDriverWait(self.driver, wait_time).until(EC.invisibility_of_element_located(by_locator))
+
     def is_elem_enabled(self, by_locator, wait_time: int = 4) -> bool:
         """
         Проверка доступности элемента
@@ -113,3 +126,10 @@ class Assertion(BasePage):
         assert len(self.find_elements(by_locator)) >= length, (
             f'Ожидалось элементов > {length}, отображается {len(self.find_elements(by_locator))} элементов')
         return len(self.find_elements(by_locator))
+
+    def values_is_equal(self, a, b):
+        """
+        Проверка, что выражение верно
+
+        """
+        assert a == b, f'Ожидалось True, получено False сравнивали {a} и {b}'
