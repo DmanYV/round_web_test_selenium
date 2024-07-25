@@ -184,14 +184,26 @@ class ResetPasswordPageLocators:
     }
 
 
-class ProfileLocators:
+class ProfileLocatorsPageLocators:
     """Локаторы страницы профиля"""
     locators = {
         'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
         'Проект ожидает модерации': (By.XPATH, '//div[contains(@class,"user-project-list_moderation")]'),
-        'Проект заблокирован': (By.XPATH, '//div[contains(@class,"user-project-list_blocked")]')
+        'Проект заблокирован': (By.XPATH, '//div[contains(@class,"user-project-list_blocked")]'),
+        'Счетчик просмотров проекта': (By.XPATH, '//div[@class="user-project-list_count__TcOiJ"]'),
+        'Кнопка все': (By.XPATH, '//div[contains(@class,"user-achievement-list_all")]'),
+        'Блок ачивок': (By.XPATH, '(//div[contains(@class,"horizontal-scroll-view_container")])'
+                                  '//div[contains(@class,"user-achievement-list_item")]')
+    }
+
+
+class BankAchievementsPageLocators:
+    """Локаторы страницы Банк ачивок"""
+    locators = {
+        'Блок ачивок': (By.XPATH, '//div[contains(@class,"user-achievement-by-interests_container")]'),
+        'Модальное окно ачивки': (By.XPATH, '//div[contains(@class,"app-container_container")]')
     }
 
 
