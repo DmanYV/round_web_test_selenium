@@ -38,15 +38,16 @@ class MetaBase(BasePage):
         :return: last_code: Последний созданный код в таблице
         """
         cookies = cookies
-        json = {"type": "query",
-                "query": {"source-table": 121,
-                          "filter": ["time-interval",
-                                     ["field", 726, None],
-                                     "current",
-                                     "day",
-                                     {"include_current": True}],
-                          "order-by": [["desc", ["field", 728, None]]]},
-                "database": 5,
+        json = {"database": 5,
+                "query": {
+                    "source-table": 121,
+                    "order-by": [
+                        ["desc",
+                         ["field",
+                          726,
+                          None]]]
+                },
+                "type": "query",
                 "parameters": []}
         time.sleep(1)
         response = requests.post(url=MetaBaseLinks.DATA_SATE, cookies=cookies, json=json)
