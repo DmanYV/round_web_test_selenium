@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium import webdriver
 
@@ -39,6 +40,7 @@ def elements(request) -> dict:
 
 
 @pytest.fixture(scope='function')
+@allure.step('Авторизация пользователя в системе')
 def login_to_app(request, driver):
     """ Логин в систему """
     login_page = ApiAuthorization(driver)

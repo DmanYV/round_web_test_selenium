@@ -47,6 +47,12 @@ class BasePage(object):
             self.driver.switch_to.window(all_tabs[tab_index])
             time.sleep(1)
 
+    def refresh(self):
+        """ обновить страницу """
+
+        self.driver.refresh()
+        return self
+
     def close_driver(self):
         """Функция закрытия браузера"""
         self.driver.close()
