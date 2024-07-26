@@ -16,7 +16,8 @@ class AllPageLocators:
     """Локаторы присущие всем страницам"""
 
     locators = {
-        'Спиннер загрузки': (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]')
+        'Спиннер загрузки': (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]'),
+        'Заголовок страницы': (By.XPATH, '//div[contains(@class,"tool-bar_title")]')
     }
 
 
@@ -36,6 +37,7 @@ class AuthorizationPageLocators:
 
 
 class JoinPageLocators:
+    """Локаторы страницы регистрации"""
     locators = {
         'Кнопка далее': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
         'Поле годов рождения': (By.XPATH, '//div[@class=" css-1dimb5e-singleValue"]'),
@@ -204,6 +206,14 @@ class BankAchievementsPageLocators:
     locators = {
         'Блок ачивок': (By.XPATH, '//div[contains(@class,"user-achievement-by-interests_container")]'),
         'Модальное окно ачивки': (By.XPATH, '//div[contains(@class,"app-container_container")]')
+    }
+
+
+class AchievementModelWindowLocators:
+    """Локаторы модального окна ачивки"""
+    locators = {
+        'Название ачивки': (By.XPATH, '//div[contains(@class,"achievement-item-bottom-sheet_title")]'),
+        'Аватары у кого есть эта ачивка': (By.XPATH, '//div[contains(@class,"achievement-item-bottom-sheet_icons")]')
     }
 
 
