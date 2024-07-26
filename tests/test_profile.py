@@ -110,3 +110,24 @@ class TestProfile(BaseTest):
         with allure.step('Проверить, что открылось модальное окно с описанием ачивки'):
             element = elements['Банк ачивок']
             self.assertion.is_elem_displayed(element['Модальное окно ачивки'])
+
+    @allure.title('Проверка возможности просмотреть у кого есть такие же ачивки ')
+    @allure.description('Проверка происходит на пользователе Aleska у которого есть ачивки')
+    @allure.severity('Critical')
+    @pytest.mark.mionor
+    def test_the_ability_to_view_other_users_with_similar_achievements(self, elements, login_to_app):
+        with allure.step('Перейти в профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Нажать на первую ачивку'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Блок ачивок'])
+
+        with allure.step('Нажать на аватары пользователей у которых есть эта ачивка'):
+            element = elements['Модальное окно ачивки']
+            self.profile_page.do_click(element['Аватары у кого есть эта ачивка'])
+
+        with allure.step('Проверить, что открылась страница с названием "У кого есть ачивка"'):
+            element = elements['Общие']
+            self.assertion.text_in_element(element['Заголовок страницы'], expected_text='У кого есть ачивка')
+
