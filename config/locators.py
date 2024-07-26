@@ -17,7 +17,8 @@ class AllPageLocators:
 
     locators = {
         'Спиннер загрузки': (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]'),
-        'Заголовок страницы': (By.XPATH, '//div[contains(@class,"tool-bar_title")]')
+        'Заголовок страницы': (By.XPATH, '//div[contains(@class,"tool-bar_title")]'),
+        'Кнопка назад': (By.XPATH, '//button[contains(@class,"tool-bar_back")]')
     }
 
 
