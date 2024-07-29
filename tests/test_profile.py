@@ -63,8 +63,8 @@ class TestProfile(BaseTest):
 
     @allure.title('Проверить обновление счетчика просмотров проекта')
     @allure.description('Проверить, что счетчик изменяется при входе и открытии страницы')
-    @allure.severity('Critical')
-    @pytest.mark.mionor
+    @allure.severity('Minor')
+    @pytest.mark.regression
     def test_update_views_counter(self, elements, login_to_app):
         with allure.step('Перейти в профиль'):
             self.app.profile_button_click()
@@ -82,8 +82,8 @@ class TestProfile(BaseTest):
 
     @allure.title('Проверка возможности просмотреть свои ачивки в профиле')
     @allure.description('Проверка происходит на пользователе Aleska у которого есть ачивки')
-    @allure.severity('Critical')
-    @pytest.mark.mionor
+    @allure.severity('Minor')
+    @pytest.mark.regression
     def test_the_ability_to_view_your_achievements_in_your_profile(self, elements, login_to_app):
         with allure.step('Перейти в профиль'):
             self.app.profile_button_click()
@@ -97,8 +97,8 @@ class TestProfile(BaseTest):
 
     @allure.title('Проверка возможности просмотреть детальный экран ачивки')
     @allure.description('Проверка происходит на пользователе Aleska у которого есть ачивки')
-    @allure.severity('Critical')
-    @pytest.mark.mionor
+    @allure.severity('Minor')
+    @pytest.mark.regression
     def test_the_ability_to_view_the_detailed_achievement_screen(self, elements, login_to_app):
         with allure.step('Перейти в профиль'):
             self.app.profile_button_click()
@@ -111,10 +111,10 @@ class TestProfile(BaseTest):
             element = elements['Банк ачивок']
             self.assertion.is_elem_displayed(element['Модальное окно ачивки'])
 
-    @allure.title('Проверка возможности просмотреть у кого есть такие же ачивки ')
+    @allure.title('Проверка возможности просмотреть у кого есть такие же ачивки')
     @allure.description('Проверка происходит на пользователе Aleska у которого есть ачивки')
-    @allure.severity('Critical')
-    @pytest.mark.mionor
+    @allure.severity('Minor')
+    @pytest.mark.regression
     def test_the_ability_to_view_other_users_with_similar_achievements(self, elements, login_to_app):
         with allure.step('Перейти в профиль'):
             self.app.profile_button_click()
@@ -131,3 +131,17 @@ class TestProfile(BaseTest):
             element = elements['Общие']
             self.assertion.text_in_element(element['Заголовок страницы'], expected_text='У кого есть ачивка')
 
+    @allure.title('Проверка возможности открыть меню профиля')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opportunities_to_open_the_profile_menu(self, elements, login_to_app):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Проверяем, что поп ап не отображается и нажимаем на кнопку бургер-меню'):
+            element = elements['Профиль пользователя']
+            self.assertion.is_elem_invisible(element['Поп ап бургер-меню'])
+            self.profile_page.do_click(element['Кнопка бургер-меню'])
+
+        with allure.step('Проверить, что открылся поп ап'):
+            self.assertion.is_elem_displayed(element['Поп ап бургер-меню'])
