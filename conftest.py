@@ -1,6 +1,7 @@
 import allure
 import pytest
 from selenium import webdriver
+from selenium.common import TimeoutException
 
 import config.locators
 from config import attach
@@ -45,7 +46,13 @@ def login_to_app(request, driver):
     """ Логин в систему """
     login_page = ApiAuthorization(driver)
     login_page.user(User.LOGIN, User.PASSWORD)
-    element = login_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
-    login_page.do_click(element)
-    element = login_page.find_element(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
+    later = login_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
+    login_page.do_click(later)
+    try:
+        element = login_page.find_element(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
+    except TimeoutException:
+        element = login_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
+        login_page.do_click(element)
+        element = login_page.find_element(
+            config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
     login_page.do_click(element)
