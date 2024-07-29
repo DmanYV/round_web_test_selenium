@@ -88,7 +88,7 @@ class TestAuthUser(BaseTest):
             self.login_page.do_click(element['Кнопка войти'])
 
         with allure.step('Под полем пароль отображается текст валидации "Введи пароль"'):
-            self.assertion.text_in_element(element['Валидация поля пароль'], 'Введи пароль')
+            self.assertion.text_in_element(element['Валидация поля пароль'], expected_text='Введи пароль')
 
     @allure.title('Авторизация пользователя с валидным логинов и паролем короче 6 символов')
     @allure.description('При проверке используются валидный логин пользователя Aleska')
@@ -155,13 +155,15 @@ class TestAuthUser(BaseTest):
     def test_opening_a_carrot_window_when_click_on_a_button_on_the_login_page(self, elements):
         with allure.step('Открыть страницу логина'):
             self.authorization_page.open()
-            element = elements['Страница авторизации']
 
-        with allure.step('Нажать кнопку Кэррот"'):
+        with allure.step('Проверить, что окно кэррота не отображается'):
+            element = elements['Кэррот']
+            self.assertion.is_elem_invisible(element['Чат кэррот'])
+
+        with allure.step('Нажать кнопку кэррот'):
+            element = elements['Страница авторизации']
             self.authorization_page.do_click(element['Кнопка кэррот'])
 
-        with allure.step('Переключаемся на окно кэррота'):
-            self.authorization_page.switch_iframe(element['Фрейм кэррот'])
-
-        with allure.step('Проверить, что открылось и видно окно чата кэррот'):
-            self.assertion.is_elem_displayed(element['Окно кэррот'])
+        with allure.step('Проверить, что окно кэррота не открылось'):
+            element = elements['Кэррот']
+            self.assertion.is_elem_displayed(element['Чат кэррот'])

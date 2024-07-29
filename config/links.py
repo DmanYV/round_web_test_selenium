@@ -9,6 +9,9 @@ class Links:
     MAIN_PAGE = f'{HOST}/'
     RUBRIC_PAGE = f'{HOST}/rubric'
     PROFILE_PAGE = f'{HOST}/profile'
+    INVITATION_PAGE = f'{HOST}/profile/Aleska/invitation'
+    FAVORITE_PROJECTS_PAGE = f'{HOST}/profile/Aleska/favorite-projects'
+    FAVORITE_CHALLENGE_PAGE = f'{HOST}/profile/Aleska/favorite-challenge'
 
 
 class Api:
