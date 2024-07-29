@@ -20,7 +20,7 @@ class Assertion(BasePage):
 
         """
         actual_text = self.find_element(by_locator).text
-        assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текс: '{actual_text}'"
+        assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текст: '{actual_text}'"
 
     def text_in_element_length(self, by_locator: tuple, length: int):
         """
