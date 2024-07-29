@@ -8,6 +8,9 @@ from model.pages.rubric_page import RubricPage
 from model.pages.join_page import JoinPage
 from model.pages.reset_password_page import ResetPasswordPage
 from model.pages.profile_page import ProfilePage
+from model.pages.invitation_page import InvitationPage
+from model.pages.favorite_projects_page import FavoriteProjectsPage
+from model.pages.favorite_challenge_page import FavoriteChallengePage
 from settings import User
 from settings import MetaBaseUser
 
@@ -27,6 +30,9 @@ class BaseTest:
     main_page: MainPage
     rubric_page: RubricPage
     profile_page: ProfilePage
+    invitation_page: InvitationPage
+    favorite_projects_page: FavoriteProjectsPage
+    favorite_challenge_page: FavoriteChallengePage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     app: App
@@ -45,5 +51,8 @@ class BaseTest:
         request.cls.main_page = MainPage(driver)
         request.cls.rubric_page = RubricPage(driver)
         request.cls.profile_page = ProfilePage(driver)
+        request.cls.invitation_page = InvitationPage(driver)
+        request.cls.favorite_projects_page = FavoriteProjectsPage(driver)
+        request.cls.favorite_challenge_page = FavoriteChallengePage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
