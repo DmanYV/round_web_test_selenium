@@ -27,13 +27,20 @@ class AuthorizationPageLocators:
     locators = {
         'Кнопка закрыть': (By.XPATH, './/button[@class="header_back__yUNba"]'),
         'Кнопка кэррот': (By.XPATH, '//div[@class="header_info__CHSYI"]'),
-        'Фрейм кэррот': (By.ID, 'carrot-messenger-frame'),
-        'Окно кэррот': (By.ID, 'carrotquest-messenger'),
         'Кнопка по смс': (By.XPATH, '//button[@name="signUpWithSMS"]'),
         'Кнопка вконтакте': (By.XPATH, '//button[@name="signUpWithVK"]'),
         'Кнопка войти': (By.XPATH, './/a[text()="Войти"]'),
         'Кнопка лицензионная политика': (By.XPATH, '//a[@href="/license-policy"]'),
 
+    }
+
+
+class CarrotChatLocators:
+    """Локаторы окна кэррот чата"""
+    locators = {
+        'Фрейм кэррот': (By.ID, 'carrot-messenger-frame'),
+        'Окно кэррот': (By.ID, 'carrotquest-messenger'),
+        'Чат кэррот': (By.XPATH, '//div[contains(@class,"carrot-messenger-frame-container")]'),
     }
 
 
@@ -198,7 +205,53 @@ class ProfileLocatorsPageLocators:
         'Счетчик просмотров проекта': (By.XPATH, '//div[@class="user-project-list_count__TcOiJ"]'),
         'Кнопка все': (By.XPATH, '//div[contains(@class,"user-achievement-list_all")]'),
         'Блок ачивок': (By.XPATH, '(//div[contains(@class,"horizontal-scroll-view_container")])'
-                                  '//div[contains(@class,"user-achievement-list_item")]')
+                                  '//div[contains(@class,"user-achievement-list_item")]'),
+        'Кнопка бургер-меню': (By.XPATH, '//button[contains(@class,"profile-page-header_button")]'),
+        'Поп ап бургер-меню': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]')
+    }
+
+
+class PopUpBurgerMenuProfileLocators:
+    """Локаторы поп ап бургер-меню профиля"""
+    locators = {
+        'Редактировать профиль': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                                            '//div[contains(.,"Редактировать профиль")]'),
+        'Пригласить друга': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                                       '//div[contains(.,"Пригласить друга")]'),
+        'Лайки': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                            '//div[contains(.,"Лайки")]'),
+        'Избранное': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                                '//div[contains(.,"Избранное")]'),
+        'Тех. поддержка': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                                     '//div[contains(.,"Тех. поддержка")]'),
+        'О системе': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                                '//div[contains(.,"О системе")]'),
+        'Выйти из аккаунта': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
+                                        '//div[contains(.,"Выйти из аккаунта")]'),
+
+
+
+    }
+
+
+class FavoriteProjectsPageLocators:
+    """Локаторы страницы Лайки"""
+    locators = {
+
+    }
+
+
+class FavoriteChallengePage:
+    """Локаторы страницы Избранное"""
+    locators = {
+
+    }
+
+
+class InvitationPageLocators:
+    """Локаторы страницы пригласить друга"""
+    locators = {
+        'Заголовок страницы': (By.XPATH, '//div[contains(@class,"profile-invitation_title")]'),
     }
 
 
