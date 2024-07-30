@@ -12,7 +12,7 @@ class Locators:
         'Страница регистрации': JoinPageLocators.locators,
         'Страница логина': LoginPageLocators.locators,
         'Страница восстановления пароля': ResetPasswordPageLocators.locators,
-        'Профиль пользователя': ProfileLocatorsPageLocators.locators,
+        'Профиль пользователя': ProfilePageLocators.locators,
         'Банк ачивок': BankAchievementsPageLocators.locators,
         'Модальное окно ачивки': AchievementModelWindowLocators.locators,
         'Главная страница': MainPageLocators.locators,
@@ -20,4 +20,6 @@ class Locators:
         'Поп ап бургер-меню профиля': PopUpBurgerMenuProfileLocators.locators,
         'Страница пригласить друга': InvitationPageLocators.locators,
         'Страница лайки': FavoriteProjectsPageLocators.locators,
+        'Страница редактировать профиль': EditProfileLocators.locators,
+
     }
