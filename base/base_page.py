@@ -67,7 +67,7 @@ class BasePage(object):
         """
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
-    def field_send_keys(self, locator: tuple, text: str or int) -> None:
+    def field_send_keys(self, locator: tuple, text: str or int):
         """
 
         Функция ввода текста в поле
@@ -80,6 +80,7 @@ class BasePage(object):
         """
         element = self.find_element(locator)
         element.send_keys(text)
+        return self
 
     def find_element(self, locator):
         """
@@ -104,6 +105,22 @@ class BasePage(object):
         """
         return self.wait.until(EC.visibility_of_all_elements_located(locator),
                                message=f'Не найдены элементы с локатором {locator}')
+
+    def get_element_text(self, by_locator, wait_time=5) -> str:
+        """
+                Возвращает текст элемента на странице
+
+                :param by_locator:
+                    локатор элемента
+
+                :param wait_time:
+                    время ожидания
+
+                """
+
+        self.find_element(by_locator)
+        element = WebDriverWait(self.driver, wait_time).until(EC.presence_of_element_located(by_locator))
+        return element.text
 
     def element_is_present(self, locator):
         """
@@ -135,6 +152,20 @@ class BasePage(object):
 
         """
         return self.wait.until(EC.invisibility_of_element_located(locator))
+
+    def scroll_to_elem(self, by_locator: tuple):
+        """
+        Скролл, пока искомый элемент не будет видим
+
+        :param by_locator:
+            локатор элемента
+
+        """
+
+        time.sleep(0.5)
+        element = self.find_element(by_locator)
+        self.driver.execute_script("return arguments[0].scrollIntoView(true);", element)
+        return self
 
     def clear(self, locator):
         """
