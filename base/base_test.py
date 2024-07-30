@@ -11,6 +11,7 @@ from model.pages.profile_page import ProfilePage
 from model.pages.invitation_page import InvitationPage
 from model.pages.favorite_projects_page import FavoriteProjectsPage
 from model.pages.favorite_challenge_page import FavoriteChallengePage
+from model.pages.edit_profile_page import EditProfilePage
 from settings import User
 from settings import MetaBaseUser
 
@@ -33,6 +34,7 @@ class BaseTest:
     invitation_page: InvitationPage
     favorite_projects_page: FavoriteProjectsPage
     favorite_challenge_page: FavoriteChallengePage
+    edit_profile_page: EditProfilePage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     app: App
@@ -54,5 +56,6 @@ class BaseTest:
         request.cls.invitation_page = InvitationPage(driver)
         request.cls.favorite_projects_page = FavoriteProjectsPage(driver)
         request.cls.favorite_challenge_page = FavoriteChallengePage(driver)
+        request.cls.edit_profile_page = EditProfilePage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
