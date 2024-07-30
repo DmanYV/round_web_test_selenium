@@ -12,6 +12,7 @@ class Links:
     INVITATION_PAGE = f'{HOST}/profile/Aleska/invitation'
     FAVORITE_PROJECTS_PAGE = f'{HOST}/profile/Aleska/favorite-projects'
     FAVORITE_CHALLENGE_PAGE = f'{HOST}/profile/Aleska/favorite-challenge'
+    EDIT_PROFILES_PAGE = f'{HOST}/profile/Aleska/edit'
 
 
 class Api:

@@ -194,7 +194,7 @@ class ResetPasswordPageLocators:
     }
 
 
-class ProfileLocatorsPageLocators:
+class ProfilePageLocators:
     """Локаторы страницы профиля"""
     locators = {
         'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]'),
@@ -252,6 +252,17 @@ class InvitationPageLocators:
     """Локаторы страницы пригласить друга"""
     locators = {
         'Заголовок страницы': (By.XPATH, '//div[contains(@class,"profile-invitation_title")]'),
+    }
+
+
+class EditProfileLocators:
+    """Локаторы страницы редактировать профиль"""
+    locators = {
+        'Поле никнейм': (By.XPATH, '//input[@name="userName"]'),
+        'Поле о себе': (By.XPATH, '//textarea[@name="about"]'),
+        'Кнопка сохранить': (By.XPATH, '//button[contains(@class,"button_primary")]'),
+        'Поп ап уведомление': (By.XPATH, '//div[contains(@class, "popup_container")]'),
+
     }
 
 
