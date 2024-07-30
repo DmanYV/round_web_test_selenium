@@ -19,6 +19,7 @@ class Assertion(BasePage):
             ожидаемый текст
 
         """
+        time.sleep(1)
         actual_text = self.find_element(by_locator).text
         assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текст: '{actual_text}'"
 
