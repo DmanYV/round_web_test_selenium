@@ -39,7 +39,7 @@ class TestEditingProfile(BaseTest):
             self.edit_profile_page.field_send_keys(element['Поле никнейм'], text=new_username)
 
         with allure.step('Нажать кнопку Сохранить'):
-            self.edit_profile_page.scroll_to_elem(element['Кнопка сохранить'])
+            self.edit_profile_page.scroll_to_element(element['Кнопка сохранить'])
             self.edit_profile_page.do_click(element['Кнопка сохранить'])
 
         with allure.step('Проверить, что отображается новый никнейм пользователя'):

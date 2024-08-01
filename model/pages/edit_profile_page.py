@@ -20,5 +20,5 @@ class EditProfilePage(BasePage):
         self.profile_page.do_click(config.locators.PopUpBurgerMenuProfileLocators.locators['Редактировать профиль'])
         self.clear(config.locators.EditProfileLocators.locators['Поле никнейм'])
         self.field_send_keys(config.locators.EditProfileLocators.locators['Поле никнейм'], text=username)
-        self.scroll_to_elem(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
+        self.scroll_to_element(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
         self.do_click(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
