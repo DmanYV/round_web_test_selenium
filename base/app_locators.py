@@ -13,6 +13,7 @@ class Locators:
         'Страница логина': LoginPageLocators.locators,
         'Страница восстановления пароля': ResetPasswordPageLocators.locators,
         'Профиль пользователя': ProfilePageLocators.locators,
+        'Страница подписки': SubscriptionPageLocators.locators,
         'Банк ачивок': BankAchievementsPageLocators.locators,
         'Модальное окно ачивки': AchievementModelWindowLocators.locators,
         'Главная страница': MainPageLocators.locators,
