@@ -198,6 +198,12 @@ class ProfilePageLocators:
     """Локаторы страницы профиля"""
     locators = {
         'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]'),
+        'Проекты': (By.XPATH, '//div[@id="user-info_projects"]'
+                              '//div[contains(@class,"user-info_count")]'),
+        'Подписчики': (By.XPATH, '//div[@id="user-info_followers"]'
+                                 '//div[contains(@class,"user-info_count")]'),
+        'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
+                               '//div[contains(@class,"user-info_count")]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
         'Проект ожидает модерации': (By.XPATH, '//div[contains(@class,"user-project-list_moderation")]'),
@@ -208,6 +214,17 @@ class ProfilePageLocators:
                                   '//div[contains(@class,"user-achievement-list_item")]'),
         'Кнопка бургер-меню': (By.XPATH, '//button[contains(@class,"profile-page-header_button")]'),
         'Поп ап бургер-меню': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]')
+    }
+
+
+class SubscriptionPageLocators:
+    locators = {
+        'Подписчики': (By.XPATH, '//button[@tabindex="0"]'),
+        'Подписки': (By.XPATH, '//button[@tabindex="1"]'),
+        'Все пользователи': (By.XPATH, '//button[@tabindex="2"]'),
+        'Подписка на первого пользователя': (By.XPATH, '//button[contains(.,"Подписаться")][1]'),
+        'Отписка от первого пользователя': (By.XPATH, '//button[contains(.,"Подписка")][1]'),
+        'Значок галочки': (By.XPATH, '//div[contains(@class,"popup_container")]'),
     }
 
 
