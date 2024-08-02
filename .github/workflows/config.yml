@@ -25,7 +25,7 @@ jobs:
           METABASELOGIN: ${{ secrets.METABASELOGIN}}
           METABASEPASSWORD: ${{ secrets.METABASEPASSWORD}}
         run: |
-          docker compose up --exit-code-from regression || true
+          docker compose build regression && docker compose up --exit-code-from regression
 
       - name: Copy history from gh-pages to allure-results
         run: |
