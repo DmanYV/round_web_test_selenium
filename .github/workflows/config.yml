@@ -4,7 +4,9 @@ on: [ push, workflow_dispatch]
 
 jobs:
   ui-tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu-22.04:20240721.1.0
 
     steps:
       - uses: actions/checkout@v4
