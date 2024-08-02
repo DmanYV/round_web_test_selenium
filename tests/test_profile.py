@@ -1,8 +1,7 @@
-import allure
-import pytest
 from faker import Faker
 
 from base.base_test import BaseTest
+from fixtures.fixtures_for_subscription_tests import *
 
 fake = Faker()
 
@@ -145,3 +144,60 @@ class TestProfile(BaseTest):
 
         with allure.step('Проверить, что открылся поп ап'):
             self.assertion.is_elem_displayed(element['Поп ап бургер-меню'])
+
+    @allure.title('Проверка возможности подписаться')
+    @allure.description('После проверки, отписываемся от пользователя для приведения в исходное состояние')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opportunities_to_subscribe(self, elements, login_to_app):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Запомнить количество подписчиков'):
+            element = elements['Профиль пользователя']
+            subscribers = int(self.profile_page.get_element_text(element['Подписки']))
+
+        with allure.step('Подписаться на первого пользователя'):
+            self.subscription_page.subscribe_user()
+
+        with allure.step('Проверить, что на экране появилась галочка'):
+            element = elements['Страница подписки']
+            self.assertion.is_elem_displayed(element['Значок галочки'])
+
+        with allure.step('Нажать кнопку профиля'):
+            self.app.profile_button_click()
+
+        with allure.step('Проверить, что количество подписчиков увеличилось на 1'):
+            element = elements['Профиль пользователя']
+            self.profile_page.get_element_text(element['Подписки'])
+            self.assertion.text_in_element(element['Подписки'], expected_text=str(subscribers + 1))
+
+        with allure.step('Отписаться от пользователя'):
+            self.subscription_page.unsubscribe_user()
+
+    @allure.title('Проверка возможности отписаться')
+    @allure.description('Перед проверкой проводится подписка на первого пользователя в списке')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opportunities_to_unsubscribe(self, elements, login_to_app, subscribe_user):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Запомнить количество подписчиков'):
+            element = elements['Профиль пользователя']
+            self.profile_page.get_element_text(element['Подписки'])
+
+        with allure.step('Отписаться от пользователя'):
+            self.subscription_page.unsubscribe_user()
+
+        with allure.step('Проверить, что на экране появилась галочка'):
+            element = elements['Страница подписки']
+            self.assertion.is_elem_displayed(element['Значок галочки'])
+
+        with allure.step('Нажать кнопку профиля'):
+            self.app.profile_button_click()
+
+        with allure.step('Проверить, что количество подписчиков отображается 0'):
+            element = elements['Профиль пользователя']
+            self.profile_page.get_element_text(element['Подписки'])
+            self.assertion.text_in_element(element['Подписки'], expected_text='0')

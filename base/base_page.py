@@ -153,7 +153,7 @@ class BasePage(object):
         """
         return self.wait.until(EC.invisibility_of_element_located(locator))
 
-    def scroll_to_elem(self, by_locator: tuple):
+    def scroll_to_element(self, by_locator: tuple):
         """
         Скролл, пока искомый элемент не будет видим
 
