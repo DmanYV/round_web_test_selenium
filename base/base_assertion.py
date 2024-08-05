@@ -23,6 +23,21 @@ class Assertion(BasePage):
         actual_text = self.find_element(by_locator).text
         assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текст: '{actual_text}'"
 
+    def length_simbols_in_text(self, by_locator: tuple, length: int):
+        """
+        Функция проверки, длины текста
+
+
+        :param by_locator:
+            локатор текстового поля
+
+        :param length:
+            ожидаемая длина текста
+
+        """
+        actual_text_length = len(self.find_element(by_locator).text)
+        assert length == actual_text_length, f"Ожидалось длина текста: {length}, текущая длина: {actual_text_length}"
+
     def text_in_element_length(self, by_locator: tuple, length: int):
         """
         Функция проверки, длины текста в элементе
@@ -125,7 +140,7 @@ class Assertion(BasePage):
             длина списка
         """
         assert len(self.find_elements(by_locator)) >= length, (
-            f'Ожидалось элементов > {length}, отображается {len(self.find_elements(by_locator))} элементов')
+            f'Ожидалось элементов >= {length}, отображается {len(self.find_elements(by_locator))} элементов')
         return len(self.find_elements(by_locator))
 
     def values_is_equal(self, a, b):

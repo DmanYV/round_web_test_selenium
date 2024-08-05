@@ -11,6 +11,7 @@ fakeru = Faker("ru_RU")
 
 
 @allure.feature('Регистрация пользователя')
+@pytest.mark.registration
 class TestRegistrationUser(BaseTest):
     @allure.title('Регистрация пользователя по номеру телефона')
     @allure.description('При проверке так же проверяем, что никнейм может иметь в себе: '

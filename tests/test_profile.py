@@ -1,5 +1,6 @@
 from faker import Faker
 
+from config.links import Links
 from base.base_test import BaseTest
 from fixtures.fixtures_for_subscription_tests import *
 
@@ -7,6 +8,7 @@ fake = Faker()
 
 
 @allure.feature('Профиль пользователя')
+@pytest.mark.profile
 class TestProfile(BaseTest):
     @allure.title('Проверка открытия профиля пользователя')
     @allure.description('Проверяется, что при нажатии кнопки открывается профиль и видно Никнейм пользователя')
@@ -201,3 +203,53 @@ class TestProfile(BaseTest):
             element = elements['Профиль пользователя']
             self.profile_page.get_element_text(element['Подписки'])
             self.assertion.text_in_element(element['Подписки'], expected_text='0')
+
+    @allure.title('Проверка возможности посмотреть список своих подписчиков')
+    @allure.description('Проверка происходит на пользователе Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opportunities_to_see_the_list_of_your_subscribers(self, elements, login_to_app):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Нажать на Подписчики'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Подписчики'])
+
+        with allure.step('Проверить, что список подписчиков >= 1'):
+            element = elements['Страница подписки']
+            self.assertion.length_elements(element['Список пользователей'], length=1)
+
+    @allure.title('Проверка возможности посмотреть список своих подписок')
+    @allure.description('Проверка происходит на пользователе Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opportunities_to_see_the_list_of_your_subscriptions(self, elements, login_to_app):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Нажать на Подписки'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Подписки'])
+
+        with allure.step('Проверить, что список подписок >= 3'):
+            element = elements['Страница подписки']
+            self.assertion.length_elements(element['Список пользователей'], length=3)
+
+    @allure.title('Проверка возможности перейти в профиль другого пользователя')
+    @allure.description('Проверка происходит на пользователе Aleska, открывается пользователь Natalya')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_opportunities_to_go_to_another_user_profile(self, elements, login_to_app):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Нажать на Подписки'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Подписки'])
+
+        with allure.step('Найти в подписках Natalya и перейти в профиль'):
+            self.subscription_page.search_by_username('Natalya')
+
+        with allure.step('Проверить, что открылась страница пользователя Natalya'):
+            self.assertion.page_is_opened(Links.PROFILE_PAGE + '/Natalya')

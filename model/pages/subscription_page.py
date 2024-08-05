@@ -1,3 +1,5 @@
+from selenium.webdriver.common.by import By
+
 import config.locators
 from base.base_page import BasePage
 from model.elements.app import App
@@ -22,3 +24,8 @@ class SubscriptionPage(BasePage):
         self.do_click(config.locators.ProfilePageLocators.locators['Подписки'])
         elem = self.find_element(config.locators.SubscriptionPageLocators.locators['Отписка от первого пользователя'])
         self.do_click(elem)
+
+    def search_by_username(self, username):
+        user = self.find_element(
+            (By.XPATH, f'//div[contains(@class,"user-block_wrapper-name")][contains(.,"{username}")]'))
+        self.do_click(user)

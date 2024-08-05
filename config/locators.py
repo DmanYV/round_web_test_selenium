@@ -204,6 +204,7 @@ class ProfilePageLocators:
                                  '//div[contains(@class,"user-info_count")]'),
         'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
                                '//div[contains(@class,"user-info_count")]'),
+        'О себе': (By.XPATH, '//div[contains(@class,"user-info_about")]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
         'Проект ожидает модерации': (By.XPATH, '//div[contains(@class,"user-project-list_moderation")]'),
@@ -218,10 +219,12 @@ class ProfilePageLocators:
 
 
 class SubscriptionPageLocators:
+    """Локаторы страницы подписки"""
     locators = {
         'Подписчики': (By.XPATH, '//button[@tabindex="0"]'),
         'Подписки': (By.XPATH, '//button[@tabindex="1"]'),
         'Все пользователи': (By.XPATH, '//button[@tabindex="2"]'),
+        'Список пользователей': (By.XPATH, '//div[contains(@class,"user-block_container")]'),
         'Подписка на первого пользователя': (By.XPATH, '//button[contains(.,"Подписаться")][1]'),
         'Отписка от первого пользователя': (By.XPATH, '//button[contains(.,"Подписка")][1]'),
         'Значок галочки': (By.XPATH, '//div[contains(@class,"popup_container")]'),
