@@ -185,9 +185,12 @@ class TestProfile(BaseTest):
         with allure.step('Нажать на кнопку профиль'):
             self.app.profile_button_click()
 
+        with allure.step('Обновить страницу'):
+            self.profile_page.refresh()
+
         with allure.step('Запомнить количество подписчиков'):
             element = elements['Профиль пользователя']
-            self.profile_page.get_element_text(element['Подписки'])
+            subscribe = int(self.profile_page.get_element_text(element['Подписки']))
 
         with allure.step('Отписаться от пользователя'):
             self.subscription_page.unsubscribe_user()
@@ -199,10 +202,10 @@ class TestProfile(BaseTest):
         with allure.step('Нажать кнопку профиля'):
             self.app.profile_button_click()
 
-        with allure.step('Проверить, что количество подписчиков отображается 0'):
+        with allure.step('Проверить, что количество подписчиков не изменилось'):
             element = elements['Профиль пользователя']
             self.profile_page.get_element_text(element['Подписки'])
-            self.assertion.text_in_element(element['Подписки'], expected_text='0')
+            self.assertion.text_in_element(element['Подписки'], expected_text=str(subscribe - 1))
 
     @allure.title('Проверка возможности посмотреть список своих подписчиков')
     @allure.description('Проверка происходит на пользователе Aleska')
