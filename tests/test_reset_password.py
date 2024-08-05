@@ -11,6 +11,7 @@ fakeru = Faker("ru_RU")
 
 
 @allure.feature('Восстановление пароля')
+@pytest.mark.reset_password
 class TestResetPassword(BaseTest):
     @allure.title('Проверка нажатия кнопки "Забыл(-а) пароль?"')
     @allure.severity('Critical')

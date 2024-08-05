@@ -9,6 +9,7 @@ fake = Faker()
 
 
 @allure.feature('Меню профиля')
+@pytest.mark.menu_profile
 class TestMenuProfile(BaseTest):
     @allure.title('Проверка при нажатии в поп ап Редактировать профиль открывается страница редактирования')
     @allure.description('Проверяется на пользователе Aleska')
