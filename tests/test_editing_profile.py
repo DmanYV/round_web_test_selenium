@@ -4,6 +4,7 @@ from faker import Faker
 
 from base.base_test import BaseTest
 from settings import User
+from fixtures.fixtures_for_registration_test import registration_user
 
 fake = Faker()
 fakeru = Faker("ru_RU")
@@ -124,3 +125,69 @@ class TestEditingProfile(BaseTest):
 
         with allure.step('Очистить текст в О себе'):
             self.edit_profile_page.clear_about()
+
+    @allure.title('Проверка удаления аккаунта')
+    @allure.description(
+        'Сначала регистрируется новый пользователь, '
+        'после удаляется по случайно причине и проверяется, '
+        'что при авторизации ему отображается уведомление')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_deletion_of_account(self, elements, registration_user):
+        with allure.step('Нажать кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Закрыть анкету'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка закрыть анкету'])
+
+        with allure.step('Запомнить никнейм пользователя'):
+            element = elements['Общие']
+            username = self.profile_page.get_element_text(element['Заголовок страницы'])
+
+        with allure.step('Нажать на бургер-меню'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на Редактировать профиль'):
+            element = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(element['Редактировать профиль'])
+
+        with allure.step('Нажать на Настройки аккаунта'):
+            element = elements['Страница редактировать профиль']
+            self.edit_profile_page.do_click(element['Настройки аккаунта'])
+
+        with allure.step('Нажать удалить аккаунт'):
+            element = elements['Страница настройки аккаунта']
+            self.settings_page.do_click(element['Удалить аккаунт'])
+
+        with allure.step('Нажать кнопку Удалить'):
+            self.settings_page.do_click(element['Кнопка удалить'])
+
+        with allure.step('Выбрать вариант "У меня есть другой профиль в ROUND!"'):
+            self.checkbox.checkbox_on(element['У меня есть другой профиль в ROUND!'])
+
+        with allure.step('Нажать кнопку удалить аккаунт'):
+            self.settings_page.do_click(element['Кнопка удалить аккаунт'])
+
+        with allure.step('Нажать кнопку Хорошо'):
+            # Задублирован метод для обхода падения
+            self.settings_page.do_click(element['Кнопка хорошо'])
+            self.settings_page.do_click(element['Кнопка хорошо'])
+
+        with allure.step('Нажать Войти'):
+            element = elements['Страница авторизации']
+            self.authorization_page.do_click(element['Кнопка войти'])
+
+        with allure.step('В поле никнейм ввести никнейм пользователя'):
+            element = elements['Страница логина']
+            self.authorization_page.field_send_keys(element['Поле логин'], text=username)
+
+        with allure.step('В поле пароль ввести пароль'):
+            self.authorization_page.field_send_keys(element['Поле пароль'], text=User.PASSWORD)
+
+        with allure.step('Нажать кнопку Войти'):
+            self.authorization_page.do_click(element['Кнопка войти'])
+
+        with allure.step('Проверить, что появилось уведомление для пользователя'):
+            self.assertion.is_elem_displayed(element['Уведомление аккаунт удален'])
