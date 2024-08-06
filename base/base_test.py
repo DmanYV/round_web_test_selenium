@@ -13,12 +13,14 @@ from model.pages.favorite_projects_page import FavoriteProjectsPage
 from model.pages.favorite_challenge_page import FavoriteChallengePage
 from model.pages.edit_profile_page import EditProfilePage
 from model.pages.subscription_page import SubscriptionPage
+from model.pages.settings_page import SettingsPage
 from settings import User
 from settings import MetaBaseUser
 
 from model.api.authorization import ApiAuthorization
 from model.api.metabase import MetaBase
 from model.elements.app import App
+from model.elements.checkbox import Checkbox
 
 
 class BaseTest:
@@ -37,9 +39,12 @@ class BaseTest:
     favorite_challenge_page: FavoriteChallengePage
     edit_profile_page: EditProfilePage
     subscription_page: SubscriptionPage
+    settings_page: SettingsPage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     app: App
+    checkbox: Checkbox
+
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
@@ -47,6 +52,7 @@ class BaseTest:
         request.cls.User = User()
         request.cls.MetaBaseUser = MetaBaseUser()
         request.cls.app = App(driver)
+        request.cls.checkbox = Checkbox(driver)
         request.cls.assertion = Assertion(driver)
         request.cls.authorization_page = AuthorizationPage(driver)
         request.cls.login_page = LoginPage(driver)
@@ -60,5 +66,6 @@ class BaseTest:
         request.cls.favorite_challenge_page = FavoriteChallengePage(driver)
         request.cls.edit_profile_page = EditProfilePage(driver)
         request.cls.subscription_page = SubscriptionPage(driver)
+        request.cls.settings_page = SettingsPage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
