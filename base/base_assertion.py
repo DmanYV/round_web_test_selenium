@@ -38,19 +38,6 @@ class Assertion(BasePage):
         actual_text_length = len(self.find_element(by_locator).text)
         assert length == actual_text_length, f"Ожидалось длина текста: {length}, текущая длина: {actual_text_length}"
 
-    def text_in_element_length(self, by_locator: tuple, length: int):
-        """
-        Функция проверки, длины текста в элементе
-
-        :param by_locator:
-            локатор элемента
-        :param length:
-            ожидаемая длина текста
-
-        """
-        actual_text_length = len(self.find_element(by_locator).text)
-        assert length == actual_text_length, f"Ожидалось длина текста: {length}, текущая длина: {actual_text_length}"
-
     def page_is_opened(self, page_url):
         """
         Функция проверки, что запрашиваемая страница открыта
@@ -149,3 +136,15 @@ class Assertion(BasePage):
 
         """
         assert a == b, f'Ожидалось True, получено False сравнивали {a} и {b}'
+
+    def checkbox_status(self, by_locator: tuple):
+        """
+        Определяет простановку чекбокса
+
+        :param by_locator:
+            Локатор чекбокса
+        """
+
+        checkbox = self.driver.find_element(by_locator)
+
+        assert checkbox.is_selected()
