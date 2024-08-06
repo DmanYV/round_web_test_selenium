@@ -6,7 +6,7 @@ from model.elements.app import App
 
 
 @pytest.fixture(scope='function')
-@allure.step('Подписка на пользователя первого в писке')
+@allure.step('Подписка на пользователя первого в списке')
 def subscribe_user(driver):
     app = App(driver)
     app.profile_button_click()
@@ -17,7 +17,7 @@ def subscribe_user(driver):
 
 
 @pytest.fixture(scope='function')
-@allure.step('Отписка от пользователя')
+@allure.step('Отписка от первого пользователя в списке')
 def unsubscribe_user(request, driver):
     yield driver
     app = App(driver)

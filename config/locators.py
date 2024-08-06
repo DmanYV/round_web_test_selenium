@@ -65,6 +65,7 @@ class JoinPageLocators:
         'Валидация поля проверочный код': (By.XPATH, '//label[@class="phone-screen_confirm-error__q-TwZ"]'),
         'Текст приветствия пользователя': (By.XPATH, '//div[contains(@class,"registration-success_header_")]'),
         'Кнопка запросить код еще раз': (By.XPATH, '//button[contains(@class,"j7a6Y")]'),
+        'Кнопка погнали': (By.XPATH, '//button[contains(@class,"registration-success_btn")]'),
         '2014 год': (By.ID, 'react-select-2-option-0'),
         '2013 год': (By.ID, 'react-select-2-option-1'),
         '2012 год': (By.ID, 'react-select-2-option-2'),
@@ -171,7 +172,7 @@ class LoginPageLocators:
         'Кнопка войти': (By.XPATH, './/button[text()="Войти"]'),
         'Кнопка закрыть': (By.XPATH, './/button[contains(@class, "header_back")]'),
         'Кнопка забыл пароль': (By.XPATH, '//div[@class="login_restore-link__lQcSj"]'),
-
+        'Уведомление аккаунт удален': (By.XPATH, '//div[contains(@class,"popup_container")]')
     }
 
 
@@ -214,7 +215,8 @@ class ProfilePageLocators:
         'Блок ачивок': (By.XPATH, '(//div[contains(@class,"horizontal-scroll-view_container")])'
                                   '//div[contains(@class,"user-achievement-list_item")]'),
         'Кнопка бургер-меню': (By.XPATH, '//button[contains(@class,"profile-page-header_button")]'),
-        'Поп ап бургер-меню': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]')
+        'Поп ап бургер-меню': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'),
+        'Кнопка закрыть анкету': (By.XPATH, '//div[contains(@class,"study-choose_container")]//*[local-name() = "svg"]')
     }
 
 
@@ -275,14 +277,34 @@ class InvitationPageLocators:
     }
 
 
-class EditProfileLocators:
+class EditProfilePageLocators:
     """Локаторы страницы редактировать профиль"""
     locators = {
         'Поле никнейм': (By.XPATH, '//input[@name="userName"]'),
         'Поле о себе': (By.XPATH, '//textarea[@name="about"]'),
         'Кнопка сохранить': (By.XPATH, '//button[contains(@class,"button_primary")]'),
         'Поп ап уведомление': (By.XPATH, '//div[contains(@class, "popup_container")]'),
+        'Анкета': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")][contains(.,"Анкета")]'),
+        'Настройки аккаунта': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")]'
+                                         '[contains(.,"Настройки аккаунта")]')
+    }
 
+
+class SettingsPageLocators:
+    """Локаторы страницы Настройки аккаунта"""
+    locators = {
+        'Удалить аккаунт': (By.XPATH, '//div[contains(@class,"user-settings_line")]'),
+        'Кнопка удалить': (By.XPATH, '//button[contains(@class,"message-dialog_secondary")]'),
+        'Кнопка отмена': (By.XPATH, '//button[contains(@class,"message-dialog_primary")]'),
+        'У меня есть другой профиль в ROUND!': (By.XPATH, '//label[contains(.,"У меня есть другой профиль в ROUND!")]'),
+        'Мои проекты не комментируют и не лайкают': (By.XPATH, '//label[contains(.,"Мои проекты не комментируют и не лайкают")]'),
+        'Ведение аккаунта отнимает у меня много времени': (By.XPATH, '//label[contains(.,"Ведение аккаунта отнимает у меня много времени")]'),
+        'Не нашел (-ла) интересного для себя контента': (By.XPATH, '//label[contains(.,"Не нашел (-ла) интересного для себя контента")]'),
+        'Удаляю по просьбе родителей': (By.XPATH, '//label[contains(.,"Удаляю по просьбе родителей")]'),
+        'Меня беспокоит безопасность моих данных': (By.XPATH, '//label[contains(.,"Меня беспокоит безопасность моих данных")]'),
+        'Кнопка удалить аккаунт': (By.XPATH, '//button[contains(@class,"message-dialog_secondary")]'),
+        'Уведомление пользователя': (By.XPATH, '//div[contains(@class,"message-dialog_text")]'),
+        'Кнопка хорошо': (By.XPATH, '//button[contains(@class,"message-dialog_primary")]')
     }
 
 

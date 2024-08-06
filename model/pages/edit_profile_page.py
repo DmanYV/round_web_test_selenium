@@ -27,10 +27,10 @@ class EditProfilePage(BasePage):
         self.app.profile_button_click()
         self.profile_page.do_click(config.locators.ProfilePageLocators.locators['Кнопка бургер-меню'])
         self.profile_page.do_click(config.locators.PopUpBurgerMenuProfileLocators.locators['Редактировать профиль'])
-        self.clear(config.locators.EditProfileLocators.locators['Поле никнейм'])
-        self.field_send_keys(config.locators.EditProfileLocators.locators['Поле никнейм'], text=username)
-        self.scroll_to_element(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
-        self.do_click(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
+        self.clear(config.locators.EditProfilePageLocators.locators['Поле никнейм'])
+        self.field_send_keys(config.locators.EditProfilePageLocators.locators['Поле никнейм'], text=username)
+        self.scroll_to_element(config.locators.EditProfilePageLocators.locators['Кнопка сохранить'])
+        self.do_click(config.locators.EditProfilePageLocators.locators['Кнопка сохранить'])
 
     def clear_about(self):
         """
@@ -41,6 +41,6 @@ class EditProfilePage(BasePage):
         self.profile_page.do_click(config.locators.ProfilePageLocators.locators['Кнопка бургер-меню'])
         self.profile_page.do_click(config.locators.PopUpBurgerMenuProfileLocators.locators['Редактировать профиль'])
         time.sleep(1)
-        self.clear(config.locators.EditProfileLocators.locators['Поле о себе'])
-        self.scroll_to_element(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
-        self.do_click(config.locators.EditProfileLocators.locators['Кнопка сохранить'])
+        self.clear(config.locators.EditProfilePageLocators.locators['Поле о себе'])
+        self.scroll_to_element(config.locators.EditProfilePageLocators.locators['Кнопка сохранить'])
+        self.do_click(config.locators.EditProfilePageLocators.locators['Кнопка сохранить'])

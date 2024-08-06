@@ -19,8 +19,9 @@ class Locators:
         'Главная страница': MainPageLocators.locators,
         'Страница рубрики': RubricPageLocators.locators,
         'Поп ап бургер-меню профиля': PopUpBurgerMenuProfileLocators.locators,
+        'Страница редактировать профиль': EditProfilePageLocators.locators,
         'Страница пригласить друга': InvitationPageLocators.locators,
         'Страница лайки': FavoriteProjectsPageLocators.locators,
-        'Страница редактировать профиль': EditProfileLocators.locators,
+        'Страница настройки аккаунта': SettingsPageLocators.locators,
 
     }

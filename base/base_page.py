@@ -1,5 +1,8 @@
 import time
 
+from selenium.common.exceptions import (ElementClickInterceptedException,
+                                        StaleElementReferenceException)
+from selenium.webdriver.common.action_chains import ActionChains as AC
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -57,15 +60,57 @@ class BasePage(object):
         """Функция закрытия браузера"""
         self.driver.close()
 
-    def do_click(self, locator):
+    def do_click(self, locator, wait_time: int = 10):
         """
 
         Функция клик на элемент с ожиданием, что элемент кликабелен
 
         :param locator:
             локатор элемента
+        :param wait_time:
+            время ожидания
+
         """
-        self.wait.until(EC.element_to_be_clickable(locator)).click()
+        elem = WebDriverWait(self.driver, wait_time).until(EC.element_to_be_clickable(locator))
+        try:
+            elem.click()
+        except (StaleElementReferenceException, ElementClickInterceptedException):
+            self.driver.execute_script("arguments[0].click();", elem)
+        return self
+
+    def double_click(self, by_locator: tuple):
+        """
+        Двойной клик по элементу
+
+        :param by_locator:
+            локатор элемента
+
+        """
+
+        element = self.find_element(by_locator)
+        actions = AC(self.driver)
+        actions.double_click(element)
+        actions.perform()
+        return self
+
+    def move_to_element_and_click(self, by_locator, wait_time=5):
+        """
+        Наведение мышки на элемент и клик по элементу
+
+        :param by_locator:
+            локатор элемента
+
+        :param wait_time:
+            время ожидания
+
+        """
+
+        element = WebDriverWait(self.driver, wait_time).until(EC.visibility_of_element_located(by_locator))
+        actions = AC(self.driver)
+        actions.move_to_element(element)
+        actions.click()
+        actions.perform()
+        return self
 
     def field_send_keys(self, locator: tuple, text: str or int):
         """
