@@ -18,7 +18,21 @@ class AllPageLocators:
     locators = {
         'Спиннер загрузки': (By.XPATH, './/div[@class="spinner_rotating-plane__1g-WO"]'),
         'Заголовок страницы': (By.XPATH, '//div[contains(@class,"tool-bar_title")]'),
-        'Кнопка назад': (By.XPATH, '//button[contains(@class,"tool-bar_back")]')
+        'Кнопка назад': (By.XPATH, '//button[contains(@class,"tool-bar_back")]'),
+    }
+
+
+class AnotherUserPageLocators:
+    """Локаторы страницы другого пользователя"""
+
+    locators = {
+        'Кнопка три точки': (By.XPATH, '//button[contains(@class,"profile-page-header_button")]'),
+        'Пожаловаться': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_item")][contains(.,"Пожаловаться")]'),
+        'Заблокировать': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_item")]'
+                                    '[contains(.,"Заблокировать")]'),
+        'Пользователь заблокирован': (By.XPATH, '//div[contains(@class,"user-in-blocklist-description_container")]'),
+        'Разблокировать': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_item")]'
+                                     '[contains(.,"Разблокировать")]')
     }
 
 
@@ -286,7 +300,9 @@ class EditProfilePageLocators:
         'Поп ап уведомление': (By.XPATH, '//div[contains(@class, "popup_container")]'),
         'Анкета': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")][contains(.,"Анкета")]'),
         'Настройки аккаунта': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")]'
-                                         '[contains(.,"Настройки аккаунта")]')
+                                         '[contains(.,"Настройки аккаунта")]'),
+        'Заблокированные пользователи': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")]'
+                                                   '[contains(.,"Заблокированные пользователи")]')
     }
 
 
@@ -302,9 +318,19 @@ class SettingsPageLocators:
         'Не нашел (-ла) интересного для себя контента': (By.XPATH, '//label[contains(.,"Не нашел (-ла) интересного для себя контента")]'),
         'Удаляю по просьбе родителей': (By.XPATH, '//label[contains(.,"Удаляю по просьбе родителей")]'),
         'Меня беспокоит безопасность моих данных': (By.XPATH, '//label[contains(.,"Меня беспокоит безопасность моих данных")]'),
+        'Другая причина': (By.XPATH, '//label[contains(.,"Другая причина")]'),
+        'Поле причина удаления': (By.XPATH, '//input[contains(@class,"text-field_input")]'),
         'Кнопка удалить аккаунт': (By.XPATH, '//button[contains(@class,"message-dialog_secondary")]'),
         'Уведомление пользователя': (By.XPATH, '//div[contains(@class,"message-dialog_text")]'),
         'Кнопка хорошо': (By.XPATH, '//button[contains(@class,"message-dialog_primary")]')
+    }
+
+
+class BlockListPageLocators:
+    """Локаторы страницы Заблокированные пользователи"""
+    locators = {
+        'Список пуст': (By.XPATH, '//div[contains(@class,"user-block-list_empty")]'),
+        'Список заблокированных пользователей': (By.XPATH, '//div[contains(@class,"user-block-list_block")]')
     }
 
 
