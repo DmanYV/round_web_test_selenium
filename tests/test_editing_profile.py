@@ -4,7 +4,7 @@ from faker import Faker
 
 from base.base_test import BaseTest
 from settings import User
-from fixtures.fixtures_for_registration_test import registration_user
+from fixtures.fixtures_for_registration_tests import registration_user
 
 fake = Faker()
 fakeru = Faker("ru_RU")
@@ -126,14 +126,21 @@ class TestEditingProfile(BaseTest):
         with allure.step('Очистить текст в О себе'):
             self.edit_profile_page.clear_about()
 
-    @allure.title('Проверка удаления аккаунта')
+    @pytest.mark.parametrize('options', [
+        'У меня есть другой профиль в ROUND!',
+        'Мои проекты не комментируют и не лайкают',
+        'Ведение аккаунта отнимает у меня много времени',
+        'Не нашел (-ла) интересного для себя контента',
+        'Удаляю по просьбе родителей',
+        'Меня беспокоит безопасность моих данных'
+    ])
+    @allure.title('Проверка удаления аккаунта по причине "{options}"')
     @allure.description(
         'Сначала регистрируется новый пользователь, '
-        'после удаляется по случайно причине и проверяется, '
-        'что при авторизации ему отображается уведомление')
+        'после удаляется по причине и проверяется, что при авторизации ему отображается уведомление')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_deletion_of_account(self, elements, registration_user):
+    def test_deletion_of_account(self, elements, registration_user, options):
         with allure.step('Нажать кнопку профиль'):
             self.app.profile_button_click()
 
@@ -164,8 +171,8 @@ class TestEditingProfile(BaseTest):
         with allure.step('Нажать кнопку Удалить'):
             self.settings_page.do_click(element['Кнопка удалить'])
 
-        with allure.step('Выбрать вариант "У меня есть другой профиль в ROUND!"'):
-            self.checkbox.checkbox_on(element['У меня есть другой профиль в ROUND!'])
+        with allure.step(f'Выбрать вариант "{options}"'):
+            self.checkbox.checkbox_on(element[options])
 
         with allure.step('Нажать кнопку удалить аккаунт'):
             self.settings_page.do_click(element['Кнопка удалить аккаунт'])
@@ -191,3 +198,120 @@ class TestEditingProfile(BaseTest):
 
         with allure.step('Проверить, что появилось уведомление для пользователя'):
             self.assertion.is_elem_displayed(element['Уведомление аккаунт удален'])
+
+    @allure.title('Проверка удаления аккаунта по причине "Другая причина"')
+    @allure.description(
+        'Сначала регистрируется новый пользователь, '
+        'после удаляется по причине и проверяется, что при авторизации ему отображается уведомление')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_deletion_of_account_(self, elements, registration_user):
+        with allure.step('Нажать кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Закрыть анкету'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка закрыть анкету'])
+
+        with allure.step('Запомнить никнейм пользователя'):
+            element = elements['Общие']
+            username = self.profile_page.get_element_text(element['Заголовок страницы'])
+
+        with allure.step('Нажать на бургер-меню'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на Редактировать профиль'):
+            element = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(element['Редактировать профиль'])
+
+        with allure.step('Нажать на Настройки аккаунта'):
+            element = elements['Страница редактировать профиль']
+            self.edit_profile_page.do_click(element['Настройки аккаунта'])
+
+        with allure.step('Нажать удалить аккаунт'):
+            element = elements['Страница настройки аккаунта']
+            self.settings_page.do_click(element['Удалить аккаунт'])
+
+        with allure.step('Нажать кнопку Удалить'):
+            self.settings_page.do_click(element['Кнопка удалить'])
+
+        with allure.step(f'Выбрать вариант "Другая причина"'):
+            self.checkbox.checkbox_on(element['Другая причина'])
+
+        with allure.step('В поле причины ввести какой либо текст'):
+            self.settings_page.field_send_keys(element['Поле причина удаления'], text=fakeru.text(max_nb_chars=120))
+
+        with allure.step('Нажать кнопку удалить аккаунт'):
+            self.settings_page.do_click(element['Кнопка удалить аккаунт'])
+
+        with allure.step('Нажать кнопку Хорошо'):
+            # Задублирован метод для обхода падения
+            self.settings_page.do_click(element['Кнопка хорошо'])
+            self.settings_page.do_click(element['Кнопка хорошо'])
+
+        with allure.step('Нажать Войти'):
+            element = elements['Страница авторизации']
+            self.authorization_page.do_click(element['Кнопка войти'])
+
+        with allure.step('В поле никнейм ввести никнейм пользователя'):
+            element = elements['Страница логина']
+            self.authorization_page.field_send_keys(element['Поле логин'], text=username)
+
+        with allure.step('В поле пароль ввести пароль'):
+            self.authorization_page.field_send_keys(element['Поле пароль'], text=User.PASSWORD)
+
+        with allure.step('Нажать кнопку Войти'):
+            self.authorization_page.do_click(element['Кнопка войти'])
+
+        with allure.step('Проверить, что появилось уведомление для пользователя'):
+            self.assertion.is_elem_displayed(element['Уведомление аккаунт удален'])
+
+    @allure.title('При отсутствии заблокированных пользователей отображается надпись "Список пуст"')
+    @allure.description('Проверка происходит на пользователе Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_if_there_are_no_blocked_users_the_message_list_is_empty_is_displayed(self, elements, login_to_app):
+        with allure.step('Нажать кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Нажать на кнопку редактирования профиля'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка бургер-меню'])
+
+        with allure.step('Нажать "Редактировать профиль"'):
+            element = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(element['Редактировать профиль'])
+
+        with allure.step('Нажать "Заблокированные пользователи"'):
+            element = elements['Страница редактировать профиль']
+            self.edit_profile_page.do_click(element['Заблокированные пользователи'])
+
+        with allure.step('Проверить, что список пуст и отображается надпись "Список пуст"'):
+            element = elements['Заблокированные пользователи']
+            self.assertion.is_elem_displayed(element['Список пуст'])
+            self.assertion.text_in_element(element['Список пуст'], expected_text='Список пуст')
+
+    @allure.title('Просмотр списка заблокированных пользователей')
+    @allure.description('Проверка происходит на пользователе Aleska, после теста разблокируются пользователи')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_view_the_list_of_blocked_users(self, login_to_app, elements):
+        with allure.step('Заблокировать пользователя Ekaterina_Fesan'):
+            self.another_user_page.blocking_user('Ekaterina_Fesan')
+
+        with allure.step('Заблокировать пользователя biryukovadariaa'):
+            self.another_user_page.blocking_user('biryukovadariaa')
+
+        with allure.step('Открыть страницу заблокированные пользвоатели'):
+            self.blocklist_page.open()
+
+        with allure.step('Проверить, что список заблокированных пользователей 2'):
+            element = elements['Страница заблокированные пользователи']
+            self.assertion.length_elements(element['Список заблокированных пользователей'], length=2)
+
+        with allure.step('Убрать пользователя Ekaterina_Fesan из заблокированных'):
+            self.another_user_page.unblocking_user('Ekaterina_Fesan')
+
+        with allure.step('Убрать пользователя Ekaterina_Fesan из заблокированных'):
+            self.another_user_page.unblocking_user('biryukovadariaa')

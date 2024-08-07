@@ -23,5 +23,7 @@ class Locators:
         'Страница пригласить друга': InvitationPageLocators.locators,
         'Страница лайки': FavoriteProjectsPageLocators.locators,
         'Страница настройки аккаунта': SettingsPageLocators.locators,
+        'Страница заблокированные пользователи': BlockListPageLocators.locators,
+        'Страница другого пользователя': AnotherUserPageLocators.locators
 
     }

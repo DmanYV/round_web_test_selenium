@@ -14,11 +14,15 @@ from model.pages.favorite_challenge_page import FavoriteChallengePage
 from model.pages.edit_profile_page import EditProfilePage
 from model.pages.subscription_page import SubscriptionPage
 from model.pages.settings_page import SettingsPage
+from model.pages.blocklist_page import BlockListPage
+from model.pages.another_user_page import AnotherUserPage
+
 from settings import User
 from settings import MetaBaseUser
 
 from model.api.authorization import ApiAuthorization
 from model.api.metabase import MetaBase
+
 from model.elements.app import App
 from model.elements.checkbox import Checkbox
 
@@ -40,11 +44,12 @@ class BaseTest:
     edit_profile_page: EditProfilePage
     subscription_page: SubscriptionPage
     settings_page: SettingsPage
+    blocklist_page: BlockListPage
+    another_user_page: AnotherUserPage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     app: App
     checkbox: Checkbox
-
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
@@ -67,5 +72,7 @@ class BaseTest:
         request.cls.edit_profile_page = EditProfilePage(driver)
         request.cls.subscription_page = SubscriptionPage(driver)
         request.cls.settings_page = SettingsPage(driver)
+        request.cls.blocklist_page = BlockListPage(driver)
+        request.cls.another_user_page = AnotherUserPage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
