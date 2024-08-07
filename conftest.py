@@ -34,6 +34,8 @@ def driver(request):
 
 
 @pytest.fixture(scope='function')
+@allure.title('Инициализация локаторов')
+@allure.step('Инициализация локаторов')
 def elements(request) -> dict:
     elements = Locators.elements
     request.cls.elements = elements
@@ -41,6 +43,7 @@ def elements(request) -> dict:
 
 
 @pytest.fixture(scope='function')
+@allure.title('Авторизация пользователя в системе')
 @allure.step('Авторизация пользователя в системе')
 def login_to_app(request, driver):
     """ Логин в систему """
