@@ -288,7 +288,7 @@ class TestEditingProfile(BaseTest):
             self.edit_profile_page.do_click(element['Заблокированные пользователи'])
 
         with allure.step('Проверить, что список пуст и отображается надпись "Список пуст"'):
-            element = elements['Заблокированные пользователи']
+            element = elements['Страница заблокированные пользователи']
             self.assertion.is_elem_displayed(element['Список пуст'])
             self.assertion.text_in_element(element['Список пуст'], expected_text='Список пуст')
 
