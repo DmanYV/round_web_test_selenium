@@ -16,6 +16,7 @@ fake = Faker()
 
 
 @pytest.fixture(scope='function')
+@allure.title('Регистрация пользователя')
 @allure.step('Регистрация пользователя')
 def registration_user(driver):
     """
