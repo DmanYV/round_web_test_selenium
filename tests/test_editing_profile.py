@@ -375,7 +375,7 @@ class TestEditingProfile(BaseTest):
         with allure.step('Перейти в профиль'):
             self.app.profile_button_click()
 
-        with allure.step('Сравнить запомнить новую ссылку на аватар и сравнить со старой'):
+        with allure.step('Запомнить новую ссылку на аватар и сравнить со старой'):
             element = elements['Профиль пользователя']
             time.sleep(1)
             self.profile_page.refresh()
