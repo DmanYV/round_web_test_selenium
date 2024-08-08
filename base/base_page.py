@@ -1,4 +1,5 @@
 import time
+from pathlib import Path
 
 from selenium.common.exceptions import (ElementClickInterceptedException,
                                         StaleElementReferenceException)
@@ -198,6 +199,21 @@ class BasePage(object):
         """
         return self.wait.until(EC.invisibility_of_element_located(locator))
 
+    def get_element_attribute(self, by_locator: tuple, atr_value: str):
+        """
+        Получение атрибута элемента на странице
+
+        :param by_locator:
+            локатор элемента
+
+        :param atr_value:
+            тип атрибута (например, value)
+
+        """
+
+        element = self.find_element(by_locator)
+        return element.get_attribute(atr_value)
+
     def scroll_to_element(self, by_locator: tuple):
         """
         Скролл, пока искомый элемент не будет видим
@@ -222,3 +238,27 @@ class BasePage(object):
         """
         element = self.wait.until(EC.presence_of_element_located(locator))
         element.clear()
+
+    def input_file(self,
+                   input_locator: tuple,
+                   file_name: str = 'avatar.jpg',
+                   file_path: str = str(Path.cwd() / 'test_files')
+                   ):
+        """
+        Загружает файл на сайт
+
+        :param input_locator:
+            Локатор input поля(не кнопки)
+
+        :param file_name:
+            Имя файла
+
+        :param file_path:
+            Путь к папке с файлом
+
+        """
+        file = f"{file_path}/{file_name}"
+        elem = self.element_is_present(input_locator)
+        elem.send_keys(file)
+
+        return self

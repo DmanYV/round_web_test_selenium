@@ -213,6 +213,7 @@ class ProfilePageLocators:
     """Локаторы страницы профиля"""
     locators = {
         'Никнейм пользователя': (By.XPATH, '//div[@class="tool-bar_title__4eJyZ"]'),
+        'Аватар': (By.XPATH, '//img[contains(@class,"user-info_icon")]'),
         'Проекты': (By.XPATH, '//div[@id="user-info_projects"]'
                               '//div[contains(@class,"user-info_count")]'),
         'Подписчики': (By.XPATH, '//div[@id="user-info_followers"]'
@@ -302,7 +303,9 @@ class EditProfilePageLocators:
         'Настройки аккаунта': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")]'
                                          '[contains(.,"Настройки аккаунта")]'),
         'Заблокированные пользователи': (By.XPATH, '//button[contains(@class,"profile-edit-button_container")]'
-                                                   '[contains(.,"Заблокированные пользователи")]')
+                                                   '[contains(.,"Заблокированные пользователи")]'),
+        'Кнопка добавить аватар': (By.XPATH, '//input[@type="file"]'),
+        'Кнопка хорошо': (By.XPATH, '//button[contains(.,"Хорошо")]')
     }
 
 
@@ -330,7 +333,9 @@ class BlockListPageLocators:
     """Локаторы страницы Заблокированные пользователи"""
     locators = {
         'Список пуст': (By.XPATH, '//div[contains(@class,"user-block-list_empty")]'),
-        'Список заблокированных пользователей': (By.XPATH, '//div[contains(@class,"user-block-list_block")]')
+        'Список заблокированных пользователей': (By.XPATH, '//div[contains(@class,"user-block-list_block")]'),
+        'Кнопка разблокировать': (By.XPATH, '//button[contains(@class,"user-block-list_link")]'
+                                            '[contains(.,"Разблокировать")]')
     }
 
 

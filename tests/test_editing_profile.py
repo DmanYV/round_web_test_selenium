@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from faker import Faker
@@ -205,7 +207,7 @@ class TestEditingProfile(BaseTest):
         'после удаляется по причине и проверяется, что при авторизации ему отображается уведомление')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_deletion_of_account_(self, elements, registration_user):
+    def test_deletion_of_account_another_reason(self, elements, registration_user):
         with allure.step('Нажать кнопку профиль'):
             self.app.profile_button_click()
 
@@ -303,15 +305,79 @@ class TestEditingProfile(BaseTest):
         with allure.step('Заблокировать пользователя biryukovadariaa'):
             self.another_user_page.blocking_user('biryukovadariaa')
 
-        with allure.step('Открыть страницу заблокированные пользвоатели'):
+        with allure.step('Открыть страницу заблокированные пользователи'):
             self.blocklist_page.open()
 
         with allure.step('Проверить, что список заблокированных пользователей 2'):
             element = elements['Страница заблокированные пользователи']
             self.assertion.length_elements(element['Список заблокированных пользователей'], length=2)
 
-        with allure.step('Убрать пользователя Ekaterina_Fesan из заблокированных'):
-            self.another_user_page.unblocking_user('Ekaterina_Fesan')
+        with allure.step('Разблокировать всех пользователей'):
+            self.another_user_page.unblocking_all_users()
 
-        with allure.step('Убрать пользователя Ekaterina_Fesan из заблокированных'):
-            self.another_user_page.unblocking_user('biryukovadariaa')
+    @allure.title('Разблокировка пользователя')
+    @allure.description('Проверка происходит на пользователе Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_unblocking_user(self, elements, login_to_app):
+        with allure.step('Заблокировать пользователя Ekaterina_Fesan'):
+            self.another_user_page.blocking_user('Ekaterina_Fesan')
+
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Нажать на кнопку бургер-меню'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка бургер-меню'])
+
+        with allure.step('Нажать "Редактировать профиль"'):
+            element = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(element['Редактировать профиль'])
+
+        with allure.step('Нажать заблокированные пользователи'):
+            element = elements['Страница редактировать профиль']
+            self.edit_profile_page.do_click(element['Заблокированные пользователи'])
+
+        with allure.step('Нажать кнопку разблокировать напротив пользователя'):
+            element = elements['Страница заблокированные пользователи']
+            self.blocklist_page.do_click(element['Кнопка разблокировать'])
+
+        with allure.step('Проверить, что список пуст и отображается надпись "Список пуст"'):
+            self.assertion.is_elem_displayed(element['Список пуст'])
+            self.assertion.text_in_element(element['Список пуст'], expected_text='Список пуст')
+
+    @allure.title('Добавление аватара / изменение аватара')
+    @allure.description('Проверка происходит на пользователе Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_add_and_change_avatar(self, elements, login_to_app):
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Запомнить ссылку на аватар пользователя'):
+            element = elements['Профиль пользователя']
+            old_att = self.profile_page.get_element_attribute(element['Аватар'], atr_value='src')
+
+        with allure.step('Нажать на бургер-меню'):
+            self.profile_page.do_click(element['Кнопка бургер-меню'])
+
+        with allure.step('Нажать редактировать профиль'):
+            element = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(element['Редактировать профиль'])
+
+        with allure.step('Добавить изображение в Кнопку добавить аватар'):
+            element = elements['Страница редактировать профиль']
+            self.edit_profile_page.input_file(element['Кнопка добавить аватар'])
+
+        with allure.step('Нажать кнопку Хорошо'):
+            self.edit_profile_page.do_click(element['Кнопка хорошо'])
+
+        with allure.step('Перейти в профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('Запомнить новую ссылку на аватар и сравнить со старой'):
+            element = elements['Профиль пользователя']
+            time.sleep(1)
+            self.profile_page.refresh()
+            new_att = self.profile_page.get_element_attribute(element['Аватар'], atr_value='src')
+            assert old_att != new_att

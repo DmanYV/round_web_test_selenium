@@ -1,3 +1,5 @@
+import allure
+
 import config.locators
 from base.base_assertion import Assertion
 
@@ -41,3 +43,16 @@ class AnotherUserPage(BasePage):
         self.app.do_click(config.locators.AnotherUserPageLocators.locators['Кнопка три точки'])
         self.app.do_click(config.locators.AnotherUserPageLocators.locators['Разблокировать'])
         self.assertion.is_elem_invisible(config.locators.AnotherUserPageLocators.locators['Пользователь заблокирован'])
+
+    def unblocking_all_users(self):
+        """
+        Метод разблокировки всех пользователей из списка заблокированных пользователей.
+
+        """
+        with allure.step('Открыть страницу Заблокированный пользователи'):
+            self.open()
+
+        with allure.step('Нажать кнопку Разблокировать у всех пользователей'):
+            lists = self.find_elements(config.locators.BlockListPageLocators.locators['Кнопка разблокировать'])
+            for click in lists:
+                click.click()
