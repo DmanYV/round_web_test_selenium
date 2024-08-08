@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from faker import Faker
@@ -205,7 +207,7 @@ class TestEditingProfile(BaseTest):
         'после удаляется по причине и проверяется, что при авторизации ему отображается уведомление')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_deletion_of_account_(self, elements, registration_user):
+    def test_deletion_of_account_another_reason(self, elements, registration_user):
         with allure.step('Нажать кнопку профиль'):
             self.app.profile_button_click()
 
@@ -372,9 +374,10 @@ class TestEditingProfile(BaseTest):
 
         with allure.step('Перейти в профиль'):
             self.app.profile_button_click()
-            self.profile_page.refresh()
 
         with allure.step('Сравнить запомнить новую ссылку на аватар и сравнить со старой'):
             element = elements['Профиль пользователя']
+            time.sleep(1)
+            self.profile_page.refresh()
             new_att = self.profile_page.get_element_attribute(element['Аватар'], atr_value='src')
             assert old_att != new_att
