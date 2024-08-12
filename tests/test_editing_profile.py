@@ -377,7 +377,7 @@ class TestEditingProfile(BaseTest):
 
         with allure.step('Запомнить новую ссылку на аватар и сравнить со старой'):
             element = elements['Профиль пользователя']
-            time.sleep(1)
+            time.sleep(1)  # Не придумал как победить по другому
             self.profile_page.refresh()
             new_att = self.profile_page.get_element_attribute(element['Аватар'], atr_value='src')
             assert old_att != new_att
