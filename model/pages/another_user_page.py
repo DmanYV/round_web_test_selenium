@@ -56,3 +56,32 @@ class AnotherUserPage(BasePage):
             lists = self.find_elements(config.locators.BlockListPageLocators.locators['Кнопка разблокировать'])
             for click in lists:
                 click.click()
+
+    def subscribe_user_for_username(self, username):
+        """
+        Подписка на пользователя по имени
+
+        :param username: Имя пользователя
+
+        """
+        self.driver.get(Links.PROFILE_PAGE + f'/{username}')
+        self.app.do_click(config.locators.AnotherUserPageLocators.locators['Кнопка подписаться'])
+
+    def unsubscribe_user_for_username(self, username):
+        """
+        Отписка от пользователя по имени
+
+        :param username: Имя пользователя
+
+        """
+        self.driver.get(Links.PROFILE_PAGE + f'/{username}')
+        self.app.do_click(config.locators.AnotherUserPageLocators.locators['Кнопка подписка'])
+
+    def open_profile(self, username):
+        """
+        Открыть профиль пользователя по имени
+
+        :param username: Имя пользователя
+
+        """
+        self.driver.get(Links.PROFILE_PAGE + f'/{username}')
