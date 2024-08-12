@@ -9,7 +9,7 @@ from config.locators import AllPageLocators
 
 
 class Assertion(BasePage):
-    def text_in_element(self, by_locator: tuple, expected_text: str or int):
+    def text_in_element(self, by_locator, expected_text: str or int):
         """
         Проверка совпадения текста элемента
 
@@ -19,9 +19,9 @@ class Assertion(BasePage):
             ожидаемый текст
 
         """
-        time.sleep(1)
-        actual_text = self.find_element(by_locator).text
-        assert expected_text == actual_text, f"Ожидался текст: '{expected_text}', отображается текст: '{actual_text}'"
+
+        assert self.wait.until(EC.text_to_be_present_in_element(by_locator, expected_text)), \
+            f"Ожидался текст: '{expected_text}', отображается текст: '{self.find_element(by_locator).text}'"
 
     def length_simbols_in_text(self, by_locator: tuple, length: int):
         """
@@ -130,9 +130,15 @@ class Assertion(BasePage):
             f'Ожидалось элементов >= {length}, отображается {len(self.find_elements(by_locator))} элементов')
         return len(self.find_elements(by_locator))
 
-    def values_is_equal(self, a, b):
+    @staticmethod
+    def values_is_equal(a, b):
         """
         Проверка, что выражение верно
+
+        :param a:
+            первое значение
+        :param b:
+            второе значение
 
         """
         assert a == b, f'Ожидалось True, получено False сравнивали {a} и {b}'
