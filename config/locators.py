@@ -32,7 +32,37 @@ class AnotherUserPageLocators:
                                     '[contains(.,"Заблокировать")]'),
         'Пользователь заблокирован': (By.XPATH, '//div[contains(@class,"user-in-blocklist-description_container")]'),
         'Разблокировать': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_item")]'
-                                     '[contains(.,"Разблокировать")]')
+                                     '[contains(.,"Разблокировать")]'),
+        'Кнопка подписаться': (By.XPATH, '//button[contains(@class,"button_primary")][contains(.,"Подписаться")]'),
+        'Кнопка подписка': (By.XPATH, '//button[contains(@class,"button_light")][contains(.,"Подписка")]'),
+        'Значок галочки': (By.XPATH, '//div[contains(@class,"page-content_content")]'
+                                     '//div[contains(@class,"popup_container")]'),
+        'Спам': (By.XPATH, '//label[contains(.,"Спам")]'),
+        'Нарушение авторского права, неоригинальный контент': (
+            By.XPATH, '//label[contains(.,"Нарушение авторского права, неоригинальный контент")]'
+        ),
+        'Оскорбление, враждебные высказывания': (
+            By.XPATH, '//label[contains(.,"Оскорбление, враждебные высказывания")]'
+        ),
+        'Материал для взрослых или действия сексуального характера': (
+            By.XPATH, '//label[contains(.,"Материал для взрослых или действия сексуального характера")]'
+        ),
+        'Пропаганда наркотиков': (By.XPATH, '//label[contains(.,"Пропаганда наркотиков")]'),
+        'Продажа оружия': (By.XPATH, '//label[contains(.,"Продажа оружия")]'),
+        'Травля, преследование, призыв к травле или преследованию': (
+            By.XPATH, '//label[contains(.,"Травля, преследование, призыв к травле или преследованию")]'
+        ),
+        'Призыв к суициду': (By.XPATH, '//label[contains(.,"Призыв к суициду")]'),
+        'Жестокое обращение с животными': (By.XPATH, '//label[contains(.,"Жестокое обращение с животными")]'),
+        'Введение в заблуждение': (By.XPATH, '//label[contains(.,"Введение в заблуждение")]'),
+        'Мошенничество': (By.XPATH, '//label[contains(.,"Мошенничество")]'),
+        'Насилие/экстремизм': (By.XPATH, '//label[contains(.,"Насилие/экстремизм")]'),
+        'Другое': (By.XPATH, '//label[contains(.,"Другое")]'),
+        'Кнопка пожаловаться': (By.XPATH, '//button[contains(@class,"message-dialog_secondary")]'),
+        'Уведомление жалоба на пользователя отправлена': (
+            By.XPATH, '//div[contains(@class,"popup_container")][contains(.,"Жалоба на пользователя отправлена")]'
+        ),
+        'Поле причина жалобы': (By.XPATH, '//input[contains(@class,"text-field_input")]')
     }
 
 
