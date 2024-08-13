@@ -37,6 +37,13 @@ class AnotherUserPageLocators:
         'Кнопка подписка': (By.XPATH, '//button[contains(@class,"button_light")][contains(.,"Подписка")]'),
         'Значок галочки': (By.XPATH, '//div[contains(@class,"page-content_content")]'
                                      '//div[contains(@class,"popup_container")]'),
+        'Аватар': (By.XPATH, '//img[contains(@class,"user-info_icon")]'),
+        'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
+                                      '//div[@class = "user-project-list_item__Q1mmt"]'),
+        'Блок ачивок': (By.XPATH, '(//div[contains(@class,"horizontal-scroll-view_container")])'
+                                  '//div[contains(@class,"user-achievement-list_item")]'),
+        'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
+                               '//div[contains(@class,"user-info_count")]'),
         'Спам': (By.XPATH, '//label[contains(.,"Спам")]'),
         'Нарушение авторского права, неоригинальный контент': (
             By.XPATH, '//label[contains(.,"Нарушение авторского права, неоригинальный контент")]'
