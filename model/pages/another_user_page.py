@@ -16,7 +16,7 @@ class AnotherUserPage(BasePage):
         self.app = App(driver)
         self.assertion = Assertion(driver)
 
-    def blocking_user(self, username: str):
+    def blocking_user_for_username(self, username: str):
         """
         Метод добавления пользователя в список заблокированные пользователи.
 
@@ -30,7 +30,7 @@ class AnotherUserPage(BasePage):
         self.app.do_click(config.locators.AnotherUserPageLocators.locators['Заблокировать'])
         self.assertion.is_elem_displayed(config.locators.AnotherUserPageLocators.locators['Пользователь заблокирован'])
 
-    def unblocking_user(self, username: str):
+    def unblocking_user_for_username(self, username: str):
         """
         Метод удаления пользователя из списка заблокированные пользователи.
 
