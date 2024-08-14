@@ -36,7 +36,7 @@ def registration_user(driver):
     authorization_page.open()
     authorization_page.do_click(config.locators.AuthorizationPageLocators.locators['Кнопка по смс'])
     join_page.do_click(config.locators.JoinPageLocators.locators['Кнопка далее'])
-    username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+    username = f'-{fake.pystr(min_chars=5, max_chars=11)}.{fake.pyint(min_value=1, max_value=2)}_'
     join_page.field_send_keys(config.locators.JoinPageLocators.locators['Поле никнейм'], text=f'{username}')
     join_page.do_click(config.locators.JoinPageLocators.locators['Кнопка далее'])
     join_page.field_send_keys(config.locators.JoinPageLocators.locators['Поле пароль'], text=User.PASSWORD)
