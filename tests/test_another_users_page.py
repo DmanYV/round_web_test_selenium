@@ -180,3 +180,48 @@ class TestAnotherUsersPage(BaseTest):
 
         with allure.step('Проверить, что аватар не виден'):
             self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Аватар'])
+
+    @allure.title('Проверить, есть возможность разблокировать пользователя')
+    @allure.description('Тест проводится на Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_it_is_possible_to_unblock_the_user(self, elements, login_to_app):
+        with allure.step('Заблокировать пользователя "Vika."'):
+            self.another_user_page.blocking_user_for_username('Vika.')
+
+        with allure.step('Проверить, что отображается "Пользователь заблокирован"'):
+            element = elements['Страница другого пользователя']
+            self.assertion.is_elem_displayed(element['Пользователь заблокирован'])
+
+        with allure.step('Нажать 3 точки'):
+            self.another_user_page.do_click(element['Кнопка три точки'])
+
+        with allure.step('Нажать Разблокировать'):
+            self.another_user_page.do_click(element['Разблокировать'])
+
+        with allure.step('Проверить, что появился список проектов'):
+            self.assertion.is_elem_displayed(element['Список проектов'])
+
+    @allure.title('Проверить, есть возможность просматривать ачивки пользователя')
+    @allure.description('Тест проводится на Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_possible_to_view_the_users_achievements(self, elements, login_to_app):
+        with allure.step('Открыть страницу "Ennis"'):
+            self.another_user_page.open_profile('Ennis')
+
+        with allure.step('Проверить, что блок с ачивками видим'):
+            element = elements['Страница другого пользователя']
+            self.assertion.is_elem_displayed(element['Блок ачивок'])
+
+    @allure.title('Проверить, есть возможность просматривать проекты пользователя')
+    @allure.description('Тест проводится на Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_it_is_possible_to_view_the_users_projects(self, elements, login_to_app):
+        with allure.step('Открыть страницу "Polina_04"'):
+            self.another_user_page.open_profile('Polina_04')
+
+        with allure.step('Проверить, что список проектов видим'):
+            element = elements['Страница другого пользователя']
+            self.assertion.is_elem_displayed(element['Список проектов'])
