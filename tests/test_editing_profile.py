@@ -300,10 +300,10 @@ class TestEditingProfile(BaseTest):
     @pytest.mark.regression
     def test_view_the_list_of_blocked_users(self, login_to_app, elements):
         with allure.step('Заблокировать пользователя Ekaterina_Fesan'):
-            self.another_user_page.blocking_user('Ekaterina_Fesan')
+            self.another_user_page.blocking_user_for_username('Ekaterina_Fesan')
 
         with allure.step('Заблокировать пользователя biryukovadariaa'):
-            self.another_user_page.blocking_user('biryukovadariaa')
+            self.another_user_page.blocking_user_for_username('biryukovadariaa')
 
         with allure.step('Открыть страницу заблокированные пользователи'):
             self.blocklist_page.open()
@@ -321,7 +321,7 @@ class TestEditingProfile(BaseTest):
     @pytest.mark.regression
     def test_unblocking_user(self, elements, login_to_app):
         with allure.step('Заблокировать пользователя Ekaterina_Fesan'):
-            self.another_user_page.blocking_user('Ekaterina_Fesan')
+            self.another_user_page.blocking_user_for_username('Ekaterina_Fesan')
 
         with allure.step('Нажать на кнопку профиль'):
             self.app.profile_button_click()

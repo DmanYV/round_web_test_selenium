@@ -136,3 +136,47 @@ class TestAnotherUsersPage(BaseTest):
 
         with allure.step('Проверить, что появилось уведомление "Жалоба на пользователя отправлена"'):
             self.assertion.is_elem_displayed(element['Уведомление жалоба на пользователя отправлена'])
+
+    @allure.title('Проверить, данные заблокированного пользователя не отображаются (проекты/подписки/ачивки/аватар)')
+    @allure.description('Проверяется на новом пользователи, блокируется пользователь Evelinkaaa')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_the_data_of_the_blocked_user_is_not_displayed(self, elements, registration_user):
+
+        with allure.step('Заблокировать пользователя Evelinkaaa'):
+            self.another_user_page.blocking_user_for_username('Evelinkaaa')
+
+        with allure.step('Обновить страницу'):
+            self.another_user_page.refresh()
+
+        with allure.step('Проверить, что не видны проекты пользователя'):
+            self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Список проектов'])
+
+        with allure.step('Проверить, что подписки отображает как 0'):
+            self.assertion.text_in_element(elements['Страница другого пользователя']['Подписки'], expected_text='0')
+
+        with allure.step('Проверить, что блок ачивок не видим'):
+            self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Блок ачивок'])
+
+        with allure.step('Проверить, что аватар не виден'):
+            self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Аватар'])
+
+    @allure.title('Проверить, заблокированный пользователь не может просматривать профиль заблокировавшего пользователя')
+    @allure.description('Пользователь Dina заблокировала Aleska, тест проводится на Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_the_blocked_user_cannot_view_the_profile_of_the_blocked_user(self, elements, login_to_app):
+        with allure.step('Открыть профиль пользователя Dina'):
+            self.another_user_page.open_profile('Dina')
+
+        with allure.step('Проверить, что не видны проекты пользователя'):
+            self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Список проектов'])
+
+        with allure.step('Проверить, что подписки отображает как 0'):
+            self.assertion.text_in_element(elements['Страница другого пользователя']['Подписки'], expected_text='0')
+
+        with allure.step('Проверить, что блок ачивок не видим'):
+            self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Блок ачивок'])
+
+        with allure.step('Проверить, что аватар не виден'):
+            self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Аватар'])
