@@ -403,7 +403,7 @@ class TestRegistrationUser(BaseTest):
             self.join_page.do_click(element['Кнопка далее'])
 
         with allure.step('В поле никнейм ввести любое валидное значение'):
-            username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
+            username = f'-{fake.pystr(min_chars=5, max_chars=11)}.{fake.pyint(min_value=1, max_value=2)}_'
             self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
 
         with allure.step('Нажать кнопку Далее'):
