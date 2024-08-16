@@ -80,19 +80,19 @@ class TestRegistrationUser(BaseTest):
 
         with allure.step('Нажать на выпадающий список с датами рождения'):
             element = elements['Страница регистрации']
-            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['Поле год рождения'])
         with allure.step('В выпадающем списке выбрать поочередно с 2014 по 2010 год'):
             self.join_page.do_click(element['2014 год'])
-            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['Поле год рождения'])
             self.join_page.do_click(element['2013 год'])
-            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['Поле год рождения'])
             self.join_page.do_click(element['2012 год'])
-            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['Поле год рождения'])
             self.join_page.do_click(element['2011 год'])
-            self.join_page.do_click(element['Поле годов рождения'])
+            self.join_page.do_click(element['Поле год рождения'])
             self.join_page.do_click(element['2010 год'])
         with allure.step('Проверить, что в поле теперь отображается 2010 год'):
-            self.assertion.text_in_element(element['Поле годов рождения'], expected_text='2010')
+            self.assertion.text_in_element(element['Поле год рождения'], expected_text='2010')
 
     @allure.title('Проверка валидации поля никнейм при вводе менее 3 символов')
     @allure.severity('Normal')

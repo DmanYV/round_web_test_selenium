@@ -99,7 +99,7 @@ class JoinPageLocators:
     """Локаторы страницы регистрации"""
     locators = {
         'Кнопка далее': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
-        'Поле годов рождения': (By.XPATH, '//div[@class=" css-1dimb5e-singleValue"]'),
+        'Поле год рождения': (By.XPATH, '//div[@class=" css-1dimb5e-singleValue"]'),
         'Список годов рождения': (By.ID, 'react-select-2-listbox'),
         'Поле никнейм': (By.XPATH, '//input[@name="nickname"]'),
         'Валидация поля никнейм': (By.XPATH, '//label[@class="text-field_validation-message__nizJJ"]'),
