@@ -395,12 +395,14 @@ class AchievementModelWindowLocators:
 class MainPageLocators:
     """Локаторы страницы Главной"""
     locators = {
-        'Листай вниз и найди свои интересы': (By.XPATH, '//div[@class="onboarding_container__mDp2D"]')
+        'Листай вниз и найди свои интересы': (By.XPATH, '//div[@class="onboarding_container__mDp2D"]'),
+        'Список интересов': (By.XPATH, '//div[contains(@class,"chips_item")]')
     }
 
 
 class RubricPageLocators:
     """Локаторы страницы Рубрики"""
     locators = {
+        'Список интересов': (By.XPATH, '//div[contains(@class,"rubrics_chips")]'),
         'Кнопка выберу потом': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]')
     }
