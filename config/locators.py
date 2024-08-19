@@ -404,5 +404,7 @@ class RubricPageLocators:
     """Локаторы страницы Рубрики"""
     locators = {
         'Список интересов': (By.XPATH, '//div[contains(@class,"rubrics_chips")]'),
-        'Кнопка выберу потом': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]')
+        'Кнопка выберу потом': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]'),
+        'Кнопка классно! перейти к подборке': (By.XPATH, '//button[contains(@class,"button_primary")]'
+                                                         '[contains(.,"Классно! Перейти к подборке")]')
     }
