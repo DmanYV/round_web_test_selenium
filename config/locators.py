@@ -256,7 +256,7 @@ class ProfilePageLocators:
         'Подписчики': (By.XPATH, '//div[@id="user-info_followers"]'
                                  '//div[contains(@class,"user-info_count")]'),
         'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
-                               '//div[contains(@class,"user-info_count")]'),
+                               '//div[contains(@class,"user-activity-item_count")]'),
         'О себе': (By.XPATH, '//div[contains(@class,"user-info_about")]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
