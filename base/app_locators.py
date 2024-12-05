@@ -25,5 +25,4 @@ class Locators:
         'Страница настройки аккаунта': SettingsPageLocators.locators,
         'Страница заблокированные пользователи': BlockListPageLocators.locators,
         'Страница другого пользователя': AnotherUserPageLocators.locators
-
     }
