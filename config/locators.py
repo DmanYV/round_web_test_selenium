@@ -256,7 +256,7 @@ class ProfilePageLocators:
         'Подписчики': (By.XPATH, '//div[@id="user-info_followers"]'
                                  '//div[contains(@class,"user-info_count")]'),
         'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
-                               '//div[contains(@class,"user-info_count")]'),
+                               '//div[contains(@class,"user-activity-item_count")]'),
         'О себе': (By.XPATH, '//div[contains(@class,"user-info_about")]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
@@ -404,5 +404,5 @@ class RubricPageLocators:
     """Локаторы страницы Рубрики"""
     locators = {
         'Список интересов': (By.XPATH, '//div[contains(@class,"rubrics_chips")]'),
-        'Кнопка выберу потом': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]')
+        'Кнопка выберу потом': (By.XPATH, '//button[@data-testing="after_register_dialog__btn_choose_later"]')
     }
