@@ -1,6 +1,7 @@
 import allure
 import pytest
 from faker import Faker
+from selenium.common import TimeoutException
 
 import config.locators
 
@@ -52,6 +53,11 @@ def registration_user(driver):
     assertion.text_in_element(config.locators.JoinPageLocators.locators['Текст приветствия пользователя'],
                               expected_text=f'Привет, {username[:16]}\nДобро пожаловать в Round!')
     join_page.do_click(config.locators.JoinPageLocators.locators['Кнопка погнали'])
+
+    try:
+        join_page.do_click(config.locators.JoinPageLocators.locators['Кнопка закрыть видео'])
+    except TimeoutException:
+        pass
     element = rubric_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
     rubric_page.do_click(element)
     element = main_page.find_element(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
