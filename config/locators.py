@@ -78,10 +78,10 @@ class AuthorizationPageLocators:
     locators = {
         'Кнопка закрыть': (By.XPATH, './/button[@class="header_back__yUNba"]'),
         'Кнопка кэррот': (By.XPATH, '//div[@class="header_info__CHSYI"]'),
-        'Кнопка по смс': (By.XPATH, '//button[@name="signUpWithSMS"]'),
-        'Кнопка вконтакте': (By.XPATH, '//button[@name="signUpWithVK"]'),
-        'Кнопка войти': (By.XPATH, './/a[text()="Войти"]'),
-        'Кнопка лицензионная политика': (By.XPATH, '//a[@href="/license-policy"]'),
+        'Кнопка по смс': (By.XPATH, '//button[@data-testing="default_authorization_sign_up_with_sms"]'),
+        'Кнопка вконтакте': (By.XPATH, '//button[@data-testing="default_authorization_sign_up_with_vk"]'),
+        'Кнопка войти': (By.XPATH, '//a[@data-testing="default_authorization_login_link"]'),
+        'Кнопка лицензионная политика': (By.XPATH, '//a[@data-testing="default_authorization_license_policy"]'),
 
     }
 
@@ -116,6 +116,7 @@ class JoinPageLocators:
         'Валидация поля проверочный код': (By.XPATH, '//label[@class="phone-screen_confirm-error__q-TwZ"]'),
         'Текст приветствия пользователя': (By.XPATH, '//div[contains(@class,"registration-success_header_")]'),
         'Кнопка запросить код еще раз': (By.XPATH, '//button[contains(@class,"j7a6Y")]'),
+        'Кнопка закрыть видео': (By.XPATH, '//div[@data-testing="close_video"]'),
         'Кнопка погнали': (By.XPATH, '//button[contains(@class,"registration-success_btn")]'),
         '2014 год': (By.ID, 'react-select-2-option-0'),
         '2013 год': (By.ID, 'react-select-2-option-1'),
