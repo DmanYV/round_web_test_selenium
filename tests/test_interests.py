@@ -63,6 +63,9 @@ class TestInterests(BaseTest):
         with allure.step('Нажать кнопку погнали'):
             self.join_page.do_click(element['Кнопка погнали'])
 
+        with allure.step('Закрыть велком видео'):
+            self.join_page.do_click(element['Кнопка закрыть видео'])
+
         with allure.step('Проверить, что отображается список направлений'):
             element = elements['Страница рубрики']
             self.assertion.is_elem_displayed(element['Список интересов'])
@@ -118,6 +121,9 @@ class TestInterests(BaseTest):
 
         with allure.step('Нажать кнопку погнали'):
             self.join_page.do_click(element['Кнопка погнали'])
+
+        with allure.step('Закрыть велком видео'):
+            self.join_page.do_click(element['Кнопка закрыть видео'])
 
         with allure.step('Нажать кнопку "Выберу потом"'):
             element = elements['Страница рубрики']
@@ -180,6 +186,9 @@ class TestInterests(BaseTest):
         with allure.step('Нажать кнопку погнали'):
             self.join_page.do_click(element['Кнопка погнали'])
 
+        with allure.step('Закрыть велком видео'):
+            self.join_page.do_click(element['Кнопка закрыть видео'])
+
         with allure.step('Нажать на чипс с названием "Медиа"'):
             self.rubric_page.select_interest_by_name('Медиа')
 
@@ -238,6 +247,9 @@ class TestInterests(BaseTest):
 
         with allure.step('Нажать кнопку погнали'):
             self.join_page.do_click(element['Кнопка погнали'])
+
+        with allure.step('Закрыть велком видео'):
+            self.join_page.do_click(element['Кнопка закрыть видео'])
 
         with allure.step('Нажать на чипс с названием "Медиа"'):
             self.rubric_page.select_interest_by_name('Медиа')
