@@ -4,11 +4,11 @@ from selenium.webdriver.common.by import By
 class AppNavigationLocators:
     """Локаторы для навигации в приложении"""
     locators = {
-        'Кнопка главная': (By.XPATH, '//a[@href="/"]'),
-        'Кнопка лента': (By.XPATH, '//a[@href="/feed"]'),
-        'Кнопка плюс': (By.XPATH, '//a[@href="/newbie"]'),
+        'Кнопка главная': (By.XPATH, '//a[@data-testing="home_skills_inactive"]'),
+        'Кнопка лента': (By.XPATH, '//a[@data-testing="feed_outline"]'),
+        'Кнопка плюс': (By.XPATH, '//a[@data-testing="plus_challenge"]'),
         'Кнопка профиль': (By.XPATH, '//a[@href="/profile"]'),
-        'Кнопка уведомления': (By.XPATH, '//a[@href="/notification"]')
+        'Кнопка уведомления': (By.XPATH, '//a[@data-testing="heart_outline"]')
     }
 
 
@@ -82,7 +82,6 @@ class AuthorizationPageLocators:
         'Кнопка вконтакте': (By.XPATH, '//button[@data-testing="default_authorization_sign_up_with_vk"]'),
         'Кнопка войти': (By.XPATH, '//a[@data-testing="default_authorization_login_link"]'),
         'Кнопка лицензионная политика': (By.XPATH, '//a[@data-testing="default_authorization_license_policy"]'),
-
     }
 
 
@@ -261,7 +260,7 @@ class ProfilePageLocators:
         'О себе': (By.XPATH, '//div[contains(@class,"user-info_about")]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
-        'Проект ожидает модерации': (By.XPATH, '//div[contains(@class,"user-project-list_moderation")]'),
+        'Проект ожидает модерации': (By.XPATH, '//div[@data-testing="project_moderation"]'),
         'Проект заблокирован': (By.XPATH, '//div[contains(@class,"user-project-list_blocked")]'),
         'Счетчик просмотров проекта': (By.XPATH, '//div[@class="user-project-list_count__TcOiJ"]'),
         'Кнопка все': (By.XPATH, '//div[contains(@class,"user-achievement-list_all")]'),
@@ -405,7 +404,7 @@ class RubricPageLocators:
     """Локаторы страницы Рубрики"""
     locators = {
         'Список интересов': (By.XPATH, '//div[contains(@class,"rubrics_chips")]'),
-        'Кнопка выберу потом': (By.XPATH, '//button[@class="button_content__7wfbm button_light__j7a6Y"]'),
-        'Кнопка классно! перейти к подборке': (By.XPATH, '//button[contains(@class,"button_primary")]'
+        'Кнопка выберу потом': (By.XPATH, '//button[@data-testing="after_register_dialog__btn_choose_later"]'),
+        'Кнопка классно! перейти к подборке': (By.XPATH, '//button[@data-testing="after_register_dialog__btn_choose_later"]'
                                                          '[contains(.,"Классно! Перейти к подборке")]')
     }
