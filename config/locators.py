@@ -38,12 +38,12 @@ class AnotherUserPageLocators:
         'Значок галочки': (By.XPATH, '//div[contains(@class,"page-content_content")]'
                                      '//div[contains(@class,"popup_container")]'),
         'Аватар': (By.XPATH, '//img[contains(@class,"user-info_icon")]'),
-        'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
-                                      '//div[@class = "user-project-list_item__Q1mmt"]'),
+        'Список проектов': (By.XPATH, '//div[contains(@class,"user-project-list_grid")]'
+                                      '//div[@data-testing="project"]'),
         'Блок ачивок': (By.XPATH, '(//div[contains(@class,"horizontal-scroll-view_container")])'
                                   '//div[contains(@class,"user-achievement-list_item")]'),
         'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
-                               '//div[contains(@class,"user-info_count")]'),
+                               '//div[contains(@class,"user-activity-item_count")]'),
         'Спам': (By.XPATH, '//label[contains(.,"Спам")]'),
         'Нарушение авторского права, неоригинальный контент': (
             By.XPATH, '//label[contains(.,"Нарушение авторского права, неоригинальный контент")]'
@@ -98,7 +98,7 @@ class JoinPageLocators:
     """Локаторы страницы регистрации"""
     locators = {
         'Кнопка далее': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
-        'Поле год рождения': (By.XPATH, '//div[@class=" css-1dimb5e-singleValue"]'),
+        'Поле год рождения': (By.XPATH, '//div[@data-testing="join_birthday_year"]'),
         'Список годов рождения': (By.ID, 'react-select-2-listbox'),
         'Поле никнейм': (By.XPATH, '//input[@name="nickname"]'),
         'Валидация поля никнейм': (By.XPATH, '//label[@class="text-field_validation-message__nizJJ"]'),
@@ -253,16 +253,16 @@ class ProfilePageLocators:
         'Аватар': (By.XPATH, '//img[contains(@class,"user-info_icon")]'),
         'Проекты': (By.XPATH, '//div[@id="user-info_projects"]'
                               '//div[contains(@class,"user-info_count")]'),
-        'Подписчики': (By.XPATH, '//div[@id="user-info_followers"]'
-                                 '//div[contains(@class,"user-info_count")]'),
+        'Подписчики': (By.XPATH, '//div[@data-testing="followers"]'
+                                 '//div[contains(@class,"user-activity-item_count")]'),
         'Подписки': (By.XPATH, '//div[@id="user-info_following"]'
                                '//div[contains(@class,"user-activity-item_count")]'),
         'О себе': (By.XPATH, '//div[contains(@class,"user-info_about")]'),
         'Список проектов': (By.XPATH, '//div[@class = "user-project-list_grid__-rXf1"]'
                                       '//div[@class = "user-project-list_item__Q1mmt"]'),
         'Проект ожидает модерации': (By.XPATH, '//div[@data-testing="project_moderation"]'),
-        'Проект заблокирован': (By.XPATH, '//div[contains(@class,"user-project-list_blocked")]'),
-        'Счетчик просмотров проекта': (By.XPATH, '//div[@class="user-project-list_count__TcOiJ"]'),
+        'Проект заблокирован': (By.XPATH, '//div[@data-testing="project_blocked"]'),
+        'Счетчик просмотров проекта': (By.XPATH, '//div[@data-testing="project_views"]'),
         'Кнопка все': (By.XPATH, '//div[contains(@class,"user-achievement-list_all")]'),
         'Блок ачивок': (By.XPATH, '(//div[contains(@class,"horizontal-scroll-view_container")])'
                                   '//div[contains(@class,"user-achievement-list_item")]'),
