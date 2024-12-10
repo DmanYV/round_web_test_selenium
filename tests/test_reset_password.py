@@ -76,8 +76,8 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Хорошо"'):
             self.reset_password_page.do_click(element['Кнопка хорошо'])
 
-        with allure.step('Проверить что открыта страница рубрики'):
-            self.assertion.page_is_opened(page_url=self.rubric_page.PAGE_URL)
+        with allure.step('Проверить что открыта главная страница'):
+            self.assertion.page_is_opened(page_url=self.main_page.PAGE_URL)
 
     @allure.title('Проверка получения смс кода для сброса пароля')
     @allure.description('Для восстановления используется номер от Aleska')
@@ -230,8 +230,8 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Хорошо"'):
             self.reset_password_page.do_click(element['Кнопка хорошо'])
 
-        with allure.step('Проверить что открыта страница рубрики'):
-            self.assertion.page_is_opened(page_url=self.rubric_page.PAGE_URL)
+        with allure.step('Проверить что открыта главная страница'):
+            self.assertion.page_is_opened(page_url=self.main_page.PAGE_URL)
 
     @allure.title('Проверка получения email кода для сброса пароля')
     @allure.description('Для восстановления используется email от Aleska')
