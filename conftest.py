@@ -56,11 +56,11 @@ def login_to_app(request, driver):
         element = login_page.find_element(
             config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
         login_page.do_click(element)
-    try:
-        login_page.find_element(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
-    except TimeoutException:
-        element = login_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
-        login_page.do_click(element)
-    element = login_page.find_element(
-        config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
-    login_page.do_click(element)
+    # try:
+    #     login_page.find_element(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
+    # except TimeoutException:
+    #     element = login_page.find_element(config.locators.RubricPageLocators.locators['Кнопка выберу потом'])
+    #     login_page.do_click(element)
+    # element = login_page.find_element(
+    #     config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
+    # login_page.do_click(element)

@@ -147,7 +147,7 @@ class TestAuthUser(BaseTest):
             self.api_authorization.user(self.User.LOGIN, self.User.PASSWORD)
 
         with allure.step('Проверяем, что открывается страница рубрик'):
-            self.assertion.page_is_opened(self.rubric_page.PAGE_URL)
+            self.assertion.page_is_opened(self.main_page.PAGE_URL)
 
     @allure.title('Проверка открытия окна кэррота при нажатии на кнопку на странице авторизации')
     @allure.severity('Critical')
