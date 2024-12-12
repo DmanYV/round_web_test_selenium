@@ -13,63 +13,74 @@ fakeru = Faker("ru_RU")
 @pytest.mark.another_users_page
 class TestAnotherUsersPage(BaseTest):
     @allure.title('Проверить, есть возможность подписаться на пользователя')
-    @allure.description('Подписываемся на пользователя из профиля и после отписываемся. '
-                        'Проверка на пользователе Aleska')
+    @allure.description('Подписываемся на пользователя из профиля. '
+                        'Проверка на новом зарегистрированном пользователе')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_of_the_ability_to_subscribe_to_a_user_from_his_profile(self, elements, login_to_app):
+    def test_of_the_ability_to_subscribe_to_a_user_from_his_profile(self, elements, registration_user):
         with allure.step('Открыть свой профиль'):
             self.app.profile_button_click()
 
-        with allure.step('Запомнить количество подписок'):
+        with allure.step('Нажать кнопку заполню позже'):
             element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка заполню позже'])
+
+        with allure.step('Запомнить количество подписок'):
             initial_subscriptions_count = int(self.profile_page.get_element_text(element['Подписки']))
 
-        with allure.step('Открыть страницу пользователя "Daaniaa"'):
-            self.another_user_page.subscribe_user_for_username(username='Daaniaa')
+        with allure.step('Открыть страницу пользователя "Aleska"'):
+            self.another_user_page.subscribe_user_for_username(username='Aleska')
 
         with allure.step('Проверить, что появилась галочка на экране'):
-            element = elements['Страница другого пользователя']
-            self.assertion.is_elem_displayed(element['Значок галочки'])
+            element_another_user = elements['Страница другого пользователя']
+            self.assertion.is_elem_displayed(element_another_user['Значок галочки'])
 
         with allure.step('Нажать на кнопку профиль'):
             self.app.profile_button_click()
 
+        with allure.step('Нажать кнопку заполню позже'):
+            self.profile_page.do_click(element['Кнопка заполню позже'])
+
         with allure.step('Проверить, что количество подписок увеличилось на 1'):
-            element = elements['Профиль пользователя']
+            self.profile_page.find_element(element['Заглушка кот'])
             self.assertion.text_in_element(element['Подписки'], str(initial_subscriptions_count + 1))
 
-        with allure.step('Отписываемся от пользователя "Daaniaa"'):
-            self.another_user_page.unsubscribe_user_for_username('Daaniaa')
 
     @allure.title('Проверить, есть возможность отписаться от пользователя')
     @allure.description('Подписываемся на пользователя из профиля и после отписываемся. '
                         'Проверка на пользователе Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_ability_to_unsubscribe_from_a_users_profile(self, elements, login_to_app):
-        with allure.step('Подписаться на пользователя "Serg1206"'):
-            self.another_user_page.subscribe_user_for_username('Serg1206')
+    def test_ability_to_unsubscribe_from_a_users_profile(self, elements, registration_user):
+        with allure.step('Подписаться на пользователя "Aleska"'):
+            self.another_user_page.subscribe_user_for_username('Aleska')
 
         with allure.step('Нажать кнопку профиль'):
             self.app.profile_button_click()
+
+        with allure.step('Нажать кнопку заполню позже'):
+            element = elements['Профиль пользователя']
+            self.profile_page.do_click(element['Кнопка заполню позже'])
 
         with allure.step('Запомнить количество подписок'):
-            element = elements['Профиль пользователя']
             initial_subscriptions_count = int(self.profile_page.get_element_text(element['Подписки']))
 
-        with allure.step('Отписаться от пользователя "Serg1206"'):
-            self.another_user_page.unsubscribe_user_for_username('Serg1206')
+        with allure.step('Отписаться от пользователя "Aleska"'):
+            self.another_user_page.unsubscribe_user_for_username('Aleska')
 
         with allure.step('Проверить, что появилась галочка на экране'):
-            element = elements['Страница другого пользователя']
-            self.assertion.is_elem_displayed(element['Значок галочки'])
+            element_another_user = elements['Страница другого пользователя']
+            self.assertion.is_elem_displayed(element_another_user['Значок галочки'])
 
         with allure.step('Нажать кнопку профиль'):
             self.app.profile_button_click()
+
+        with allure.step('Нажать кнопку заполню позже'):
+            self.profile_page.do_click(element['Кнопка заполню позже'])
 
         with allure.step('Проверить, что количество подписок уменьшилось на 1'):
             element = elements['Профиль пользователя']
+            self.profile_page.find_element(element['Заглушка кот'])
             self.assertion.text_in_element(element['Подписки'], str(initial_subscriptions_count - 1))
 
     @pytest.mark.parametrize('options', [
