@@ -266,7 +266,10 @@ class ProfilePageLocators:
                                   '//div[contains(@class,"user-achievement-list_item")]'),
         'Кнопка бургер-меню': (By.XPATH, '//button[contains(@class,"profile-page-header_button")]'),
         'Поп ап бургер-меню': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'),
-        'Кнопка закрыть анкету': (By.XPATH, '//div[contains(@class,"study-choose_container")]//*[local-name() = "svg"]')
+        'Кнопка закрыть анкету': (By.XPATH, '//div[contains(@class,"study-choose_container")]'
+                                            '//*[local-name() = "svg"]'),
+        'Кнопка заполню позже': (By.XPATH, '//button[@data-testing="save"]'),
+        'Заглушка кот': (By.XPATH, '//div[contains(@class,"empty-project-list_empty-project-list__lottie")]')
     }
 
 
