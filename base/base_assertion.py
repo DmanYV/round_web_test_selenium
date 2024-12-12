@@ -20,8 +20,9 @@ class Assertion(BasePage):
 
         """
 
-        assert self.wait.until(EC.text_to_be_present_in_element(by_locator, expected_text)), \
-            f"Ожидался текст: '{expected_text}', отображается текст: '{self.find_element(by_locator).text}'"
+        text_in_element = self.find_element(by_locator).text
+        assert expected_text == text_in_element, \
+            f"Ожидался текст: '{expected_text}', отображается текст: '{text_in_element}'"
 
     def length_simbols_in_text(self, by_locator: tuple, length: int):
         """
