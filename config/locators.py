@@ -216,10 +216,8 @@ class LoginPageLocators:
     locators = {
         'Поле логин': (By.XPATH, './/input[@name="username"]'),
         'Поле пароль': (By.XPATH, './/input[@name="password"]'),
-        'Валидация поля логин': (By.XPATH, './/div[@class = "text-field_container__vUCqA"][1]'
-                                           '//label[@class = "text-field_validation-message__nizJJ"]'),
-        'Валидация поля пароль': (By.XPATH, './/div[@class = "text-field_container__vUCqA"][2]'
-                                            '//label[@class = "text-field_validation-message__nizJJ"]'),
+        'Валидация поля логин': (By.XPATH, './/label[@data-testing="login_username_input_validation"]'),
+        'Валидация поля пароль': (By.XPATH, './/label[@data-testing="login_password_input_validation"]'),
         'Кнопка войти': (By.XPATH, './/button[text()="Войти"]'),
         'Кнопка закрыть': (By.XPATH, './/button[contains(@class, "header_back")]'),
         'Кнопка забыл пароль': (By.XPATH, '//div[@class="login_restore-link__lQcSj"]'),
