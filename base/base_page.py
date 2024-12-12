@@ -115,7 +115,6 @@ class BasePage(object):
 
     def field_send_keys(self, locator: tuple, text: str or int):
         """
-
         Функция ввода текста в поле
 
         :param locator:
@@ -130,7 +129,6 @@ class BasePage(object):
 
     def find_element(self, locator):
         """
-
         Функция поиска элемента с ожиданием, что элемент видим на странице и в DOM
 
         :param locator:
@@ -142,7 +140,6 @@ class BasePage(object):
 
     def find_elements(self, locator):
         """
-
         Функция поиска элемента с ожиданием, что элемент видим на странице и в DOM
 
         :param locator:
@@ -154,15 +151,15 @@ class BasePage(object):
 
     def get_element_text(self, by_locator, wait_time=5) -> str:
         """
-                Возвращает текст элемента на странице
+        Возвращает текст элемента на странице
 
-                :param by_locator:
-                    локатор элемента
+        :param by_locator:
+            локатор элемента
 
-                :param wait_time:
-                    время ожидания
+        :param wait_time:
+            время ожидания
 
-                """
+        """
 
         self.find_element(by_locator)
         element = WebDriverWait(self.driver, wait_time).until(EC.presence_of_element_located(by_locator))
