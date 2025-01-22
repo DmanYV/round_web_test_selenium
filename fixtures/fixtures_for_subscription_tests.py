@@ -12,6 +12,10 @@ def subscribe_user(driver):
     """ Подписка на первого пользователя в списке """
     app = App(driver)
     app.profile_button_click()
+    try:
+        app.do_click(config.locators.ProfilePageLocators.locators['Кнопка заполню позже'])
+    except TimeoutError:
+        pass
     app.do_click(config.locators.ProfilePageLocators.locators['Подписки'])
     app.do_click(config.locators.SubscriptionPageLocators.locators['Все пользователи'])
     elem = app.find_element(config.locators.SubscriptionPageLocators.locators['Подписка на первого пользователя'])
