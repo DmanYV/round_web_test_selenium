@@ -24,5 +24,6 @@ class Locators:
         'Страница лайки': FavoriteProjectsPageLocators.locators,
         'Страница настройки аккаунта': SettingsPageLocators.locators,
         'Страница заблокированные пользователи': BlockListPageLocators.locators,
-        'Страница другого пользователя': AnotherUserPageLocators.locators
+        'Страница другого пользователя': AnotherUserPageLocators.locators,
+        'Глобальный поиск': GlobalSearchingPageLocators.locators
     }

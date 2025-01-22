@@ -29,6 +29,10 @@ class SubscriptionPage(BasePage):
 
         """
         self.app.profile_button_click()
+        try:
+            self.app.do_click(config.locators.ProfilePageLocators.locators['Кнопка заполню позже'])
+        except TimeoutError:
+            pass
         self.do_click(config.locators.ProfilePageLocators.locators['Подписки'])
         elem = self.find_element(config.locators.SubscriptionPageLocators.locators['Отписка от первого пользователя'])
         self.do_click(elem)

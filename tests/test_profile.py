@@ -1,8 +1,12 @@
+import time
+
 from faker import Faker
 
 from config.links import Links
 from base.base_test import BaseTest
 from fixtures.fixtures_for_subscription_tests import *
+from fixtures.fixtures_for_registration_tests import registration_user
+
 
 fake = Faker()
 
@@ -181,16 +185,17 @@ class TestProfile(BaseTest):
     @allure.description('Перед проверкой проводится подписка на первого пользователя в списке')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_opportunities_to_unsubscribe(self, elements, login_to_app, subscribe_user):
+    def test_opportunities_to_unsubscribe(self, elements, registration_user, subscribe_user):
         with allure.step('Нажать на кнопку профиль'):
             self.app.profile_button_click()
 
-        with allure.step('Обновить страницу'):
-            self.profile_page.refresh()
+        with allure.step('Нажать заполню позже'):
+            element_profile = elements['Профиль пользователя']
+            self.profile_page.do_click(element_profile['Кнопка заполню позже'])
 
         with allure.step('Запомнить количество подписчиков'):
-            element = elements['Профиль пользователя']
-            subscribe = int(self.profile_page.get_element_text(element['Подписки']))
+            time.sleep(3)
+            self.assertion.text_in_element(element_profile['Подписки'], expected_text= '1')
 
         with allure.step('Отписаться от пользователя'):
             self.subscription_page.unsubscribe_user()
@@ -202,10 +207,12 @@ class TestProfile(BaseTest):
         with allure.step('Нажать кнопку профиля'):
             self.app.profile_button_click()
 
+        with allure.step('Нажать заполню позже'):
+            self.profile_page.do_click(element_profile['Кнопка заполню позже'])
+
         with allure.step('Проверить, что количество подписчиков не изменилось'):
-            element = elements['Профиль пользователя']
-            self.profile_page.get_element_text(element['Подписки'])
-            self.assertion.text_in_element(element['Подписки'], expected_text=str(subscribe - 1))
+            time.sleep(3)
+            self.assertion.text_in_element(element_profile['Подписки'], expected_text='0')
 
     @allure.title('Проверка возможности посмотреть список своих подписчиков')
     @allure.description('Проверка происходит на пользователе Aleska')
@@ -244,15 +251,18 @@ class TestProfile(BaseTest):
     @allure.severity('Critical')
     @pytest.mark.regression
     def test_opportunities_to_go_to_another_user_profile(self, elements, login_to_app):
+        element_profile_page = elements['Профиль пользователя']
+        element_subscription_page = elements['Страница подписки']
+        element_global_searching_page = elements['Глобальный поиск']
         with allure.step('Нажать на кнопку профиль'):
             self.app.profile_button_click()
-
         with allure.step('Нажать на Подписки'):
-            element = elements['Профиль пользователя']
-            self.profile_page.do_click(element['Подписки'])
-
-        with allure.step('Найти в подписках Natalya и перейти в профиль'):
+            self.profile_page.do_click(element_profile_page['Подписки'])
+        with allure.step('Нажать "Глобальный поиск"'):
+            self.subscription_page.do_click(element_subscription_page['Кнопка глобальный поиск'])
+        with allure.step('В поле поиска ввести Natalya'):
+            self.global_searching_page.field_send_keys(element_global_searching_page['Поисковое поле'], text='Natalya')
+        with allure.step('Найти в списке Natalya и перейти в профиль'):
             self.subscription_page.search_by_username('Natalya')
-
         with allure.step('Проверить, что открылась страница пользователя Natalya'):
             self.assertion.page_is_opened(Links.PROFILE_PAGE + '/Natalya')

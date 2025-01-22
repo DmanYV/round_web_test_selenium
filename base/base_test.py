@@ -16,6 +16,7 @@ from model.pages.subscription_page import SubscriptionPage
 from model.pages.settings_page import SettingsPage
 from model.pages.blocklist_page import BlockListPage
 from model.pages.another_user_page import AnotherUserPage
+from model.pages.global_searching_page import GlobalSearchingPage
 
 from settings import User
 from settings import MetaBaseUser
@@ -43,6 +44,7 @@ class BaseTest:
     favorite_challenge_page: FavoriteChallengePage
     edit_profile_page: EditProfilePage
     subscription_page: SubscriptionPage
+    global_searching_page: GlobalSearchingPage
     settings_page: SettingsPage
     blocklist_page: BlockListPage
     another_user_page: AnotherUserPage
@@ -71,6 +73,7 @@ class BaseTest:
         request.cls.favorite_challenge_page = FavoriteChallengePage(driver)
         request.cls.edit_profile_page = EditProfilePage(driver)
         request.cls.subscription_page = SubscriptionPage(driver)
+        request.cls.global_searching_page = GlobalSearchingPage(driver)
         request.cls.settings_page = SettingsPage(driver)
         request.cls.blocklist_page = BlockListPage(driver)
         request.cls.another_user_page = AnotherUserPage(driver)

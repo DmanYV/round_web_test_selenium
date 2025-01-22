@@ -14,6 +14,7 @@ class Links:
     FAVORITE_CHALLENGE_PAGE = f'{HOST}/profile/Aleska/favorite-challenge'
     EDIT_PROFILES_PAGE = f'{HOST}/profile/Aleska/edit'
     BLOCK_LIST_PAGE = f'{HOST}/profile/edit/blocklist'
+    GLOBAL_SEARCHING_PAGE = f'{HOST}/search'
 
 
 class Api:

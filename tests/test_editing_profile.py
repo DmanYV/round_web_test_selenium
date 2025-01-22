@@ -28,8 +28,8 @@ class TestEditingProfile(BaseTest):
             self.profile_page.get_element_text(element['Заголовок страницы'])
 
         with allure.step('Нажать на кнопку редактирования никнейма'):
-            element = elements['Профиль пользователя']
-            self.profile_page.do_click(element['Кнопка бургер-меню'])
+            element_profile = elements['Профиль пользователя']
+            self.profile_page.do_click(element_profile['Кнопка бургер-меню'])
 
         with allure.step('Нажать "Редактировать профиль"'):
             element = elements['Поп ап бургер-меню профиля']
@@ -47,7 +47,9 @@ class TestEditingProfile(BaseTest):
             self.edit_profile_page.scroll_to_element(element['Кнопка сохранить'])
             self.edit_profile_page.do_click(element['Кнопка сохранить'])
 
+
         with allure.step('Проверить, что отображается новый никнейм пользователя'):
+            self.profile_page.find_element(element_profile['О себе'])
             element = elements['Общие']
             self.assertion.text_in_element(element['Заголовок страницы'], expected_text=new_username)
 
