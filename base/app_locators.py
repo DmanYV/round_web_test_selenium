@@ -25,5 +25,6 @@ class Locators:
         'Страница настройки аккаунта': SettingsPageLocators.locators,
         'Страница заблокированные пользователи': BlockListPageLocators.locators,
         'Страница другого пользователя': AnotherUserPageLocators.locators,
-        'Глобальный поиск': GlobalSearchingPageLocators.locators
+        'Глобальный поиск': GlobalSearchingPageLocators.locators,
+        'Страница челленджи': ChallengePageLocators.locators
     }
