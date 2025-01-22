@@ -1,5 +1,6 @@
 import time
 
+from selenium.common import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_page import BasePage
@@ -39,16 +40,23 @@ class Assertion(BasePage):
         actual_text_length = len(self.find_element(by_locator).text)
         assert length == actual_text_length, f"Ожидалось длина текста: {length}, текущая длина: {actual_text_length}"
 
-    def page_is_opened(self, page_url):
+    def page_is_opened(self, page_url, timeout=10):
         """
         Функция проверки, что запрашиваемая страница открыта
 
         :param page_url:
             url страницы
-
+        :param timeout:
+            время ожидания в секундах
         """
-        self.element_is_not_visible(AllPageLocators.locators['Спиннер загрузки'])
-        self.wait.until(EC.url_to_be(page_url))
+        try:
+            self.element_is_not_visible(AllPageLocators.locators['Спиннер загрузки'])
+            self.wait.until(EC.url_to_be(page_url), timeout)
+        except TimeoutException:
+            current_url = self.driver.current_url
+            raise AssertionError(f'Ожидалась страница {page_url}, но открылась {current_url}. '
+                                 f'Страница не загрузилась за {timeout} секунд.')
+
         assert page_url == self.driver.current_url, \
             f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 

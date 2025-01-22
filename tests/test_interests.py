@@ -3,6 +3,7 @@ import pytest
 from faker import Faker
 
 from base.base_test import BaseTest
+from config.links import Links
 
 fake = Faker()
 fakeru = Faker("ru_RU")
@@ -262,3 +263,14 @@ class TestInterests(BaseTest):
             element = elements['Главная страница']
             self.assertion.is_elem_displayed(element['Листай вниз и найди свои интересы'])
             self.assertion.is_elem_displayed(element['Список интересов'])
+
+    @allure.title('При клике "Все челледжи" происходит переход на страницу "Все челленджи"')
+    @allure.description('Проверка на регистрации нового пользователя')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_pressing_the_all_challenges_button_opens_a_page_with_all_challenges(self, elements, login_to_app):
+        element_main_page = elements['Главная страница']
+        with allure.step('Нажать "Все челленджи"'):
+            self.main_page.do_click(element_main_page['Все челленджи'])
+        with allure.step('Проверить, что открылась страница челленджей'):
+            self.assertion.page_is_opened(Links.CHALLENGE_PAGE)

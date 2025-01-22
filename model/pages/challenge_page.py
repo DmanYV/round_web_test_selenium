@@ -3,8 +3,8 @@ from model.elements.app import App
 from config.links import Links
 
 
-class GlobalSearchingPage(BasePage):
-    PAGE_URL = Links.GLOBAL_SEARCHING_PAGE
+class ChallengePage(BasePage):
+    PAGE_URL = Links.CHALLENGE_PAGE
 
     def __init__(self, driver):
         super().__init__(driver)
