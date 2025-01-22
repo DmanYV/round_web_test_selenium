@@ -407,7 +407,13 @@ class MainPageLocators:
     """Локаторы страницы Главной"""
     locators = {
         'Листай вниз и найди свои интересы': (By.XPATH, '//div[@class="onboarding_container__mDp2D"]'),
-        'Список интересов': (By.XPATH, '//div[contains(@class,"chips_item")]')
+        'Список интересов': (By.XPATH, '//div[contains(@class,"chips_item")]'),
+        'Все челленджи': (By.XPATH, '//button[contains(@data-testing, "home_challenges_btn")]')
+    }
+
+class ChallengePageLocators:
+    """Локаторы страницы челленджи"""
+    locators = {
     }
 
 
