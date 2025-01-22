@@ -283,6 +283,16 @@ class SubscriptionPageLocators:
         'Подписка на первого пользователя': (By.XPATH, '//button[contains(.,"Подписаться")][1]'),
         'Отписка от первого пользователя': (By.XPATH, '//button[contains(.,"Подписка")][1]'),
         'Значок галочки': (By.XPATH, '//div[contains(@class,"popup_container")]'),
+        'Кнопка глобальный поиск': (By.XPATH, '//button[contains(@class,"user-subscription_toolbar-search")]')
+    }
+
+class GlobalSearchingPageLocators:
+    """Локаторы страницы глобального поиска"""
+    locators = {
+        'Челленджи': (By.XPATH, '//button[@data-testing="tab_number_1"]'),
+        'Проекты': (By.XPATH, '//button[@data-testing="tab_number_2"]'),
+        'Аккаунты': (By.XPATH, '//button[@data-testing="tab_number_3"]'),
+        'Поисковое поле': (By.XPATH, '//input[contains(@class,"search_input")]')
     }
 
 
