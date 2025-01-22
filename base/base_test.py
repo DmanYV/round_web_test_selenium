@@ -17,6 +17,7 @@ from model.pages.settings_page import SettingsPage
 from model.pages.blocklist_page import BlockListPage
 from model.pages.another_user_page import AnotherUserPage
 from model.pages.global_searching_page import GlobalSearchingPage
+from model.pages.challenge_page import ChallengePage
 
 from settings import User
 from settings import MetaBaseUser
@@ -48,6 +49,7 @@ class BaseTest:
     settings_page: SettingsPage
     blocklist_page: BlockListPage
     another_user_page: AnotherUserPage
+    challenge_page: ChallengePage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     app: App
@@ -77,5 +79,6 @@ class BaseTest:
         request.cls.settings_page = SettingsPage(driver)
         request.cls.blocklist_page = BlockListPage(driver)
         request.cls.another_user_page = AnotherUserPage(driver)
+        request.cls.challenge_page = ChallengePage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
