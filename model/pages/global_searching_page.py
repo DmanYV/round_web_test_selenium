@@ -1,6 +1,3 @@
-from selenium.webdriver.common.by import By
-
-import config.locators
 from base.base_page import BasePage
 from model.elements.app import App
 from config.links import Links
