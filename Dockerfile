@@ -9,7 +9,14 @@ RUN apk update && \
     chromium \
     chromium-chromedriver \
     tzdata \
-    musl-dev
+    postgresql-dev \
+    gcc \
+    python3-dev \
+    musl-dev \
+    libffi-dev \
+    openjdk11-jre \
+    curl \
+    tar
 
 # Get all the prereqs
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
