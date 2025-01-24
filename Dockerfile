@@ -3,16 +3,13 @@ FROM python:3.12.0a4-alpine3.17
 RUN echo "https://dl-4.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories && \
     echo "https://dl-4.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories
 
-# install chromedriver
+# install chromedriver and other dependencies
 RUN apk update && \
     apk add --no-cache \
     chromium \
     chromium-chromedriver \
     tzdata \
-    postgresql-dev \
-    gcc \
-    python3-dev \
-    libffi-dev
+    musl-dev
 
 # Get all the prereqs
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
