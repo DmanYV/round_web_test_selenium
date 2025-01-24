@@ -10,6 +10,7 @@ RUN apk update && \
     chromium-chromedriver \
     tzdata \
     postgresql-dev \
+    python3-dev \
     libffi-dev
 
 # Get all the prereqs
