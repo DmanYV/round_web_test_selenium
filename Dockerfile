@@ -9,7 +9,8 @@ RUN apk update && \
     chromium \
     chromium-chromedriver \
     tzdata \
-    postgresql-dev
+    postgresql-dev \
+    libffi-dev
 
 # Get all the prereqs
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
