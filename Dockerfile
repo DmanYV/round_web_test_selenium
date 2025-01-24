@@ -10,6 +10,7 @@ RUN apk update && \
     chromium-chromedriver \
     tzdata \
     postgresql-dev \
+    gcc \
     python3-dev \
     libffi-dev
 
