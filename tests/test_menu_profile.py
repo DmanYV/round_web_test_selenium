@@ -26,6 +26,7 @@ class TestMenuProfile(BaseTest):
         with allure.step('Проверить, что открылась страница редактирования профиля'):
             element = elements['Поп ап бургер-меню профиля']
             self.profile_page.do_click(element['Редактировать профиль'])
+            self.profile_page.element_is_not_visible(element['Редактировать профиль'])
 
         with allure.step('Проверить, что заголовок страницы "Редактировать профиль"'):
             element = elements['Общие']
@@ -66,7 +67,7 @@ class TestMenuProfile(BaseTest):
         with allure.step('Нажать на кнопку Лайки'):
             element = elements['Поп ап бургер-меню профиля']
             self.profile_page.do_click(element['Лайки'])
-
+            self.profile_page.element_is_not_visible(element['Лайки'])
         with allure.step('Проверить, что заголовок страницы "Лайки"'):
             element = elements['Общие']
             self.assertion.text_in_element(element['Заголовок страницы'], expected_text='Лайки')
@@ -86,6 +87,7 @@ class TestMenuProfile(BaseTest):
         with allure.step('Нажать на кнопку Избранное'):
             element = elements['Поп ап бургер-меню профиля']
             self.profile_page.do_click(element['Избранное'])
+            self.profile_page.element_is_not_visible(element['Избранное'])
 
         with allure.step('Проверить, что заголовок страницы "Избранное"'):
             element = elements['Общие']
@@ -127,6 +129,7 @@ class TestMenuProfile(BaseTest):
         with allure.step('Нажать на кнопку О системе'):
             element = elements['Поп ап бургер-меню профиля']
             self.profile_page.do_click(element['О системе'])
+            self.profile_page.element_is_not_visible(element['О системе'])
 
         with allure.step('Проверить, что заголовок страницы "О системе"'):
             element = elements['Общие']
