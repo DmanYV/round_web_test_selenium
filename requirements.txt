@@ -38,6 +38,4 @@ urllib3==2.2.2
 voluptuous==0.15.2
 webdriver-manager==4.0.2
 wsproto==1.2.0
-psycopg~=3.2.4
-psycopg-binary~=3.2.4
-psycopg-pool
+psycopg-c~=3.2.4
