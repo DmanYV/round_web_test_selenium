@@ -3,6 +3,21 @@ FROM python:3.12.0a4-alpine3.17
 RUN echo "https://dl-4.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories && \
     echo "https://dl-4.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories
 
+# install chromedriver and other dependencies
+RUN apk update && \
+    apk add --no-cache \
+    chromium \
+    chromium-chromedriver \
+    tzdata \
+    postgresql-dev \
+    gcc \
+    python3-dev \
+    musl-dev \
+    libffi-dev \
+    openjdk11-jre \
+    curl \
+    tar
+
 # install chromedriver
 RUN apk update
 RUN apk add --no-cache chromium chromium-chromedriver tzdata
