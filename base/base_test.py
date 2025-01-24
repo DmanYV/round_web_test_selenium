@@ -28,6 +28,8 @@ from model.api.metabase import MetaBase
 from model.elements.app import App
 from model.elements.checkbox import Checkbox
 
+from model.sql.db_round_confirmation import DBRoundConfirmation
+
 
 class BaseTest:
     User: User
@@ -52,6 +54,7 @@ class BaseTest:
     challenge_page: ChallengePage
     api_authorization: ApiAuthorization
     metabase: MetaBase
+    db_round_confirmation: DBRoundConfirmation
     app: App
     checkbox: Checkbox
 
@@ -82,3 +85,4 @@ class BaseTest:
         request.cls.challenge_page = ChallengePage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
+        request.cls.db_round_confirmation = DBRoundConfirmation(driver)
