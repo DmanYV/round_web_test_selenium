@@ -10,18 +10,24 @@ from config.locators import AllPageLocators
 
 
 class Assertion(BasePage):
-    def text_in_element(self, by_locator, expected_text: str or int):
+    def text_in_element(self, by_locator, expected_text: str or int, timeout=10):
         """
-        Проверка совпадения текста элемента
+        Проверка совпадения текста элемента с ожиданием
 
         :param by_locator:
             локатор элемента
         :param expected_text:
             ожидаемый текст
+        :param timeout:
+            время ожидания в секундах
 
         """
 
-        text_in_element = self.find_element(by_locator).text
+        element = WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located(by_locator)
+        )
+
+        text_in_element = element.text
         assert expected_text == text_in_element, \
             f"Ожидался текст: '{expected_text}', отображается текст: '{text_in_element}'"
 
