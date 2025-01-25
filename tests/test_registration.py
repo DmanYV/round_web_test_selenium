@@ -231,7 +231,7 @@ class TestRegistrationUser(BaseTest):
     @allure.title('Проверка получения СМС с кодом подтверждения регистрации')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_receiving_sms_with_registration_confirmation_code(self, elements):
+    def test_receiving_sms_with_registration_confirmation_code(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -266,18 +266,16 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
+        with allure.step('Получаем смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Проверяем, что код пришел'):
-            sms_code = self.metabase.take_last_code(metabase)
             assert sms_code.isdigit()
 
     @allure.title('Проверка возможности повторно запросить код')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_possibility_to_re_request_code(self, elements):
+    def test_possibility_to_re_request_code(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -312,12 +310,8 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Запомнить пришедший код'):
-            first_sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получаем первый смс код из Базы данных'):
+            first_sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Подождать 1 минуту, пока закончится таймер'):
             time.sleep(65)
@@ -329,7 +323,7 @@ class TestRegistrationUser(BaseTest):
             self.join_page.do_click(element['Кнопка запросить код еще раз'])
 
         with allure.step('Проверяем что пришел новый смс код'):
-            last_sms_code = self.metabase.take_last_code(metabase)
+            last_sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
             assert first_sms_code != last_sms_code
 
     @allure.title('Проверка валидации поля смс кода на ввод неверного значения')
