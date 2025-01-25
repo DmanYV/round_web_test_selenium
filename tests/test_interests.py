@@ -16,7 +16,7 @@ class TestInterests(BaseTest):
     @allure.description('Проверка на регистрации нового пользователя')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_there_is_information_about_the_choice_of_interests(self, elements):
+    def test_there_is_information_about_the_choice_of_interests(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -51,12 +51,8 @@ class TestInterests(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Ввести смс код'):
             self.login_page.field_send_keys(element['Поле проверочный код'], text=sms_code)
@@ -75,7 +71,7 @@ class TestInterests(BaseTest):
     @allure.description('Проверка на регистрации нового пользователя')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_the_ability_to_skip_this_step_without_selecting_interests(self, elements):
+    def test_the_ability_to_skip_this_step_without_selecting_interests(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -110,12 +106,8 @@ class TestInterests(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Ввести смс код'):
             self.login_page.field_send_keys(element['Поле проверочный код'], text=sms_code)
@@ -139,7 +131,7 @@ class TestInterests(BaseTest):
     @allure.description('Проверка на регистрации нового пользователя')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_you_can_select_interests(self, elements):
+    def test_you_can_select_interests(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -174,12 +166,8 @@ class TestInterests(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Ввести смс код'):
             self.login_page.field_send_keys(element['Поле проверочный код'], text=sms_code)
@@ -201,7 +189,7 @@ class TestInterests(BaseTest):
     @allure.description('Проверка на регистрации нового пользователя')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_button_coolly_clickable_and_redirects_ti_the_screen_with_skills(self, elements):
+    def test_button_coolly_clickable_and_redirects_ti_the_screen_with_skills(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -236,12 +224,8 @@ class TestInterests(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Ввести смс код'):
             self.login_page.field_send_keys(element['Поле проверочный код'], text=sms_code)
