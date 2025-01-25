@@ -24,6 +24,12 @@ jobs:
           INVCODE: ${{ secrets.INVCODE}}
           METABASELOGIN: ${{ secrets.METABASELOGIN}}
           METABASEPASSWORD: ${{ secrets.METABASEPASSWORD}}
+          DBHOST: ${{ secrets.DBHOST }}
+          DBPORT: ${{ secrets.DBPORT }}
+          DBNAME: ${{ secrets.DBNAME }}
+          DBUSER: ${{ secrets.DBUSER }}
+          DBPASSWORD: ${{ secrets.DBPASSWORD }}
+
         run: |
           docker compose build regression && docker compose up --exit-code-from regression || true
 

@@ -18,7 +18,7 @@ class TestRegistrationUser(BaseTest):
                         'цифры, точку (только в середине), дефис, нижнее подчеркивание')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_registering_a_new_user_by_phone_number(self, elements):
+    def test_registering_a_new_user_by_phone_number(self, elements, db_connection):
         with allure.step('Открыть страницу авторизации'):
             self.authorization_page.open()
             element = elements['Страница авторизации']
@@ -53,12 +53,8 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Нажать кнопку далее'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Подключиться к базе данных и получить смс код'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Ввести смс код'):
             self.login_page.field_send_keys(element['Поле проверочный код'], text=sms_code)
@@ -87,12 +83,8 @@ class TestRegistrationUser(BaseTest):
             self.join_page.do_click(element['2013 год'])
             self.join_page.do_click(element['Поле год рождения'])
             self.join_page.do_click(element['2012 год'])
-            self.join_page.do_click(element['Поле год рождения'])
-            self.join_page.do_click(element['2011 год'])
-            self.join_page.do_click(element['Поле год рождения'])
-            self.join_page.do_click(element['2010 год'])
-        with allure.step('Проверить, что в поле теперь отображается 2010 год'):
-            self.assertion.text_in_element(element['Поле год рождения'], expected_text='2010')
+        with allure.step('Проверить, что в поле теперь отображается 2012 год'):
+            self.assertion.text_in_element(element['Поле год рождения'], expected_text='2012')
 
     @allure.title('Проверка валидации поля никнейм при вводе менее 3 символов')
     @allure.severity('Normal')

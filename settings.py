@@ -15,3 +15,10 @@ class User:
 class MetaBaseUser:
     LOGIN = os.getenv('METABASELOGIN')
     PASSWORD = os.getenv('METABASEPASSWORD')
+
+class DB:
+    DBNAME = os.getenv('DBNAME')
+    DBUSER = os.getenv('DBUSER')
+    DBPASSWORD = os.getenv('DBPASSWORD')
+    DBHOST = os.getenv('DBHOST')
+    DBPORT = os.getenv('DBPORT')
