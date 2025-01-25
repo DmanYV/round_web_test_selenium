@@ -31,7 +31,7 @@ class TestResetPassword(BaseTest):
     @allure.description('Для восстановления используется номер от Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_password_recovery_by_phone(self, elements):
+    def test_password_recovery_by_phone(self, elements, db_connection):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
             element = elements['Страница логина']
@@ -47,12 +47,8 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('В поле Код из смс ввести смс код'):
             self.reset_password_page.field_send_keys(element['Поле код из смс'],
@@ -83,7 +79,7 @@ class TestResetPassword(BaseTest):
     @allure.description('Для восстановления используется номер от Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_receiving_sms_code_to_reset_password(self, elements):
+    def test_receiving_sms_code_to_reset_password(self, elements, db_connection):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
             element = elements['Страница логина']
@@ -99,12 +95,9 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
 
-        with allure.step('Найти последний код в MetaBase и проверить, что он пришел'):
-            sms_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
             assert sms_code.isdigit()
 
     @allure.title('Проверка валидации поля ввода кода из смс при вводе неверного значения')
@@ -185,7 +178,7 @@ class TestResetPassword(BaseTest):
     @allure.description('Для восстановления используется email от Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_password_recovery_by_email(self, elements):
+    def test_password_recovery_by_email(self, elements, db_connection):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
             element = elements['Страница логина']
@@ -201,12 +194,9 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
 
-        with allure.step('Найти последний код в MetaBase'):
-            email_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить email код из Базы данных'):
+            email_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('В поле Код из письма ввести код из письма'):
             self.reset_password_page.field_send_keys(element['Поле код из письма'],
@@ -237,7 +227,7 @@ class TestResetPassword(BaseTest):
     @allure.description('Для восстановления используется email от Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_receiving_email_code_to_reset_password(self, elements):
+    def test_receiving_email_code_to_reset_password(self, elements, db_connection):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
             element = elements['Страница логина']
@@ -253,18 +243,14 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase и проверить, что он пришел'):
-            email_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            email_code = self.db_round_confirmation.get_last_sms_code(db_connection)
             assert email_code.isdigit()
 
     @allure.title('Проверка возможности повторно запросить email код')
     @allure.severity('Critical')
     @pytest.mark.regression
-    def test_opportunity_to_re_request_email_code(self, elements):
+    def test_opportunity_to_re_request_email_code(self, elements, db_connection):
         with allure.step('Открыть страницу логина'):
             self.login_page.open()
             element = elements['Страница логина']
@@ -280,12 +266,8 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
 
-        with allure.step('Авторизоваться в MetaBase'):
-            metabase = self.metabase.authorization(username=self.MetaBaseUser.LOGIN,
-                                                   password=self.MetaBaseUser.PASSWORD)
-
-        with allure.step('Найти последний код в MetaBase и проверить, что он пришел'):
-            first_email_code = self.metabase.take_last_code(metabase)
+        with allure.step('Получить смс код из Базы данных'):
+            first_email_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Подождать 1 минуту, пока закончится таймер'):
             time.sleep(65)
@@ -297,5 +279,5 @@ class TestResetPassword(BaseTest):
             self.join_page.do_click(element['Кнопка запросить код еще раз'])
 
         with allure.step('Проверяем что пришел новый смс код'):
-            last_email_code = self.metabase.take_last_code(metabase)
+            last_email_code = self.db_round_confirmation.get_last_sms_code(db_connection)
             assert first_email_code != last_email_code
