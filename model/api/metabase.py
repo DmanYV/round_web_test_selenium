@@ -32,6 +32,7 @@ class MetaBase(BasePage):
     @staticmethod
     def take_last_code(cookies: RequestsCookieJar) -> str:
         """
+        (Метод Deprecated в связи с переходом на SQL запрос)
         Метод получения Session_ID в Metabase через API.
 
         :param cookies: Куки авторизации
