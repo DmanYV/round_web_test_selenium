@@ -147,7 +147,10 @@ class TestResetPassword(BaseTest):
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
 
-        with allure.step('Проверить, что сработала валидация с текстом "Пользователь не найден"'):
+        with allure.step('Проверить, что отобразилась валидация поля'):
+            self.assertion.is_elem_displayed(element['Валидация поля логин'])
+
+        with allure.step('Проверить текст валидации поля "Пользователь не найден"'):
             self.assertion.text_in_element(element['Валидация поля логин'],
                                            expected_text='Пользователь не найден')
 
@@ -169,6 +172,9 @@ class TestResetPassword(BaseTest):
 
         with allure.step('Нажать кнопку "Сбросить пароль"'):
             self.reset_password_page.do_click(element['Кнопка сбросить пароль'])
+
+        with allure.step('Проверить, что отобразилась валидация поля'):
+            self.assertion.is_elem_displayed(element['Валидация поля логин'])
 
         with allure.step('Проверить, что сработала валидация с текстом "Пользователь не найден"'):
             self.assertion.text_in_element(element['Валидация поля логин'],
