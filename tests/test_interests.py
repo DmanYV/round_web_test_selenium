@@ -258,3 +258,18 @@ class TestInterests(BaseTest):
             self.main_page.do_click(element_main_page['Все челленджи'])
         with allure.step('Проверить, что открылась страница челленджей'):
             self.assertion.page_is_opened(Links.CHALLENGE_PAGE)
+
+    @allure.title('Проверка скролла чипсов')
+    @allure.description('Проверка на пользователе Aleska')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_scrolling_chipsets(self, elements, login_to_app):
+        element = elements['Чипсы']
+        with allure.step('Проскролить чипсы в конец списка'):
+            self.main_page.click_on_coordinates(1155,300)
+
+        with allure.step('Проверить, что видим чипс с названием "Прибыльно" и нажать на него'):
+            self.assertion.is_elem_displayed(element['Прибыльно'])
+            chip = self.main_page.find_element(element['Прибыльно'])
+            self.chips.do_click(chip)
+

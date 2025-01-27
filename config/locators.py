@@ -11,6 +11,13 @@ class AppNavigationLocators:
         'Кнопка уведомления': (By.XPATH, '//a[@data-testing="heart_outline"]')
     }
 
+class ChipsLocators:
+    """Локаторы чипсов"""
+    locators = {
+        'Все': (By.XPATH, '//span[@data-testing="chip_rubrics"][contains(.,"Все")]'),
+        'Прибыльно': (By.XPATH, '//span[@data-testing="chip_rubrics"][contains(.,"Прибыльно")]'),
+    }
+
 
 class AllPageLocators:
     """Локаторы присущие всем страницам"""

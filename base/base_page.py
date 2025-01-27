@@ -94,6 +94,17 @@ class BasePage(object):
         actions.perform()
         return self
 
+    def click_on_coordinates(self, coordinate_x=0, coordinate_y=0):
+        """
+        Метод для клика на указанные координаты и удержания клика в течение заданного времени.
+
+        :param coordinate_x: координата X для клика (по умолчанию 0)
+        :param coordinate_y: координата Y для клика (по умолчанию 0)
+        """
+
+        AC(self.driver).move_by_offset(coordinate_x, coordinate_y).click_and_hold().perform()
+
+
     def move_to_element_and_click(self, by_locator, wait_time=5):
         """
         Наведение мышки на элемент и клик по элементу
@@ -225,7 +236,25 @@ class BasePage(object):
         self.driver.execute_script("return arguments[0].scrollIntoView(true);", element)
         return self
 
-    def clear(self, locator):
+    def drag_and_drop(self, by_locator: tuple[str, str], x_offset: int = 0, y_offset: int = 0,
+                                   timeout: int = 10):
+        """
+        Функция нажатия на элемент и переноса его по координатам
+
+        :param by_locator: локатор элемента
+        :param x_offset: смещение по оси X для скролла (по умолчанию 0)
+        :param y_offset: смещение по оси Y для скролла (по умолчанию 0)
+        :param timeout: время ожидания появления элемента на странице (по умолчанию 10 секунд)
+
+        """
+        AC(self.driver).click_and_hold(
+            WebDriverWait(self.driver, timeout=timeout).until(
+                EC.presence_of_element_located(locator=by_locator)))\
+            .move_by_offset(xoffset=x_offset, yoffset=y_offset)\
+            .release()\
+            .perform()
+
+    def clear(self, locator: tuple[str, str]):
         """
         Функция очистки поля
 

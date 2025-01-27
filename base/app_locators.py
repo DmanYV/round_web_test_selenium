@@ -7,6 +7,7 @@ class Locators:
     elements = {
         'Общие': AllPageLocators.locators,
         'Панель навигации': AppNavigationLocators.locators,
+        'Чипсы': ChipsLocators.locators,
         'Страница авторизации': AuthorizationPageLocators.locators,
         'Кэррот': CarrotChatLocators.locators,
         'Страница регистрации': JoinPageLocators.locators,

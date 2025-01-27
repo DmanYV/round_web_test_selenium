@@ -26,6 +26,7 @@ from model.api.authorization import ApiAuthorization
 from model.api.metabase import MetaBase
 
 from model.elements.app import App
+from model.elements.chips import Chips
 from model.elements.checkbox import Checkbox
 
 from model.sql.db_round_confirmation import DBRoundConfirmation
@@ -56,6 +57,7 @@ class BaseTest:
     metabase: MetaBase
     db_round_confirmation: DBRoundConfirmation
     app: App
+    chips: Chips
     checkbox: Checkbox
 
     @pytest.fixture(autouse=True)
@@ -64,6 +66,7 @@ class BaseTest:
         request.cls.User = User()
         request.cls.MetaBaseUser = MetaBaseUser()
         request.cls.app = App(driver)
+        request.cls.chips = Chips(driver)
         request.cls.checkbox = Checkbox(driver)
         request.cls.assertion = Assertion(driver)
         request.cls.authorization_page = AuthorizationPage(driver)
