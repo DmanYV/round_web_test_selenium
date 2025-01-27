@@ -21,7 +21,6 @@ class DBRoundConfirmation(BasePage):
                 cursor.execute('SELECT "Code" FROM "ConfirmationCodes" ORDER BY "CreatedDate" DESC LIMIT 1;')
                 last_sms_code = cursor.fetchone()
             if last_sms_code is not None:
-                print(f'Смс код получен: {last_sms_code}')
                 return last_sms_code[0]
             else:
                 return None
