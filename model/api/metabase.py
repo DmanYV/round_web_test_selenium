@@ -11,7 +11,7 @@ class MetaBase(BasePage):
     PAGE_URL = MetaBaseLinks.HOST
 
     @staticmethod
-    def authorization(username: str, password: str) -> RequestsCookieJar:
+    def authorization_metabase(username: str, password: str) -> RequestsCookieJar:
         """
         Метод получения Session_ID в Metabase через API.
 
