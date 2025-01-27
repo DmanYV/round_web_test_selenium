@@ -16,11 +16,11 @@ from settings import User, DB
 @pytest.fixture(autouse=True, scope='function')
 def driver(request):
     chrome_options = Options()
-    chrome_options.add_argument('--window-size=1920,1080')  # размер окна is 1920x1080
     chrome_options.add_argument('--no-sandbox')  # no sandbox
+    chrome_options.add_argument('--headless')  # режим без UI
+    chrome_options.add_argument('--window-size=1920,1080')  # размер окна is 1920x1080
     chrome_options.add_argument('--disable-dev-shm-usage')  # overcome limited resource problems
     # chrome_options.add_argument('--incognito')  # режим инкогнито
-    chrome_options.add_argument('--headless')  # режим без UI
     # chrome_options.add_argument('--ignore-certificate-errors')  # режим игнорирования сертификата
     driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
@@ -58,6 +58,8 @@ def login_to_app(request, driver):
         element = login_page.find_element(
             config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
         login_page.do_click(element)
+    finally:
+        login_page.do_click(config.locators.MainPageLocators.locators['Листай вниз и найди свои интересы'])
 
 
 @pytest.fixture(scope="module")
