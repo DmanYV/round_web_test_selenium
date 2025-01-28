@@ -7,11 +7,11 @@ class DBRoundConfirmation(BasePage):
     PAGE_URL = None
 
     @staticmethod
-    def get_last_sms_code(connection, time_wait: int = 1):
+    def get_last_sms_code(connection, time_wait: int = 2):
         """
         Получение последнего отправленного смс-кода из БД
         :param connection: Соединение с БД
-        :param time_wait: Задержка в секундах перед получением последнего смс-кода (по умолчанию 1 секунда)
+        :param time_wait: Задержка в секундах перед получением последнего смс-кода (по умолчанию 2 секунда)
 
         :return: Последний отправленный смс-код
         """
