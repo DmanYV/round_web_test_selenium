@@ -254,6 +254,7 @@ class PopUpBurgerMenuProfileLocators:
 class FavoriteProjectsPageLocators:
     """Локаторы страницы Лайки"""
     locators = {
+        'Список проектов': (By.XPATH, '//div[@data-testing="project"]')
 
     }
 
@@ -288,6 +289,15 @@ class EditProfilePageLocators:
         'Кнопка хорошо': (By.XPATH, '//button[contains(.,"Хорошо")]')
     }
 
+class ProjectPageLocators:
+    """Локаторы страницы проекта"""
+    locators = {
+        'Интерактивная панель': (By.XPATH, '//div[contains(@class,"project_interaction")]'),
+        'Кнопка лайк': (By.XPATH, '//button[contains(@class,"project_count")][1]'),
+        'Количество лайков': (By.XPATH, '//button[contains(@class,"project_count")][1]'
+                                        '//div[contains(@class,"project_count")]')
+
+    }
 
 class SettingsPageLocators:
     """Локаторы страницы Настройки аккаунта"""
