@@ -18,6 +18,7 @@ from model.pages.blocklist_page import BlockListPage
 from model.pages.another_user_page import AnotherUserPage
 from model.pages.global_searching_page import GlobalSearchingPage
 from model.pages.challenge_page import ChallengePage
+from model.pages.project_page import ProjectPage
 
 from settings import User
 from settings import MetaBaseUser
@@ -53,6 +54,7 @@ class BaseTest:
     blocklist_page: BlockListPage
     another_user_page: AnotherUserPage
     challenge_page: ChallengePage
+    project_page: ProjectPage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     db_round_confirmation: DBRoundConfirmation
@@ -86,6 +88,7 @@ class BaseTest:
         request.cls.blocklist_page = BlockListPage(driver)
         request.cls.another_user_page = AnotherUserPage(driver)
         request.cls.challenge_page = ChallengePage(driver)
+        request.cls.project_page = ProjectPage(driver)
         request.cls.api_authorization = ApiAuthorization(driver)
         request.cls.metabase = MetaBase(driver)
         request.cls.db_round_confirmation = DBRoundConfirmation(driver)
