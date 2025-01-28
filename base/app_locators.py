@@ -27,5 +27,6 @@ class Locators:
         'Страница заблокированные пользователи': BlockListPageLocators.locators,
         'Страница другого пользователя': AnotherUserPageLocators.locators,
         'Глобальный поиск': GlobalSearchingPageLocators.locators,
-        'Страница челленджи': ChallengePageLocators.locators
+        'Страница челленджи': ChallengePageLocators.locators,
+        'Страница проекта': ProjectPageLocators.locators,
     }
