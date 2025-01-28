@@ -127,7 +127,7 @@ class Assertion(BasePage):
         assert self.find_element(by_locator).get_attribute(value) == text, \
             f'Ожидалось значение {text}, Отображается значение {self.find_element(by_locator).get_attribute(value)}'
 
-    def length_elements(self, by_locator: tuple, length=0) -> len:
+    def length_elements(self, by_locator: tuple, length: int =0) -> len:
         """
         Получение длины списка элементов на странице, ожидая, что их > 0
 
