@@ -20,6 +20,10 @@ class BasePage(object):
         """Функция открытия страницы"""
         self.driver.get(self.PAGE_URL)
 
+    def open_url(self, url):
+        """"Функция открытия страницы по url"""
+        self.driver.get(url)
+
     def switch_iframe(self, locator):
         """
 

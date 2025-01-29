@@ -16,6 +16,7 @@ class Links:
     BLOCK_LIST_PAGE = f'{HOST}/profile/edit/blocklist'
     GLOBAL_SEARCHING_PAGE = f'{HOST}/search'
     CHALLENGE_PAGE = f'{HOST}/challenge'
+    PROJECT_PAGE = f'{HOST}/project'
 
 
 class Api:

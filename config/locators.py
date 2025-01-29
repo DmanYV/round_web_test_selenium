@@ -11,6 +11,7 @@ class AppNavigationLocators:
         'Кнопка уведомления': (By.XPATH, '//a[@data-testing="heart_outline"]')
     }
 
+
 class ChipsLocators:
     """Локаторы чипсов"""
     locators = {
@@ -105,7 +106,8 @@ class JoinPageLocators:
     """Локаторы страницы регистрации"""
     locators = {
         'Кнопка далее': (By.XPATH, '//button[@class="button_content__7wfbm button_primary__tgW0W"]'),
-        'Поле год рождения': (By.XPATH, '//div[@data-testing="join_birthday_year"]//div[contains(@class,"css-1dimb5e-singleValue")]'),
+        'Поле год рождения': (By.XPATH, '//div[@data-testing="join_birthday_year"]'
+                                        '//div[contains(@class,"css-1dimb5e-singleValue")]'),
         'Список годов рождения': (By.ID, 'react-select-2-listbox'),
         'Поле никнейм': (By.XPATH, '//input[@name="nickname"]'),
         'Валидация поля никнейм': (By.XPATH, '//label[@class="text-field_validation-message__nizJJ"]'),
@@ -218,6 +220,7 @@ class SubscriptionPageLocators:
         'Кнопка глобальный поиск': (By.XPATH, '//button[contains(@class,"user-subscription_toolbar-search")]')
     }
 
+
 class GlobalSearchingPageLocators:
     """Локаторы страницы глобального поиска"""
     locators = {
@@ -246,14 +249,16 @@ class PopUpBurgerMenuProfileLocators:
         'Выйти из аккаунта': (By.XPATH, '//div[contains(@class,"popup-dialog-fragment_content")]'
                                         '//div[contains(.,"Выйти из аккаунта")]'),
 
-
-
     }
 
 
 class FavoriteProjectsPageLocators:
     """Локаторы страницы Лайки"""
     locators = {
+        'Список проектов': (By.XPATH, '//div[@data-testing="project"]'),
+        'Сообщение ставь лайки': (
+            By.XPATH, '//div[contains(@class,"tip_container")]'
+                      '[contains(.,"Ставь лайки крутым проектам, и они отобразятся на этом экране 👇")]')
 
     }
 
@@ -289,6 +294,17 @@ class EditProfilePageLocators:
     }
 
 
+class ProjectPageLocators:
+    """Локаторы страницы проекта"""
+    locators = {
+        'Интерактивная панель': (By.XPATH, '//div[contains(@class,"project_interaction")]'),
+        'Кнопка лайк': (By.XPATH, '//button[contains(@class,"project_count")][1]'),
+        'Количество лайков': (By.XPATH, '//button[contains(@class,"project_count")][1]'
+                                        '//div[contains(@class,"project_count")]')
+
+    }
+
+
 class SettingsPageLocators:
     """Локаторы страницы Настройки аккаунта"""
     locators = {
@@ -296,11 +312,15 @@ class SettingsPageLocators:
         'Кнопка удалить': (By.XPATH, '//button[contains(@class,"message-dialog_secondary")]'),
         'Кнопка отмена': (By.XPATH, '//button[contains(@class,"message-dialog_primary")]'),
         'У меня есть другой профиль в ROUND!': (By.XPATH, '//label[contains(.,"У меня есть другой профиль в ROUND!")]'),
-        'Мои проекты не комментируют и не лайкают': (By.XPATH, '//label[contains(.,"Мои проекты не комментируют и не лайкают")]'),
-        'Ведение аккаунта отнимает у меня много времени': (By.XPATH, '//label[contains(.,"Ведение аккаунта отнимает у меня много времени")]'),
-        'Не нашел (-ла) интересного для себя контента': (By.XPATH, '//label[contains(.,"Не нашел (-ла) интересного для себя контента")]'),
+        'Мои проекты не комментируют и не лайкают': (
+        By.XPATH, '//label[contains(.,"Мои проекты не комментируют и не лайкают")]'),
+        'Ведение аккаунта отнимает у меня много времени': (
+        By.XPATH, '//label[contains(.,"Ведение аккаунта отнимает у меня много времени")]'),
+        'Не нашел (-ла) интересного для себя контента': (
+        By.XPATH, '//label[contains(.,"Не нашел (-ла) интересного для себя контента")]'),
         'Удаляю по просьбе родителей': (By.XPATH, '//label[contains(.,"Удаляю по просьбе родителей")]'),
-        'Меня беспокоит безопасность моих данных': (By.XPATH, '//label[contains(.,"Меня беспокоит безопасность моих данных")]'),
+        'Меня беспокоит безопасность моих данных': (
+        By.XPATH, '//label[contains(.,"Меня беспокоит безопасность моих данных")]'),
         'Другая причина': (By.XPATH, '//label[contains(.,"Другая причина")]'),
         'Поле причина удаления': (By.XPATH, '//input[contains(@class,"text-field_input")]'),
         'Кнопка удалить аккаунт': (By.XPATH, '//button[contains(@class,"message-dialog_secondary")]'),
@@ -343,6 +363,7 @@ class MainPageLocators:
         'Все челленджи': (By.XPATH, '//button[contains(@data-testing, "home_challenges_btn")]')
     }
 
+
 class ChallengePageLocators:
     """Локаторы страницы челленджи"""
     locators = {
@@ -354,6 +375,7 @@ class RubricPageLocators:
     locators = {
         'Список интересов': (By.XPATH, '//div[contains(@class,"rubrics_chips")]'),
         'Кнопка выберу потом': (By.XPATH, '//button[@data-testing="after_register_dialog__btn_choose_later"]'),
-        'Кнопка классно! перейти к подборке': (By.XPATH, '//button[@data-testing="after_register_dialog__btn_choose_later"]'
-                                                         '[contains(.,"Классно! Перейти к подборке")]')
+        'Кнопка классно! перейти к подборке': (
+        By.XPATH, '//button[@data-testing="after_register_dialog__btn_choose_later"]'
+                  '[contains(.,"Классно! Перейти к подборке")]')
     }

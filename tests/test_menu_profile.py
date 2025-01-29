@@ -5,6 +5,7 @@ from faker import Faker
 from base.base_test import BaseTest
 from config.links import Links
 
+from fixtures.fixtures_for_registration_tests import registration_user
 fake = Faker()
 
 
@@ -153,3 +154,56 @@ class TestMenuProfile(BaseTest):
 
         with allure.step('Проверить, что открылась страница авторизации'):
             self.assertion.page_is_opened(Links.AUTHORIZATION_PAGE)
+
+    @allure.title('Проверить, при снятии лайка с проекта, он больше не отображается в списке')
+    @allure.description('Проверяется на проекте с ID 182992')
+    @allure.severity('Minor')
+    @pytest.mark.regression
+    def test_when_unliking_the_project_does_not_appear_in_the_list(self, elements, registration_user):
+        with allure.step('Открыть проект с id 182992'):
+            self.app.open_url(Links.MAIN_PAGE+'project/182992')
+
+        with allure.step('Поставить лайк на проект'):
+            self.project_page.click_like_button()
+
+        with allure.step('Нажать на кнопку профиль'):
+            profile_page_elements = elements['Профиль пользователя']
+            self.profile_page.open_url(Links.PROFILE_PAGE)
+
+        with allure.step('Нажать кнопку Заполню позже'):
+            self.profile_page.do_click(profile_page_elements['Кнопка заполню позже'])
+
+        with allure.step('Нажать на бургер меню'):
+            self.profile_page.do_click(profile_page_elements['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на лайки'):
+            burger_menu_elements = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(burger_menu_elements['Лайки'])
+
+        with allure.step('Проверить, что отображается 1 проект'):
+            like_page_elements = elements['Страница лайки']
+            self.assertion.length_elements(like_page_elements['Список проектов'], length=1)
+
+        with allure.step('Открыть проект с id 182992'):
+            self.app.open_url(Links.MAIN_PAGE+'project/182992')
+
+        with allure.step('Убрать лайк с проекта'):
+            self.project_page.click_like_button()
+
+        with allure.step('Нажать на кнопку профиль'):
+            profile_page_elements = elements['Профиль пользователя']
+            self.profile_page.open_url(Links.PROFILE_PAGE)
+
+        with allure.step('Нажать кнопку Заполню позже'):
+            self.profile_page.do_click(profile_page_elements['Кнопка заполню позже'])
+
+        with allure.step('Нажать на бургер меню'):
+            self.profile_page.do_click(profile_page_elements['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на лайки'):
+            burger_menu_elements = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(burger_menu_elements['Лайки'])
+
+        with allure.step('Проверить, что отображается 0 проектов'):
+            like_page_elements = elements['Страница лайки']
+            self.assertion.is_elem_displayed(like_page_elements['Сообщение ставь лайки'])
