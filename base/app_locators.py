@@ -23,6 +23,7 @@ class Locators:
         'Страница редактировать профиль': EditProfilePageLocators.locators,
         'Страница пригласить друга': InvitationPageLocators.locators,
         'Страница лайки': FavoriteProjectsPageLocators.locators,
+        'Страница избранное': FavoriteChallengePageLocators.locators,
         'Страница настройки аккаунта': SettingsPageLocators.locators,
         'Страница заблокированные пользователи': BlockListPageLocators.locators,
         'Страница другого пользователя': AnotherUserPageLocators.locators,
