@@ -166,7 +166,7 @@ class TestMenuProfile(BaseTest):
         with allure.step('Поставить лайк на проект'):
             self.project_page.click_like_button()
 
-        with allure.step('Нажать на кнопку профиль'):
+        with allure.step('Перейти в профиль'):
             profile_page_elements = elements['Профиль пользователя']
             self.profile_page.open_url(Links.PROFILE_PAGE)
 
@@ -190,7 +190,7 @@ class TestMenuProfile(BaseTest):
         with allure.step('Убрать лайк с проекта'):
             self.project_page.click_like_button()
 
-        with allure.step('Нажать на кнопку профиль'):
+        with allure.step('Перейти в профиль'):
             profile_page_elements = elements['Профиль пользователя']
             self.profile_page.open_url(Links.PROFILE_PAGE)
 
@@ -207,3 +207,58 @@ class TestMenuProfile(BaseTest):
         with allure.step('Проверить, что отображается 0 проектов'):
             like_page_elements = elements['Страница лайки']
             self.assertion.is_elem_displayed(like_page_elements['Сообщение ставь лайки'])
+
+    @allure.title('Проверить возможность удалять из списка "Избранное"')
+    @allure.description('Проверяется на челлендже с ID 751')
+    @allure.severity('Minor')
+    @pytest.mark.regression
+    def test_check_if_you_can_remove_from_the_favorites_list(self, elements, registration_user):
+        with allure.step('Открыть челлендж с id 751'):
+            self.app.open_url(Links.CHALLENGE_PAGE + '/751')
+
+        with allure.step("Нажать кнопку избранное"):
+            self.challenge_page.click_favorites_button()
+
+        with allure.step('Перейти в профиль'):
+            profile_page_elements = elements['Профиль пользователя']
+            self.profile_page.open_url(Links.PROFILE_PAGE)
+
+        with allure.step('Нажать кнопку Заполню позже'):
+            self.profile_page.do_click(profile_page_elements['Кнопка заполню позже'])
+
+        with allure.step('Нажать на бургер меню'):
+            self.profile_page.do_click(profile_page_elements['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на Избранное'):
+            burger_menu_elements = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(burger_menu_elements['Избранное'])
+
+        with allure.step('Проверить, что отображается 1 челлендж'):
+            like_page_elements = elements['Страница избранное']
+            self.assertion.length_elements(like_page_elements['Список челленджей'], length=1)
+
+        with allure.step('Открыть челлендж с id 751'):
+            self.app.open_url(Links.CHALLENGE_PAGE + '/751')
+
+        with allure.step('Убрать избранное с челленджа'):
+            self.challenge_page.click_favorites_button()
+
+        with allure.step('Перейти в профиль'):
+            profile_page_elements = elements['Профиль пользователя']
+            self.profile_page.open_url(Links.PROFILE_PAGE)
+
+        with allure.step('Нажать кнопку Заполню позже'):
+            self.profile_page.do_click(profile_page_elements['Кнопка заполню позже'])
+
+        with allure.step('Нажать на бургер меню'):
+            self.profile_page.do_click(profile_page_elements['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на избранное'):
+            burger_menu_elements = elements['Поп ап бургер-меню профиля']
+            self.profile_page.do_click(burger_menu_elements['Избранное'])
+
+        with allure.step('Проверить, что отображается 0 челленджей'):
+            like_page_elements = elements['Страница избранное']
+            self.assertion.is_elem_displayed(like_page_elements['Сообщение понравился один из челленджей'])
+
+
