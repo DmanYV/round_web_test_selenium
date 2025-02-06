@@ -16,6 +16,11 @@ class ProjectPage(BasePage):
     def click_like_button(self):
         """
         Клик по кнопке лайка
+        Проверяет, отображение интерактивной панели->
+        После проверяет поставлен или нет лайк и выполняет обратное действие
         """
         self.assertion.is_elem_displayed(self.element['Интерактивная панель'])
-        self.do_click(self.element['Кнопка лайк'])
+        try:
+            self.do_click(self.element['Кнопка убрать лайк'])
+        except:
+            self.do_click(self.element['Кнопка лайк'])
