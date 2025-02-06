@@ -66,16 +66,21 @@ class Assertion(BasePage):
         assert page_url == self.driver.current_url, \
             f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 
-    def is_elem_displayed(self, by_locator: tuple) -> None:
+    def is_elem_displayed(self, by_locator: tuple[str, str], timeout=10) -> None:
         """
         Проверка отображения элемента на странице
 
         :param by_locator:
             локатор элемента
+        :param timeout:
+            время ожидания
 
         """
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.presence_of_element_located(locator=by_locator)
+        )
 
-        assert self.find_element(by_locator).is_displayed()
+        assert element.is_displayed()
 
     def is_elem_invisible(self, by_locator, wait_time: int = 4) -> None:
         """
