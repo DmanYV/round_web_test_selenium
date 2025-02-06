@@ -83,7 +83,7 @@ class BasePage(object):
             self.driver.execute_script("arguments[0].click();", elem)
         return self
 
-    def double_click(self, by_locator: tuple):
+    def double_click(self, by_locator: tuple[str, str]):
         """
         Двойной клик по элементу
 
@@ -128,7 +128,7 @@ class BasePage(object):
         actions.perform()
         return self
 
-    def field_send_keys(self, locator: tuple, text: str or int):
+    def field_send_keys(self, locator: tuple[str, str], text: str or int):
         """
         Функция ввода текста в поле
 
@@ -142,16 +142,23 @@ class BasePage(object):
         element.send_keys(text)
         return self
 
-    def find_element(self, locator):
+    def find_element(self, locator: tuple[str, str], timeout: int = 10):
         """
         Функция поиска элемента с ожиданием, что элемент видим на странице и в DOM
 
         :param locator:
             локатор элемента
+        :param timeout:
+            время ожидания
 
         """
-        return self.wait.until(EC.visibility_of_element_located(locator),
-                               message=f'Не найден элемент с локатором {locator}')
+
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.visibility_of_element_located(locator=locator), message= f'Не найден элемент с локатором {locator}'
+        )
+
+
+        return element
 
     def find_elements(self, locator):
         """
@@ -211,7 +218,7 @@ class BasePage(object):
         """
         return self.wait.until(EC.invisibility_of_element_located(locator))
 
-    def get_element_attribute(self, by_locator: tuple, atr_value: str):
+    def get_element_attribute(self, by_locator: tuple[str, str], atr_value: str):
         """
         Получение атрибута элемента на странице
 
@@ -226,7 +233,7 @@ class BasePage(object):
         element = self.find_element(by_locator)
         return element.get_attribute(atr_value)
 
-    def scroll_to_element(self, by_locator: tuple):
+    def scroll_to_element(self, by_locator: tuple[str, str]):
         """
         Скролл, пока искомый элемент не будет видим
 

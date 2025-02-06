@@ -206,6 +206,18 @@ class ProfilePageLocators:
         'Заглушка кот': (By.XPATH, '//div[contains(@class,"empty-project-list_empty-project-list__lottie")]')
     }
 
+class StudyPageLocators:
+    """Локаторы страницы анкета"""
+    locators = {
+        'Фамилия': (By.XPATH, '//input[@data-testing="edit_last_name"]'),
+        'Имя': (By.XPATH, '//input[@data-testing="edit_first_name"]'),
+        'Отчество': (By.XPATH, '//input[@data-testing="edit_father_name"]'),
+        'Страна': (By.XPATH, '//input[@data-testing="edit_country_name"]'),
+        'Регион': (By.XPATH, '//input[@data-testing="edit_region_name"]'),
+        'Населенный пункт': (By.XPATH, '//input[@data-testing="edit_locality_name"]'),
+        'Учебное заведение': (By.XPATH, '//input[@data-testing="edit_school_name"]'),
+        'Кнопка сохранить': (By.XPATH, '//button[contains(@data-testing,"save")]')
+    }
 
 class SubscriptionPageLocators:
     """Локаторы страницы подписки"""

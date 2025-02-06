@@ -19,6 +19,7 @@ from model.pages.another_user_page import AnotherUserPage
 from model.pages.global_searching_page import GlobalSearchingPage
 from model.pages.challenge_page import ChallengePage
 from model.pages.project_page import ProjectPage
+from model.pages.study_page import StudyPage
 
 from settings import User
 from settings import MetaBaseUser
@@ -29,6 +30,7 @@ from model.api.metabase import MetaBase
 from model.elements.app import App
 from model.elements.chips import Chips
 from model.elements.checkbox import Checkbox
+from model.elements.dropdown import Dropdown
 
 from model.sql.db_round_confirmation import DBRoundConfirmation
 
@@ -55,12 +57,14 @@ class BaseTest:
     another_user_page: AnotherUserPage
     challenge_page: ChallengePage
     project_page: ProjectPage
+    study_page: StudyPage
     api_authorization: ApiAuthorization
     metabase: MetaBase
     db_round_confirmation: DBRoundConfirmation
     app: App
     chips: Chips
     checkbox: Checkbox
+    dropdown: Dropdown
 
     @pytest.fixture(autouse=True)
     def setup(self, request, driver):
@@ -70,6 +74,7 @@ class BaseTest:
         request.cls.app = App(driver)
         request.cls.chips = Chips(driver)
         request.cls.checkbox = Checkbox(driver)
+        request.cls.dropdown = Dropdown(driver)
         request.cls.assertion = Assertion(driver)
         request.cls.authorization_page = AuthorizationPage(driver)
         request.cls.login_page = LoginPage(driver)
@@ -78,6 +83,7 @@ class BaseTest:
         request.cls.main_page = MainPage(driver)
         request.cls.rubric_page = RubricPage(driver)
         request.cls.profile_page = ProfilePage(driver)
+        request.cls.study_page = StudyPage(driver)
         request.cls.invitation_page = InvitationPage(driver)
         request.cls.favorite_projects_page = FavoriteProjectsPage(driver)
         request.cls.favorite_challenge_page = FavoriteChallengePage(driver)
