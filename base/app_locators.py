@@ -30,4 +30,5 @@ class Locators:
         'Глобальный поиск': GlobalSearchingPageLocators.locators,
         'Страница челленджи': ChallengePageLocators.locators,
         'Страница проекта': ProjectPageLocators.locators,
+        'Страница анкета':  StudyPageLocators.locators
     }
