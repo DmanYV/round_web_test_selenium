@@ -119,6 +119,7 @@ class TestRegistrationUser(BaseTest):
 
     @allure.title('Проверка валидации поля никнейм при вводе более 16 символов')
     @allure.severity('Normal')
+    @pytest.mark.skip(reason='В элементе не записывается значение введенное пользователем, написал Ксюше, жду ответа и идей')
     @pytest.mark.regression
     def test_validation_field_nickname_when_entering_more_than_16_characters(self, elements):
         with allure.step('Открыть страницу регистрации'):
@@ -132,15 +133,11 @@ class TestRegistrationUser(BaseTest):
             element = elements['Страница регистрации']
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('В поле никнейм ввести 16 символов'):
-            self.join_page.field_send_keys(element['Поле никнейм'], text=fake.pystr(min_chars=16))
+        with allure.step('В поле никнейм ввести более 16 символов'):
+            self.join_page.field_send_keys(element['Поле никнейм'], text=fake.pystr(min_chars=17))
 
-        with allure.step('Нажать кнопку Далее'):
-            self.join_page.do_click(element['Кнопка далее'])
-
-        with allure.step('Проверить, что в поле видимо поле ввода пароля и повторения пароля'):
-            self.assertion.is_elem_displayed(element['Поле пароль'])
-            self.assertion.is_elem_displayed(element['Поле повтори пароль'])
+        with allure.step('Проверить, что в поле никнейм отображается 16 символов'):
+            self.assertion.length_simbols_in_text(element['Поле никнейм'], length=16)
 
     @allure.title('Проверка валидации поля никнейм при вводе русских символов')
     @allure.severity('Normal')
