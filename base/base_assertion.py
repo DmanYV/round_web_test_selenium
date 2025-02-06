@@ -127,7 +127,7 @@ class Assertion(BasePage):
         assert self.find_element(by_locator).get_attribute(value) == text, \
             f'Ожидалось значение {text}, Отображается значение {self.find_element(by_locator).get_attribute(value)}'
 
-    def length_elements(self, by_locator: tuple, length: int =0) -> len:
+    def length_elements(self, by_locator: tuple, length: int = 0) -> len:
         """
         Получение длины списка элементов на странице, ожидая, что их > 0
 
@@ -169,3 +169,34 @@ class Assertion(BasePage):
         checkbox = self.driver.find_element(by_locator)
 
         assert checkbox.is_selected()
+
+    def text_is_empty(self, by_locator: tuple[str, str], timeout: int = 10):
+        """
+        Проверка, что текстовое поле пустое
+
+        :param by_locator:
+            локатор текстового поля
+        :param timeout:
+            время ожидания в секундах
+        """
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.presence_of_element_located(locator=by_locator)
+        )
+
+        assert element.get_attribute(
+            'value') == '', f'Элемент {by_locator} содержит текст {self.find_element(by_locator).text}'
+
+    def text_is_not_empty(self, by_locator: tuple[str, str], timeout: int = 10):
+        """
+        Проверка, что текстовое поле не пустое
+
+        :param by_locator:
+            локатор текстового поля
+        :param timeout:
+            время ожидания в секундах
+        """
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.presence_of_element_located(locator=by_locator)
+        )
+
+        assert element.get_attribute('value') != '', f'Элемент {by_locator} не содержит текст'
