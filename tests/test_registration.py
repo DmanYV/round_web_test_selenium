@@ -225,7 +225,9 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Проверить, что отображается валидация поля никнейм: Данный Никнейм уже занят'):
             self.assertion.text_in_element(element['Валидация поля никнейм'], expected_text='Данный Никнейм уже занят')
 
-    @allure.title('Проверка получения СМС с кодом подтверждения регистрации')
+    @allure.id(10)
+    @allure.link('https://team-n5un.testit.software/projects/1/tests/10')
+    @allure.title('Генерация кода для подтверждения регистрации')
     @allure.severity('Critical')
     @pytest.mark.regression
     def test_receiving_sms_with_registration_confirmation_code(self, elements, db_connection):
@@ -236,34 +238,34 @@ class TestRegistrationUser(BaseTest):
         with allure.step('Нажать кнопку "По смс (Для России)"'):
             self.authorization_page.do_click(element['Кнопка по смс'])
 
-        with allure.step('Нажать кнопку Далее'):
+        with allure.step('Нажать кнопку “Далее”'):
             element = elements['Страница регистрации']
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('В поле никнейм ввести любое валидное значение'):
+        with allure.step('В поле “Никнейм” ввести любое валидное значение'):
             username = f'-{fake.user_name()}.{fake.pyint(min_value=1, max_value=2)}_'
             self.join_page.field_send_keys(element['Поле никнейм'], text=f'{username}')
 
-        with allure.step('Нажать кнопку Далее'):
+        with allure.step('Нажать кнопку “Далее”'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('В поле Пароль ввести пароль'):
+        with allure.step('В поле “Пароль” ввести валидный пароль'):
             self.join_page.field_send_keys(element['Поле пароль'], text=self.User.PASSWORD)
 
-        with allure.step('В поле Повтори пароль ввести пароль еще раз'):
+        with allure.step('В поле “Повтори пароль” повторить валидный пароль'):
             self.join_page.field_send_keys(element['Поле повтори пароль'], text=self.User.PASSWORD)
 
-        with allure.step('Нажать кнопку далее'):
+        with allure.step('Нажать кнопку “Далее”'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Ввести номер телефона в поле номер телефона'):
+        with allure.step('В поле “Номер телефона” ввести валидный номер телефона'):
             phone_number = fakeru.random_number(digits=10, fix_len=True)
             self.join_page.field_send_keys(element['Поле номер телефона'], text=phone_number)
 
-        with allure.step('Нажать кнопку далее'):
+        with allure.step('Нажать кнопку “Далее”'):
             self.join_page.do_click(element['Кнопка далее'])
 
-        with allure.step('Получаем смс код из Базы данных'):
+        with allure.step('Найти в БД новый смс код'):
             sms_code = self.db_round_confirmation.get_last_sms_code(db_connection)
 
         with allure.step('Проверяем, что код пришел'):

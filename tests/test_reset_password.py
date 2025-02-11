@@ -27,6 +27,8 @@ class TestResetPassword(BaseTest):
         with allure.step('Проверить, что открыта страница Восстановления пароля'):
             self.assertion.page_is_opened(page_url=self.reset_password_page.PAGE_URL)
 
+    @allure.id(25)
+    @allure.link('https://team-n5un.testit.software/projects/1/tests/25')
     @allure.title('Проверка восстановления пароля по номеру телефона')
     @allure.description('Для восстановления используется номер от Aleska')
     @allure.severity('Critical')
@@ -229,7 +231,9 @@ class TestResetPassword(BaseTest):
         with allure.step('Проверить что открыта главная страница'):
             self.assertion.page_is_opened(page_url=self.main_page.PAGE_URL)
 
-    @allure.title('Проверка получения email кода для сброса пароля')
+    @allure.id(22)
+    @allure.link('https://team-n5un.testit.software/projects/1/tests/22')
+    @allure.title('Генерация кода для восстановления пароля по email')
     @allure.description('Для восстановления используется email от Aleska')
     @allure.severity('Critical')
     @pytest.mark.regression
@@ -253,7 +257,9 @@ class TestResetPassword(BaseTest):
             email_code = self.db_round_confirmation.get_last_sms_code(db_connection)
             assert email_code.isdigit()
 
-    @allure.title('Проверка возможности повторно запросить email код')
+    @allure.id(23)
+    @allure.link('https://team-n5un.testit.software/projects/1/tests/23')
+    @allure.title('Возможность повторно запросить код для подтверждения при постановлении пароля по email')
     @allure.severity('Critical')
     @pytest.mark.regression
     def test_opportunity_to_re_request_email_code(self, elements, db_connection):
@@ -278,12 +284,12 @@ class TestResetPassword(BaseTest):
         with allure.step('Подождать 1 минуту, пока закончится таймер'):
             time.sleep(65)
 
-        with allure.step('Проверить, что кнопка "Запросить код еще раз" появилась'):
+        with allure.step('После окончания таймера появилась кнопка “Запросить код еще раз”'):
             self.assertion.is_elem_displayed(element['Кнопка запросить код еще раз'])
 
         with allure.step('Нажать кнопку "Запросить код еще раз появилась"'):
             self.join_page.do_click(element['Кнопка запросить код еще раз'])
 
-        with allure.step('Проверяем что пришел новый смс код'):
+        with allure.step('Кнопка нажимается в БД появляется новый сгенерированный код'):
             last_email_code = self.db_round_confirmation.get_last_sms_code(db_connection)
             assert first_email_code != last_email_code
