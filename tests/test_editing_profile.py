@@ -47,7 +47,6 @@ class TestEditingProfile(BaseTest):
             self.edit_profile_page.scroll_to_element(element['Кнопка сохранить'])
             self.edit_profile_page.do_click(element['Кнопка сохранить'])
 
-
         with allure.step('Проверить, что отображается новый никнейм пользователя'):
             self.profile_page.find_element(element_profile['О себе'])
             element = elements['Общие']
@@ -383,3 +382,73 @@ class TestEditingProfile(BaseTest):
             self.profile_page.refresh()
             new_att = self.profile_page.get_element_attribute(element['Аватар'], atr_value='src')
             assert old_att != new_att
+
+    @allure.title('Заполнить данные Анкеты (Россия - Татарстан) и Сохранить')
+    @allure.description('Проверка происходит на новом пользователе')
+    @allure.severity('Critical')
+    @pytest.mark.regression
+    def test_fill_and_save_questionnaire(self, elements, registration_user):
+        element_study = elements['Страница анкета']
+        element_profile = elements['Профиль пользователя']
+        element_burger_menu = elements['Поп ап бургер-меню профиля']
+        element_edit_profile = elements['Страница редактировать профиль']
+
+        with allure.step('Нажать на кнопку профиль'):
+            self.app.profile_button_click()
+
+        with allure.step('В поле Фамилия ввести Фамилию'):
+            self.study_page.field_send_keys(element_study['Фамилия'], text=fakeru.last_name())
+
+        with allure.step('В поле Имя ввести Имя'):
+            self.study_page.field_send_keys(element_study['Имя'], text=fakeru.first_name())
+
+        with allure.step('В поле Отчество ввести Отчество'):
+            self.study_page.field_send_keys(element_study['Отчество'], text=fakeru.first_name_male())
+
+        with allure.step('В поле Страна ввести Россия'):
+            self.study_page.field_send_keys(element_study['Страна'], text='Россия')
+
+        with allure.step('В поле Регион ввести Республика Татарстан'):
+            self.study_page.field_send_keys(element_study['Регион'], text='Республика Татарстан')
+
+        with allure.step('В поле населенный пункт ввести Казань'):
+            self.study_page.field_send_keys(element_study['Населенный пункт'], text='Казань')
+
+        with allure.step('В поле учебное заведение ввести Школа №68'):
+            self.study_page.field_send_keys(element_study['Учебное заведение'],
+                                            text='МБОУ "татарско-русская средняя общеобразовательная школа №68 '
+                                                 'с углубленным изучением отдельных предметов" приволжского района '
+                                                 'г.казани')
+
+        with allure.step('Нажать на кнопку Сохранить'):
+            self.study_page.do_click(element_study['Кнопка сохранить'])
+
+        with allure.step('Нажать На Кнопку бургер-меню'):
+            self.profile_page.do_click(element_profile['Кнопка бургер-меню'])
+
+        with allure.step('Нажать на Редактировать профиль'):
+            self.profile_page.do_click(element_burger_menu['Редактировать профиль'])
+
+        with allure.step('Нажать на Анкета'):
+            self.profile_page.do_click(element_edit_profile['Анкета'])
+
+        with allure.step('Проверить, что поле Фамилия не пустое'):
+            self.assertion.text_is_not_empty(element_study['Фамилия'])
+
+        with allure.step('Проверить, что поле Имя не пустое'):
+            self.assertion.text_is_not_empty(element_study['Имя'])
+
+        with allure.step('Проверить, что поле Отчество не пустое'):
+            self.assertion.text_is_not_empty(element_study['Отчество'])
+
+        with allure.step('Проверить, поле страна не пустое'):
+            self.assertion.text_is_not_empty(element_study['Страна'])
+
+        with allure.step('Проверить, поле регион не пустое'):
+            self.assertion.text_is_not_empty(element_study['Регион'])
+
+        with allure.step('Проверить, поле населенный пункт не пустое'):
+            self.assertion.text_is_not_empty(element_study['Населенный пункт'])
+
+        with allure.step('Проверить, поле учебное заведение не пустое'):
+            self.assertion.text_is_not_empty(element_study['Учебное заведение'])

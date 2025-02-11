@@ -1,11 +1,10 @@
 from selenium.webdriver.common.by import By
 
-import config.locators
 from base.base_page import BasePage
 
 
 class Chips(BasePage):
-    PAGE_URL = None
+    """ Класс, описывающий действия с чипсами на страницах """
 
     def select_chip(self, chip_name):
         """

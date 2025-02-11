@@ -66,16 +66,21 @@ class Assertion(BasePage):
         assert page_url == self.driver.current_url, \
             f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 
-    def is_elem_displayed(self, by_locator: tuple) -> None:
+    def is_elem_displayed(self, by_locator: tuple[str, str], timeout=10) -> None:
         """
         Проверка отображения элемента на странице
 
         :param by_locator:
             локатор элемента
+        :param timeout:
+            время ожидания
 
         """
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.presence_of_element_located(locator=by_locator)
+        )
 
-        assert self.find_element(by_locator).is_displayed()
+        assert element.is_displayed()
 
     def is_elem_invisible(self, by_locator, wait_time: int = 4) -> None:
         """
@@ -127,7 +132,7 @@ class Assertion(BasePage):
         assert self.find_element(by_locator).get_attribute(value) == text, \
             f'Ожидалось значение {text}, Отображается значение {self.find_element(by_locator).get_attribute(value)}'
 
-    def length_elements(self, by_locator: tuple, length: int =0) -> len:
+    def length_elements(self, by_locator: tuple, length: int = 0) -> len:
         """
         Получение длины списка элементов на странице, ожидая, что их > 0
 
@@ -169,3 +174,34 @@ class Assertion(BasePage):
         checkbox = self.driver.find_element(by_locator)
 
         assert checkbox.is_selected()
+
+    def text_is_empty(self, by_locator: tuple[str, str], timeout: int = 10):
+        """
+        Проверка, что текстовое поле пустое
+
+        :param by_locator:
+            локатор текстового поля
+        :param timeout:
+            время ожидания в секундах
+        """
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.presence_of_element_located(locator=by_locator)
+        )
+
+        assert element.get_attribute(
+            'value') == '', f'Элемент {by_locator} содержит текст {self.find_element(by_locator).text}'
+
+    def text_is_not_empty(self, by_locator: tuple[str, str], timeout: int = 10):
+        """
+        Проверка, что текстовое поле не пустое
+
+        :param by_locator:
+            локатор текстового поля
+        :param timeout:
+            время ожидания в секундах
+        """
+        element = WebDriverWait(self.driver, timeout=timeout).until(
+            EC.presence_of_element_located(locator=by_locator)
+        )
+
+        assert element.get_attribute('value') != '', f'Элемент {by_locator} не содержит текст'
