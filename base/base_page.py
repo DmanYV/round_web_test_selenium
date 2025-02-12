@@ -65,7 +65,7 @@ class BasePage(object):
         """Функция закрытия браузера"""
         self.driver.close()
 
-    def do_click(self, locator, wait_time: int = 10):
+    def do_click(self, locator, wait_time: int = 10, poll_frequency: float = 5):
         """
 
         Функция клик на элемент с ожиданием, что элемент кликабелен
@@ -74,10 +74,12 @@ class BasePage(object):
             локатор элемента
         :param wait_time:
             время ожидания
+        :param poll_frequency:
+            частота проверки
 
         """
 
-        elem = WebDriverWait(self.driver, wait_time).until(EC.element_to_be_clickable(locator))
+        elem = WebDriverWait(self.driver, wait_time, poll_frequency=poll_frequency).until(EC.element_to_be_clickable(locator))
         try:
             elem.click()
         except (StaleElementReferenceException, ElementClickInterceptedException):
