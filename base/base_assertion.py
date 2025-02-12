@@ -31,7 +31,7 @@ class Assertion(BasePage):
         assert expected_text == text_in_element, \
             f"Ожидался текст: '{expected_text}', отображается текст: '{text_in_element}'"
 
-    def length_simbols_in_text(self, by_locator: tuple, length: int):
+    def length_simbols_in_text(self, by_locator: tuple[str,str], length: int):
         """
         Функция проверки, длины текста
 
@@ -66,7 +66,7 @@ class Assertion(BasePage):
         assert page_url == self.driver.current_url, \
             f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 
-    def is_elem_displayed(self, by_locator: tuple[str, str], poll_frequency=5, timeout=10) -> None:
+    def is_elem_displayed(self, by_locator: tuple[str, str], poll_frequency=2, timeout=10) -> None:
         """
         Проверка отображения элемента на странице
 
@@ -116,7 +116,7 @@ class Assertion(BasePage):
         else:
             return False
 
-    def is_elem_attribute_matches(self, by_locator: tuple, value: str, text: str or int):
+    def is_elem_attribute_matches(self, by_locator: tuple[str, str], value: str, text: str or int):
         """
         Проверка совпадения аттрибута элемента
 
@@ -193,7 +193,7 @@ class Assertion(BasePage):
         assert element.get_attribute(
             'value') == '', f'Элемент {by_locator} содержит текст {self.find_element(by_locator).text}'
 
-    def text_is_not_empty(self, by_locator: tuple[str, str], timeout: int = 10):
+    def text_is_not_empty(self, by_locator: tuple[str, str], timeout: int = 10, poll_frequency: float = 5):
         """
         Проверка, что текстовое поле не пустое
 
@@ -201,8 +201,11 @@ class Assertion(BasePage):
             локатор текстового поля
         :param timeout:
             время ожидания в секундах
+        :param poll_frequency:
+            частота проверки в секундах
+
         """
-        element = WebDriverWait(self.driver, timeout=timeout).until(
+        element = WebDriverWait(self.driver, timeout=timeout, poll_frequency=poll_frequency).until(
             EC.presence_of_element_located(locator=by_locator)
         )
 
