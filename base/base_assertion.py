@@ -66,7 +66,7 @@ class Assertion(BasePage):
         assert page_url == self.driver.current_url, \
             f'Ожидалась страница {page_url}, открылась {self.driver.current_url}'
 
-    def is_elem_displayed(self, by_locator: tuple[str, str], timeout=10) -> None:
+    def is_elem_displayed(self, by_locator: tuple[str, str], poll_frequency=5, timeout=10) -> None:
         """
         Проверка отображения элемента на странице
 
@@ -74,9 +74,11 @@ class Assertion(BasePage):
             локатор элемента
         :param timeout:
             время ожидания
+        :param poll_frequency:
+            частота проверки в секундах
 
         """
-        element = WebDriverWait(self.driver, timeout=timeout).until(
+        element = WebDriverWait(self.driver, poll_frequency=poll_frequency, timeout=timeout).until(
             EC.presence_of_element_located(locator=by_locator)
         )
 
