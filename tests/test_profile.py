@@ -132,8 +132,9 @@ class TestProfile(BaseTest):
             element = elements['Модальное окно ачивки']
             self.profile_page.do_click(element['Аватары у кого есть эта ачивка'])
 
-        with allure.step('Проверить, что открылась страница с названием "У кого есть ачивка"'):
+        with allure.step('Проверить, что открылась страница с заголовком "У кого есть ачивка"'):
             element = elements['Общие']
+            self.assertion.is_elem_displayed(element['Кнопка назад'])
             self.assertion.text_in_element(element['Заголовок страницы'], expected_text='У кого есть ачивка')
 
     @allure.title('Проверка возможности открыть меню профиля')
