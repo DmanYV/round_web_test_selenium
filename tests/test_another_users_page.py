@@ -185,6 +185,7 @@ class TestAnotherUsersPage(BaseTest):
             self.assertion.is_elem_invisible(elements['Страница другого пользователя']['Список проектов'])
 
         with allure.step('Проверить, что подписки отображает как 0'):
+            self.assertion.is_elem_displayed(elements['Страница другого пользователя']['Пользователь заблокирован'])
             self.assertion.text_in_element(elements['Страница другого пользователя']['Подписки'], expected_text='0')
 
         with allure.step('Проверить, что блок ачивок не видим'):
