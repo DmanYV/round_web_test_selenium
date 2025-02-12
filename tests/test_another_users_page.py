@@ -110,6 +110,7 @@ class TestAnotherUsersPage(BaseTest):
             self.another_user_page.do_click(element['Кнопка три точки'])
 
         with allure.step('Нажать Пожаловаться'):
+            self.assertion.is_elem_displayed(element['Пожаловаться'])
             self.another_user_page.do_click(element['Пожаловаться'])
 
         with allure.step(f'Выбрать "{options}"'):
