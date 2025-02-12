@@ -92,6 +92,8 @@ class TestEditingProfile(BaseTest):
 
         with allure.step('Ввести в поле о себе текст более 140 символов'):
             element = elements['Страница редактировать профиль']
+            # Очищаем поле о себе
+            self.edit_profile_page.clear(element['Поле о себе'])
             self.edit_profile_page.field_send_keys(element['Поле о себе'], fake.pystr(min_chars=141, max_chars=250))
 
         with allure.step('Проверить, что в поле ввелось 140 символов'):
@@ -116,6 +118,7 @@ class TestEditingProfile(BaseTest):
         with allure.step('Ввести в поле о себе текст на кириллице'):
             element = elements['Страница редактировать профиль']
             about_text = fakeru.text(max_nb_chars=140)
+            self.edit_profile_page.clear(element['Поле о себе'])
             self.edit_profile_page.field_send_keys(element['Поле о себе'], text=about_text)
 
         with allure.step('Нажать кнопку Сохранить'):
@@ -125,9 +128,6 @@ class TestEditingProfile(BaseTest):
         with allure.step('Проверить, что в профиле в поле о себе отображается тот же текст'):
             element = elements['Профиль пользователя']
             self.assertion.text_in_element(element['О себе'], expected_text=about_text)
-
-        with allure.step('Очистить текст в О себе'):
-            self.edit_profile_page.clear_about()
 
     @pytest.mark.parametrize('options', [
         'У меня есть другой профиль в ROUND!',
@@ -433,6 +433,8 @@ class TestEditingProfile(BaseTest):
             self.profile_page.do_click(element_edit_profile['Анкета'])
 
         with allure.step('Проверить, что поле Фамилия не пустое'):
+            #Временное решение time.sleep - при необходимости подумать как исправить
+            time.sleep(2)
             self.assertion.text_is_not_empty(element_study['Фамилия'])
 
         with allure.step('Проверить, что поле Имя не пустое'):
