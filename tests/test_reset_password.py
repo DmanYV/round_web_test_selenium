@@ -77,6 +77,8 @@ class TestResetPassword(BaseTest):
         with allure.step('Проверить что открыта главная страница'):
             self.assertion.page_is_opened(page_url=self.main_page.PAGE_URL)
 
+    @allure.id(26)
+    @allure.link('https://team-n5un.testit.software/projects/1/tests/26')
     @allure.title('Проверка получения смс кода для сброса пароля')
     @allure.description('Для восстановления используется номер от Aleska')
     @allure.severity('Critical')
