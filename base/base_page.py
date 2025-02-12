@@ -76,6 +76,7 @@ class BasePage(object):
             время ожидания
 
         """
+
         elem = WebDriverWait(self.driver, wait_time).until(EC.element_to_be_clickable(locator))
         try:
             elem.click()
